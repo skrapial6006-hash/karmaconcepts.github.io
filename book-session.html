@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Book Session | Karma and Concepts</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="book-session.css">
+
+</head>
+
+<body>
+
+<div class="hero"></div>
+
+<div class="container">
+
+<h2>Book Your Session</h2>
+
+<form>
+
+<input type="text" placeholder="Candidate Name" required>
+
+<input type="tel" placeholder="Phone Number" required>
+
+<input type="email" placeholder="Email Address" required>
+
+<label>Date of Birth</label>
+<input type="date" required>
+
+<label>Time of Birth</label>
+<input type="time" required>
+
+<!-- Payment Section -->
+<div class="payment-box">
+
+<h3>Select Payment Method</h3>
+
+<!-- UPI Button -->
+<button type="button" class="pay-btn" onclick="upiPayment()">
+Pay via UPI
+</button>
+
+<!-- Net Banking Button -->
+<button type="button" class="pay-btn" onclick="netBanking()">
+Pay via Net Banking
+</button>
+
+<p class="note">
+After payment, click submit to confirm your booking.
+</p>
+
+</div>
+
+<button type="submit" class="pay-btn">Submit Booking</button>
+
+</form>
+
+</div>
+
+<script>
+function upiPayment(){
+  alert("Pay using UPI ID: yourupi@okhdfc");
+}
+
+function netBanking(){
+  alert("Net Banking details will be shared after confirmation.");
+}
+</script>
+
+</body>
+</html>
