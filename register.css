@@ -1,0 +1,105 @@
+/* ===== Global ===== */
+body.register-page {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color:#2d3748;
+    background-color: #E8F5E9; /* Mint Green */
+    position: relative;
+}
+
+/* ===== Watermark ===== */
+body.register-page::before {
+    content: "";
+    position: fixed; /* center of viewport */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 260px;
+    height: 260px;
+    background-image: url("images/logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* ===== Button ===== */
+.main-btn {
+    font-family: 'Poppins', sans-serif;
+    background: #156066;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* No hover effect */
+.main-btn:hover {
+    background: #156066;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ===== Register Container ===== */
+.register-container {
+    max-width: 500px;
+    margin: 80px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.register-container h2 {
+    font-family: 'Poppins', sans serif;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #156066;
+}
+
+.register-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.register-container p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    body.register-page::before {
+        width: 200px;
+        height: 200px;
+    }
+
+    .hero {
+        padding: 80px 20px;
+    }
+
+    .register-container {
+        margin: 50px 20px;
+        padding: 30px;
+    }
+}

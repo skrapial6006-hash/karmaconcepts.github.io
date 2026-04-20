@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Karma and Concepts - Register</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="register.css">
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAl45OqZNLnZfyg61GLYQx18s7wTXEYHZg",
+  authDomain: "karmconcepts.firebaseapp.com",
+  projectId: "karmconcepts",
+  storageBucket: "karmconcepts.firebasestorage.app",
+  messagingSenderId: "627618765063",
+  appId: "1:627618765063:web:dae9cb992f5aec2c8e4da2"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
+
+window.signInWithGoogle = async () => {
+  try {
+    const provider = new GoogleAuthProvider();
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+
+    // Save user in database
+    set(ref(db, 'students/' + user.uid), {
+      name: user.displayName,
+      email: user.email,
+      photo: user.photoURL
+    });
+
+    // Redirect to home page after login
+    window.location.href = "index.html";
+
+  } catch (error) {
+    console.error(error);
+    alert("Sign-in failed! Try again.");
+  }
+};
+</script>
+
+</head>
+
+<body class="register-page">
+
+<!-- Empty Hero Banner -->
+<section class="hero">
+  <!-- Blank hero for spacing -->
+</section>
+
+<!-- Register Container -->
+<div class="register-container">
+  <h2>Join Karma and Concepts</h2>
+
+  <!-- Google Sign-In Button -->
+  <button class="main-btn" onclick="signInWithGoogle()">Sign in with Google</button>
+
+  <p>Already a member? <a href="index.html">Go back to Home</a></p>
+</div>
+
+</body>
+</html>
