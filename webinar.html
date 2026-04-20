@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Webinars | Karma and Concepts</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="webinar.css">
+</head>
+
+<body>
+
+<script>
+
+const savedTheme = localStorage.getItem("theme");
+
+if(savedTheme){
+document.body.classList.add(savedTheme);
+}
+
+</script>
+<section class="hero"></section>
+
+<div class="webinar-container">
+
+<h1 class="title">Webinars</h1>
+
+<!-- CARD -->
+<div class="webinar-card">
+  <h3>Chemistry Concept Mapping – 3 Days Webinar</h3>
+ <a href="webinar-details.html?webinar=chemistry" class="webinar-btn">
+Book Your Seat Now
+</a>
+</div>
+
+<div class="webinar-card">
+  <h3>Physics Concept Mapping – 3 Days Webinar</h3>
+<a href="webinar-details.html?webinar=physics" class="webinar-btn">Book you seat Now</a></div>
+
+<div class="webinar-card">
+  <h3>Biology Concept Mapping – 3 Days Webinar</h3>
+<a href="webinar-details.html?webinar=biology" class="webinar-btn">Book you seat Now</a></div>
+
+<div class="webinar-card">
+  <h3>Understanding the Teachings of Bhagwad Geeta – 3 Days Programme</h3>
+<a href="webinar-details.html?webinar=geeta" class="webinar-btn">Book you seat Now</a></div>
+
+<div class="webinar-card">
+  <h3>Knowing Yourself for Future Pathways – 3 Days Webinar</h3>
+<a href="webinar-details.html?webinar=self" class="webinar-btn">Book you seat Now</a></div>
+
+<div class="webinar-card">
+  <h3>How to Communicate Effectively & Effortlessly – 3 Days Webinar</h3>
+<a href="webinar-details.html?webinar=communication" class="webinar-btn">Book you seat Now</a></div>
+
+<div class="webinar-card">
+  <h3>Effective Study Management Webinar – 3 Days Webinar</h3>
+<a href="webinar-details.html?webinar=study" class="webinar-btn">Book you seat Now</a></div>
+
+<div class="webinar-card">
+  <h3>Build a Strong & Effective Personality – 3 Days Webinar</h3>
+<a href="webinar-details.html?webinar=personality" class="webinar-btn">Book you seat Now</a></div>
+
+</div>
+
+</body>
+</html>

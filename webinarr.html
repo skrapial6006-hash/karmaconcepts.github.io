@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Register | Webinar</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="webinarr.css">
+</head>
+<body>
+
+<div class="main-container">
+
+  <!-- HERO -->
+  <div class="hero"></div>
+
+</div>
+
+<div class="form-container">
+  <h1>Register for Webinar</h1>
+
+  <form id="payment-form">
+
+    <div class="row">
+      <div class="field">
+        <input type="text" id="firstName" placeholder="First Name">
+        <small class="error" id="firstNameError"></small>
+      </div>
+
+      <div class="field">
+        <input type="text" id="lastName" placeholder="Last Name">
+        <small class="error" id="lastNameError"></small>
+      </div>
+    </div>
+
+    <div class="field">
+      <input type="email" id="email" placeholder="Email Address">
+      <small class="error" id="emailError"></small>
+    </div>
+
+    <div class="field">
+      <input type="tel" id="phone" placeholder="Phone Number">
+      <small class="error" id="phoneError"></small>
+    </div>
+
+    <button type="button" onclick="payNow()" disabled>
+      Register Now
+    </button>
+
+  </form>
+</div>
+
+<!-- Razorpay -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+const firstName = document.getElementById("firstName");
+const lastName = document.getElementById("lastName");
+const email = document.getElementById("email");
+const phone = document.getElementById("phone");
+const button = document.querySelector("button");
+
+// Patterns
+const namePattern = /^[A-Za-z]+$/;
+const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+const phonePattern = /^[0-9]{10}$/;
+
+// Validation function
+function validateField(field, pattern, errorId) {
+
+  let value = field.value.trim();
+  let error = document.getElementById(errorId);
+
+  if (value === "") {
+    error.textContent = "This field is mandatory to be filled";
+    field.classList.add("error-border");
+    field.classList.remove("valid-border");
+    return false;
+  }
+
+  if (!pattern.test(value)) {
+    error.textContent = "Invalid credentials filled";
+    field.classList.add("error-border");
+    field.classList.remove("valid-border");
+    return false;
+  }
+
+  error.textContent = "";
+  field.classList.remove("error-border");
+  field.classList.add("valid-border");
+  return true;
+}
+
+// Check all fields
+function checkForm() {
+  let f1 = validateField(firstName, namePattern, "firstNameError");
+  let f2 = validateField(lastName, namePattern, "lastNameError");
+  let f3 = validateField(email, emailPattern, "emailError");
+  let f4 = validateField(phone, phonePattern, "phoneError");
+
+  button.disabled = !(f1 && f2 && f3 && f4);
+}
+
+// Live validation
+firstName.addEventListener("input", checkForm);
+lastName.addEventListener("input", checkForm);
+email.addEventListener("input", checkForm);
+phone.addEventListener("input", checkForm);
+
+// Payment function
+function payNow() {
+
+  checkForm();
+  if (button.disabled) return;
+
+  var options = {
+    key: "YOUR_RAZORPAY_KEY_ID",
+    amount: 9900,
+    currency: "INR",
+    name: "Karma & Concepts",
+    description: "Webinar Registration",
+
+    handler: function (response){
+      alert("Payment Successful 🎉");
+    },
+
+    prefill: {
+      name: firstName.value + " " + lastName.value,
+      email: email.value,
+      contact: phone.value
+    }
+  };
+
+  var rzp = new Razorpay(options);
+  rzp.open();
+}
+</script>
+
+</body>
+</html>
