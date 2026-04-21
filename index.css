@@ -321,7 +321,7 @@ body {
   position: absolute;
   top: 120%;              /* thoda neeche start kare */
   left: 0;
-  background: white;
+  background: #E8F5E9
   min-width: 180px;
   border-radius: 6px;
   padding: 10px 0;
@@ -341,7 +341,7 @@ body {
   color: black;
   padding: 10px 15px;
   text-decoration: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Cinzel', serif;
 }
 
 /* Hover effect on items */
