@@ -30,7 +30,7 @@ body {
 
 /* ===== HERO SECTION ===== */
 .hero {
-  min-height: 400px;
+  height: 400px;
   position: relative;
   margin-top: 0;
   padding: 60px 20px 0px;
@@ -248,8 +248,7 @@ body {
   gap: 50px;
   background: transparent;
   z-index: 5;
-  margin-top: auto;
-  margin-bottom: 0px;
+  margin-top: 0;
 }
 
 .navbar a {
