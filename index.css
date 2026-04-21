@@ -254,6 +254,7 @@ body {
   z-index: 5;
   margin-top: auto;
   margin-bottom: 5px;
+  opacity:1;
 }
 
 .navbar a {
@@ -322,7 +323,8 @@ body {
   top: 120%;              /* thoda neeche start kare */
   left: 0;
   background: #E8F5E9
-  min-width: 200px;
+  min-width: 250px;
+  backdrop-filter: none;
   border-radius: 6px;
   padding: 12px 0;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
@@ -335,6 +337,10 @@ body {
   visibility: hidden;
   transform: translateY(10px);   /* slide effect */
   transition: all 0.3s ease;     /* smooth animation */
+}
+
+.dropdown-menu {
+  background-color: #E8F5E9 !important;
 }
 
 /* Dropdown links */
