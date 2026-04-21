@@ -36,6 +36,7 @@ body {
   padding: 60px 20px 0px;
   text-align: center;
   color: white;
+  flex-direction: column;
   background: linear-gradient(120deg, #156066 0%, #187A6F 45%, #2BBF7A 95%);
   justify-content: flex-start;
 }
@@ -248,7 +249,7 @@ body {
   gap: 50px;
   background: transparent;
   z-index: 5;
-  margin-top: 0;
+  margin-top: auto;
 }
 
 .navbar a {
