@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta name="description" content="Karma and Concepts provides handwritten notes for Class 9, 10, 11 and 12 with easy explanations and concept clarity.">
+<meta name="keywords" content="Class 9 notes, Class 10 notes, Physics notes, Biology notes, Karma and Concepts handwritten notes">
+<meta name="author" content="Karma and Concepts">
+
+<link rel="icon" href="images/logo.png">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Karma and Concepts</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<script>
+const savedTheme = localStorage.getItem("theme");
+if(savedTheme){
+document.documentElement.classList.add(savedTheme);
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="main-container">
+
+<!-- User Profile -->
+<div id="userProfile" style="position:absolute; top:20px; right:20px;">
+<img id="userPhoto" style="width:45px;height:45px;border-radius:50%;display:none;">
+</div>
+
+<!-- HERO -->
+<section class="hero">
+
+<h2>Welcome to Karma and Concepts</h2>
+
+<p class="tagline">
+<img src="/images/lotus-left.png" class="lotus-icon">
+शांति + कर्म + उन्नति
+<img src="/images/lotus-right.png" class="lotus-icon">
+</p>
+
+<p>
+At Karma and Concepts, we help students to discover their true path in life and walk it with clarity—through simple concepts, powerful ideas, and timeless wisdom about karma, discipline, and personal growth.
+</p>
+
+<!-- ✅ NAVBAR HERO KE ANDAR -->
+<div id="topMenu">
+<a class="protectedLink" data-page="counselling.html">Counselling Sessions</a>
+<a class="protectedLink" data-page="courses.html">Courses</a>
+<a class="protectedLink" data-page="resources.html">Study Resources</a>
+<a class="protectedLink" data-page="webinar.html">Webinars</a>
+<a href="about.html">About us</a>
+</div>
+
+<a href="register.html" id="registerBtn" style="display:none;">
+<button class="main-btn">Register Now</button>
+</a>
+
+</section>
+
+<!-- Counselling -->
+<section class="counselling-section">
+<div class="counselling-card-full">
+<h2>Book a Personalized 1-to-1 Counselling Session</h2>
+<p>Confused about your future career? No worries, get your career consultation today.</p>
+<a class="protectedLink" data-page="sessions.html">
+<button class="main-btn">Book a Session</button>
+</a>
+</div>
+</section>
+
+<!-- Webinar -->
+<section class="webinar-section">
+<div class="webinar-card-full">
+<h2>Webinars</h2>
+<p>Get a glimpse of our unique study sessions by joining our webinar workshops</p>
+<a class="protectedLink" data-page="webinar.html">
+<button class="main-btn">Checkout our webinars now</button>
+</a>
+</div>
+</section>
+
+<!-- Courses -->
+<section class="courses-section">
+<div class="courses-card-full">
+<h2>Courses</h2>
+<p>Go and check out our exclusive courses designed specially for the students to achieve full conceptual understanding</p>
+<a class="protectedLink" data-page="courses.html">
+<button class="main-btn">Explore courses</button>
+</a>
+</div>
+</section>
+
+<!-- Study Resources -->
+<section class="study-resources-section">
+<div class="study-card-full">
+<h2>Study Resources</h2>
+<p>Get access to high-quality handwritten notes and CUET resources.</p>
+<a class="protectedLink" data-page="resources.html">
+<button class="main-btn">Explore Resources</button>
+</a>
+</div>
+</section>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyAl45OqZNLnZfyg61GLYQx18s7wTXEYHZg",
+authDomain: "karmconcepts.firebaseapp.com",
+projectId: "karmconcepts",
+storageBucket: "karmconcepts.firebasestorage.app",
+messagingSenderId: "627618765063",
+appId: "1:627618765063:web:dae9cb992f5aec2c8e4da2"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+onAuthStateChanged(auth,(user)=>{
+if(user){
+document.getElementById("userPhoto").src = user.photoURL;
+document.getElementById("userPhoto").style.display="block";
+document.getElementById("registerBtn").style.display="none";
+}
+});
+
+document.querySelectorAll(".protectedLink").forEach(link => {
+link.addEventListener("click",(e)=>{
+e.preventDefault();
+onAuthStateChanged(auth,(user)=>{
+if(user){
+window.location.href = link.dataset.page;
+}else{
+window.location.href = "register.html";
+}
+});
+});
+});
+
+</script>
+
+<footer class="site-footer">
+<div class="footer-container">
+<div class="footer-brand">
+<h2>Karma and Concepts</h2>
+</div>
+
+<div class="footer-grid">
+
+<div class="footer-col">
+<h3>Contact</h3>
+<p><i class="fa-solid fa-envelope"></i> karmaconcepts@gmail.com</p>
+<p><i class="fa-solid fa-phone"></i> +91 XXXXX XXXXX</p>
+</div>
+
+<div class="footer-col">
+<h3>Quick Links</h3>
+<a href="privacy.html">Privacy Policy</a>
+<a href="policy.html">Content Policy</a>
+<a href="refund.html">Refund Policy</a>
+<a href="terms.html">Terms & Conditions</a>
+<a href="disclaimer.html">Disclaimer</a>
+</div>
+
+<div class="footer-col">
+<h3>Follow Us</h3>
+<a href="https://www.instagram.com/karma_and_concepts/"><i class="fa-brands fa-instagram"></i> Instagram</a>
+<a href="https://www.youtube.com/@karma_concepts"><i class="fa-brands fa-youtube"></i> YouTube</a>
+<a href="https://t.me/karmaconcepts"><i class="fa-brands fa-telegram"></i> Telegram</a>A
+</div>
+
+</div>
+
+<p class="copyright">
+© 2026 Karma and Concepts | All Rights Reserved
+</p>
+
+</div>
+</footer>
+
+</body>
+</html>
