@@ -40,7 +40,7 @@
 </div>
 
 <!-- Scripts -->
-<script src="pdfjs/build/pdf.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <script>
@@ -79,13 +79,15 @@ function isPaidUser(){
 }
 
 /* ================= WATERMARK ================= */
-const watermark = new Image();
-watermark.src = "images/logo2.png";
+// const watermark = new Image();
+// watermark.src = "images/logo2.png";
 
 /* ================= PDF LOAD ================= */
-pdfjsLib.GlobalWorkerOptions.workerSrc = "pdfjs/build/pdf.worker.js";
-
-pdfjsLib.getDocument(pdfFile).promise
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
+pdfjsLib.getDocument({
+  url: pdfFile
+}).promise
 .then(function(pdf){
   pdfDoc = pdf;
   renderPage(pageNum);
@@ -125,26 +127,26 @@ function renderPage(num){
       viewport: viewport
     }).promise.then(function(){
 
-      /* WATERMARK DRAW */
-      const w = canvas.width * 0.18;
-      const h = w * (watermark.height / watermark.width);
+/*
+const w = canvas.width * 0.18;
+const h = w * (watermark.height / watermark.width);
 
-      ctx.globalAlpha = 0.18;
+ctx.globalAlpha = 0.18;
 
-      const positions = [
-        [canvas.width/2 - w/2, canvas.height/2 - h/2],
-        [30,30],
-        [canvas.width - w - 30,30],
-        [30,canvas.height - h - 30],
-        [canvas.width - w - 30,canvas.height - h - 30]
-      ];
+const positions = [
+  [canvas.width/2 - w/2, canvas.height/2 - h/2],
+  [30,30],
+  [canvas.width - w - 30,30],
+  [30,canvas.height - h - 30],
+  [canvas.width - w - 30,canvas.height - h - 30]
+];
 
-      positions.forEach(pos=>{
-        ctx.drawImage(watermark,pos[0],pos[1],w,h);
-      });
+positions.forEach(pos=>{
+  ctx.drawImage(watermark,pos[0],pos[1],w,h);
+});
 
-      ctx.globalAlpha = 1;
-
+ctx.globalAlpha = 1;
+*/
     });
 
   });
