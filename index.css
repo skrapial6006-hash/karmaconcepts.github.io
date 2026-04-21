@@ -33,7 +33,7 @@ body {
   min-height: 400px;
   position: relative;
   margin-top: 0;
-  padding: 60px 20px 10px;
+  padding: 60px 20px 0px;
   text-align: center;
   color: white;
   background: linear-gradient(120deg, #156066 0%, #187A6F 45%, #2BBF7A 95%);
@@ -249,7 +249,7 @@ body {
   background: transparent;
   z-index: 5;
   margin-top: auto;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 
 .navbar a {
