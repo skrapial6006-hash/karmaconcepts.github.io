@@ -323,7 +323,7 @@ body {
   position: absolute;
   top: 100%;              /* thoda neeche start kare */
   left: 0;
-  background: #E8F5E9
+  background: #E8F5E9;
   width: 260px;
   backdrop-filter: none;
   border-radius: 6px;
@@ -367,13 +367,14 @@ body {
   top: 100%;
 }
 
-.dropdown > a i {
-  transition: 0.3s;
-  font-size: 12px;     /* 👈 chhota size */
-  margin-left: 5px;    /* 👈 thoda gap */
-  font-weight: 400;    /* 👈 light look */
-  color: white;      /* 👈 navbar white hai to ye zaroori */
+  .dropdown > a i {
   display: inline-block;
+  font-size: 12px;
+  margin-left: 6px;
+  color: white;
+  opacity: 1;
+  visibility: visible;
+  transition: 0.3s;
 }
 
 .dropdown:hover > a i {
