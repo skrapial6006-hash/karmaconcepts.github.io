@@ -59,6 +59,7 @@ body {
 }
 
 .hero p:last-of-type {
+  margin-bottom: 30px;
   font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: 30px;
@@ -237,7 +238,7 @@ body {
   gap: 50px;
   background: transparent;
   z-index: 5;
-  margin-top: 20px;
+  margin-top: 70px;
 }
 
 .navbar a {
