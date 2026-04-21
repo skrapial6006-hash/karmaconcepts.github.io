@@ -264,7 +264,8 @@ body {
 
 /* ===== NAVBAR ===== */
 .navbar {
-  position: absolute;
+  position: static;
+  margin-top: 20px;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
