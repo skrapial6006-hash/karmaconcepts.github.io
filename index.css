@@ -234,7 +234,7 @@ body {
   display: flex;
   justify-content: center;    /* 👈 center align */
   align-items: center;
-  gap: 30px;
+  gap: 40px;
   background: transparent;
   z-index: 5;
 }
@@ -243,7 +243,7 @@ body {
   text-decoration: none;
   color: white;
   font-family: 'Cinzel', serif;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 /* ===== FOOTER ===== */
