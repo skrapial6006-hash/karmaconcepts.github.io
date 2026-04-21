@@ -36,6 +36,7 @@ body {
   padding: 60px 20px 0px;
   text-align: center;
   color: white;
+  display: flex;
   flex-direction: column;
   background: linear-gradient(120deg, #156066 0%, #187A6F 45%, #2BBF7A 95%);
   justify-content: flex-start;
