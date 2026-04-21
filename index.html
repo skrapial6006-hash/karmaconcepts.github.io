@@ -33,23 +33,24 @@ document.documentElement.classList.add(savedTheme);
 
 <div class="main-container">
 
-<!-- Hamburger Menu -->
-<div id="menuToggle">
-<span></span>
-<span></span>
-<span></span>
-</div>
+<section class="hero">
 
+<h2>Welcome to Karma and Concepts</h2>
+
+<p class="tagline">...</p>
+
+<p>...</p>
+
+<!-- 👇 NAVBAR YAHA SHIFT KARO -->
 <div id="topMenu">
-
 <a class="protectedLink" data-page="counselling.html">Counselling Sessions</a>
 <a class="protectedLink" data-page="courses.html">Courses</a>
 <a class="protectedLink" data-page="resources.html">Study Resources</a>
 <a class="protectedLink" data-page="webinar.html">Webinars</a>
-
 <a href="about.html">About us</a>
-
 </div>
+
+</section>
 
 <!-- User Profile Photo -->
 <div id="userProfile" style="position:absolute; top:20px; right:20px;">
@@ -62,13 +63,13 @@ document.documentElement.classList.add(savedTheme);
 <h2>Welcome to Karma and Concepts</h2>
 
 <p class="tagline">
-<img src="images/lotus-left.png" class="lotus-icon">
+<img src="/images/lotus-left.png" class="lotus-icon">
 शांति + कर्म + उन्नति
-<img src="images/lotus-right.png" class="lotus-icon">
+<img src="/images/lotus-right.png" class="lotus-icon">
 </p>
 
 <p>
-At Karma and Concepts, we help students discover their true path in life and walk it with clarity—through simple concepts, powerful ideas, and timeless wisdom about karma, discipline, and personal growth.
+At Karma and Concepts, we help students to discover their true path in life and walk it with clarity—through simple concepts, powerful ideas, and timeless wisdom about karma, discipline, and personal growth.
 </p>
 
 <a href="register.html" id="registerBtn" style="display:none;">
@@ -148,16 +149,6 @@ document.getElementById("registerBtn").style.display="none";
 }
 });
 
-/* HAMBURGER MENU */
-
-const menuToggle = document.getElementById('menuToggle');
-const topMenu = document.getElementById('topMenu');
-
-menuToggle.addEventListener('click', () => {
-topMenu.classList.toggle('active');
-menuToggle.classList.toggle('open');
-});
-
 /* PROTECTED LINKS */
 
 document.querySelectorAll(".protectedLink").forEach(link => {
@@ -180,20 +171,6 @@ window.location.href = "register.html";
 
 });
 
-/* CLICK OUTSIDE MENU */
-
-document.addEventListener("click",(event)=>{
-
-const menu = document.getElementById("topMenu");
-const toggle = document.getElementById("menuToggle");
-
-if(!menu.contains(event.target) && !toggle.contains(event.target)){
-menu.classList.remove("active");
-toggle.classList.remove("open");
-}
-
-});
-
 </script>
 
 <footer class="site-footer">
@@ -209,7 +186,6 @@ toggle.classList.remove("open");
 <div class="footer-col">
 <h3>Contact</h3>
 <p><i class="fa-solid fa-envelope"></i> karmaconcepts@gmail.com</p>
-<p><i class="fa-solid fa-phone"></i> +91 XXXXX XXXXX</p>
 </div>
 
 <div class="footer-col">
