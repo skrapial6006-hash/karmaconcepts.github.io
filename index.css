@@ -33,7 +33,7 @@ body {
   min-height: 400px;
   position: relative;
   margin-top: 0;
-  padding: 50px 20px 80px;
+  padding: 60px 20px 30px;
   text-align: center;
   color: white;
   background: linear-gradient(120deg, #156066 0%, #187A6F 45%, #2BBF7A 95%);
@@ -71,7 +71,7 @@ body {
 .hero p:last-of-type {
   font-size: 1.0rem;
   line-height: 1.6;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   opacity: 0;
   animation: paragraphRise 1.2s ease forwards;
   animation-delay: 0.4s;
