@@ -329,6 +329,7 @@ body {
 
   display: flex;
   flex-direction: column;
+  text-align: left;
 
   opacity: 0;
   visibility: hidden;
@@ -339,7 +340,7 @@ body {
 /* Dropdown links */
 .dropdown-menu a {
   color: black;
-  padding: 10px 15px;
+  padding: 8px 15px;
   text-decoration: none;
   font-family: 'Cinzel', serif;
 }
