@@ -310,3 +310,57 @@ body {
   text-align: center;
   font-size: 13px;
 }
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+}
+
+/* Hidden state */
+.dropdown-menu {
+  position: absolute;
+  top: 120%;              /* thoda neeche start kare */
+  left: 0;
+  background: white;
+  min-width: 180px;
+  border-radius: 6px;
+  padding: 10px 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
+  display: flex;
+  flex-direction: column;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);   /* slide effect */
+  transition: all 0.3s ease;     /* smooth animation */
+}
+
+/* Dropdown links */
+.dropdown-menu a {
+  color: black;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Hover effect on items */
+.dropdown-menu a:hover {
+  background: #f0f0f0;
+}
+
+/* SHOW with animation */
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);   /* upar aa jayega smoothly */
+  top: 100%;
+}
+
+.dropdown > a i {
+  transition: 0.3s;
+}
+
+.dropdown:hover > a i {
+  transform: rotate(180deg);
+}
