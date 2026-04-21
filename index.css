@@ -320,10 +320,10 @@ body {
 /* Hidden state */
 .dropdown-menu {
   position: absolute;
-  top: 120%;              /* thoda neeche start kare */
+  top: 100%;              /* thoda neeche start kare */
   left: 0;
   background: #E8F5E9
-  min-width: 250px;
+  width: 260px;
   backdrop-filter: none;
   border-radius: 6px;
   padding: 12px 0;
