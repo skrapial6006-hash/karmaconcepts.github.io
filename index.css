@@ -362,6 +362,9 @@ body {
 
 .dropdown > a i {
   transition: 0.3s;
+  font-size: 12px;     /* 👈 chhota size */
+  margin-left: 5px;    /* 👈 thoda gap */
+  font-weight: 400;    /* 👈 light look */
 }
 
 .dropdown:hover > a i {
