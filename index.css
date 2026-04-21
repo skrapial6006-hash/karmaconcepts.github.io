@@ -371,6 +371,8 @@ body {
   font-size: 12px;     /* 👈 chhota size */
   margin-left: 5px;    /* 👈 thoda gap */
   font-weight: 400;    /* 👈 light look */
+  color: white;      /* 👈 navbar white hai to ye zaroori */
+  display: inline-block;
 }
 
 .dropdown:hover > a i {
