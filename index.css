@@ -30,6 +30,7 @@ body {
 
 /* ===== HERO SECTION ===== */
 .hero {
+  position: relative;
   margin-top: 0;
   padding: 50px 20px 80px;
   text-align: center;
@@ -225,46 +226,9 @@ body {
   }
 }
 
-/* ===== HAMBURGER MENU ===== */
-#menuToggle {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  width: 30px;
-  height: 22px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 1000;
-}
-
-#menuToggle span {
-  height: 4px;
-  background: white;
-  border-radius: 2px;
-  transition: 0.3s;
-}
-
-#menuToggle.open span:nth-child(1) {
-  transform: rotate(45deg);
-  position: relative;
-  top: 9px;
-}
-
-#menuToggle.open span:nth-child(2) {
-  opacity: 0;
-}
-
-#menuToggle.open span:nth-child(3) {
-  transform: rotate(-45deg);
-  position: relative;
-  top: -9px;
-}
-
 /* ===== NAVBAR ===== */
 .navbar {
-  position: static;
+  position: relative;
   margin-top: 20px;
   top: 20px;
   left: 50%;
@@ -272,7 +236,7 @@ body {
   display: flex;
   gap: 30px;
   background: transparent;  /* 👈 transparent */
-  z-index: 10;
+  z-index: 5;
 }
 
 .navbar a {
