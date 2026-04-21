@@ -127,7 +127,6 @@ function renderPage(num){
       viewport: viewport
     }).promise.then(function(){
 
-/*
 const w = canvas.width * 0.18;
 const h = w * (watermark.height / watermark.width);
 
@@ -146,7 +145,7 @@ positions.forEach(pos=>{
 });
 
 ctx.globalAlpha = 1;
-*/
+
     });
 
   });
@@ -185,7 +184,7 @@ handler: function (){
   const folderLink = driveFolders[subjectKey];
 
   if(folderLink){
-    window.location.href = folderLink;
+    localStorage.setItem(pdfFile, "paid"); renderPage(pageNum);
   }else{
     alert("Folder link not found ❌");
     console.log("Generated key:", subjectKey);
