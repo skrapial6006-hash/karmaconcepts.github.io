@@ -30,6 +30,7 @@ body {
 
 /* ===== HERO SECTION ===== */
 .hero {
+  min-height: 400px;
   position: relative;
   margin-top: 0;
   padding: 50px 20px 80px;
@@ -58,10 +59,14 @@ body {
   }
 }
 
+.hero p {
+  margin-bottom: 10px;
+}
+
 .hero p:last-of-type {
   font-size: 1.1rem;
   line-height: 1.6;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   opacity: 0;
   animation: paragraphRise 1.2s ease forwards;
   animation-delay: 0.4s;
@@ -237,7 +242,7 @@ body {
   gap: 50px;
   background: transparent;
   z-index: 5;
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 .navbar a {
