@@ -37,6 +37,7 @@ body {
   text-align: center;
   color: white;
   background: linear-gradient(120deg, #156066 0%, #187A6F 45%, #2BBF7A 95%);
+  justify-content: flex-start;
 }
 
 /* Hero animations */
@@ -247,7 +248,8 @@ body {
   gap: 50px;
   background: transparent;
   z-index: 5;
-  margin-top: 10px;
+  margin-top: auto;
+  margin-bottom: 10px;
 }
 
 .navbar a {
