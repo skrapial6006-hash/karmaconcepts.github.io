@@ -229,13 +229,13 @@ body {
 /* ===== NAVBAR ===== */
 .navbar {
   position: relative;
-  margin-top: 20px;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin: 20px auto 0 auto;   /* 👈 auto se center */
+  width: 100%;                /* 👈 full width lo */
   display: flex;
+  justify-content: center;    /* 👈 center align */
+  align-items: center;
   gap: 30px;
-  background: transparent;  /* 👈 transparent */
+  background: transparent;
   z-index: 5;
 }
 
