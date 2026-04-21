@@ -250,6 +250,7 @@ body {
   background: transparent;
   z-index: 5;
   margin-top: auto;
+  margin-bottom: 5px;
 }
 
 .navbar a {
