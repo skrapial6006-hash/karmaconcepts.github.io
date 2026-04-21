@@ -61,10 +61,15 @@ body {
 
 .hero p {
   margin-bottom: 10px;
+  font-size: 1.0rem;
+  line-height: 1.6;
+  opacity: 0;
+  animation: paragraphRise 1.2s ease forwards;
+  animation-delay: 0.4s;
 }
 
 .hero p:last-of-type {
-  font-size: 1.1rem;
+  font-size: 1.0rem;
   line-height: 1.6;
   margin-bottom: 40px;
   opacity: 0;
