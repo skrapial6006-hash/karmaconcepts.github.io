@@ -62,13 +62,14 @@ body {
   }
 }
 
-.hero p {
+.hero p:first-of-type {
   margin-bottom: 10px;
   font-size: 1.0rem;
   line-height: 1.6;
   opacity: 0;
   animation: paragraphRise 1.2s ease forwards;
   animation-delay: 0.4s;
+  margin: 5px 0;
 }
 
 .hero p:last-of-type {
@@ -78,6 +79,7 @@ body {
   opacity: 0;
   animation: paragraphRise 1.2s ease forwards;
   animation-delay: 0.4s;
+  margin-top: 0;
 }
 
 @keyframes paragraphRise {
