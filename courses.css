@@ -171,9 +171,10 @@ animation: slideLeft 1s ease forwards;
 /* Delay */
 .delay-1{ animation-delay:0.5s; }
 .delay-2{ animation-delay:1s; }
-.delay-5{ animation-delay:1.5s;}
-.delay-3{ animation-delay:2s; }
-.delay-4{ animation-delay:2.5s; }
+.delay-3{ animation-delay:1.5s;}
+.delay-4{ animation-delay:2s; }
+.delay-5{ animation-delay:2.5s; }
+.delay-6{ animation-delay:3s; }
 
 /* Responsive */
 @media(max-width:768px){
