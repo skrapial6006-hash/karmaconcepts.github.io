@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,108 +10,32 @@
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<!-- About Page CSS -->
+<!-- CSS -->
 <link rel="stylesheet" href="about.css">
 
+<!-- Font Awesome (IMPORTANT for icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
+
 <body>
 
-<section class="common-hero">
+<!-- 🔥 NAVBAR LOAD HOGA YAHA -->
+<div id="navbar-container"></div>
 
-  <h1 class="site-title">Karma and Concepts</h1>
 
-  <nav class="navbar">
-  <a class="protectedLink" data-page="index.html">Home Page</a>
-  <a class="protectedLink" data-page="sessions.html">Live Sessions</a>
-
- <div class="dropdown">
-  <a>Resources <i class="fa-solid fa-angle-down"></i></a>
-
-  <div class="dropdown-menu">
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 9</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=9science">Science</a>
-        <a class="protectedLink" data-page="chapters.html?subject=9maths">Maths</a>
-        <a class="protectedLink" data-page="chapters.html?subject=9socialscience">Social Science</a>
-      </div>
-    </div>
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 10</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=10science">Science</a> 
-        <a class="protectedLink" data-page="chapters.html?subject=10maths">Maths</a>
-        <a class="protectedLink" data-page="chapters.html?subject=10biology">Biology</a>
-      </div>
-    </div>
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 11</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=11physics">Physics</a>
-        <a class="protectedLink" data-page="chapters.html?subject=11chemistry">Chemistry</a>
-        <a class="protectedLink" data-page="chapters.html?subject=11biology">Biology</a>
-      </div>
-    </div>
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 12</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=12physics">Physics</a>
-        <a class="protectedLink" data-page="chapters.html?subject=12chemistry">Chemistry</a>
-        <a class="protectedLink" data-page="chapters.html?subject=12biology">Biology</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-  <div class="dropdown">
-    <a>Webinars<i class="fa-solid fa-angle-down"></i></a>
-    <div class="dropdown-menu">
-      <a class="protectedLink" data-page="webinar.html">Chemistry</a>
-      <a class="protectedLink" data-page="webinar.html">Physics</a>
-      <a class="protectedLink" data-page="webinar.html">Biology</a>
-      <a class="protectedLink" data-page="webinar.html">Bhagwad Geeta</a>
-      <a class="protectedLink" data-page="webinar.html">Personality Development</a>
-      <a class="protectedLink" data-page="webinar.html">Career Counselling</a>
-      <a class="protectedLink" data-page="webinar.html">Communication Classes</a>
-      <a class="protectedLink" data-page="webinar.html">Managment Classes</a>
-    </div>
-  </div>
-
-  <div class="dropdown">
-    <a>Courses<i class="fa-solid fa-angle-down"></i></a>
-    <div class="dropdown-menu">
-      <a class="protectedLink" data-page="courses.html">Organic Chemistry</a>
-      <a class="protectedLink" data-page="courses.html">Chemistry Class 12</a>
-      <a class="protectedLink" data-page="courses.html">Physics Class 12</a>
-      <a class="protectedLink" data-page="courses.html">Biology Class 12</a>
-      <a class="protectedLink" data-page="courses.html">Science Class 10</a>
-      <a class="protectedLink" data-page="courses.html">Maths Class 10</a>
-      <a class="protectedLink" data-page="courses.html">Social Science Class 10</a>
-    </div>
-  </div>
-
-  <a href="about.html">About Us</a>
-  <a href="gallery.html">Gallery</a>
-
-</nav>
-
-</section>
-
+<!-- PAGE CONTENT -->
 <div class="content-wrapper">
+
 <h1>About Us</h1>
 
 <p>
-   <img src="images/about1.jpg" class="img-right1">
+<img src="images/about1.jpg" class="img-right1">
 
-An initiative by Sheshank Prajapati, a certified counselor from the National Council of Educational Research and Training (NCERT) with 25 years of experience in the field of teaching, Karma and Concepts aims to transform the way students experience education.
-In today’s system, learning often focuses heavily on rote memorization, placing pressure on students to remember information rather than truly understand it. This approach not only creates stress but also limits the development of real skills.
+An initiative by Sheshank Prajapati...
 <img src="images/about2.jpg" class="img-left1">
-At Karma and Concepts, our mission is to promote a modern, practical, and skill-based learning approach that encourages understanding, critical thinking, and real-world application. We aim to help students move beyond zero-skill learning and develop meaningful abilities that prepare them for life beyond examinations.
+
+At Karma and Concepts, our mission...
 </p>
 
 <div style="clear:both;"></div>
@@ -120,57 +43,67 @@ At Karma and Concepts, our mission is to promote a modern, practical, and skill-
 <div class="about-hindi">
 
 <h2 lang="hi">हमारे बारे में</h2>
+
 <p lang="hi">
-  <img src="images/about3.jpg" class="img-left2">
-   Sheshank Prajapati द्वारा शुरू की गई एक पहल—जो कि नेशनल काउंसिल ऑफ एजुकेशनल रिसर्च एंड ट्रेनिंग (NCERT) से प्रमाणित काउंसलर हैं और शिक्षण के क्षेत्र में 25 वर्षों का अनुभव रखते हैं—Karma and Concepts का उद्देश्य छात्रों के शिक्षा के अनुभव को बदलना है।
-
-आज की शिक्षा प्रणाली में सीखने का केंद्र अक्सर रटकर याद करने (rote memorization) पर अधिक होता है, जिससे छात्रों पर जानकारी को केवल याद रखने का दबाव पड़ता है, न कि उसे वास्तव में समझने का। यह तरीका न केवल छात्रों में तनाव पैदा करता है, बल्कि वास्तविक कौशलों के विकास को भी सीमित कर देता है।
-
-Karma and Concepts में हमारा लक्ष्य एक आधुनिक, व्यावहारिक और कौशल-आधारित शिक्षा पद्धति को बढ़ावा देना है, जो समझ, आलोचनात्मक सोच (critical thinking) और वास्तविक जीवन में उपयोग को प्रोत्साहित करे। हम चाहते हैं कि छात्र केवल शून्य-कौशल वाली पढ़ाई से आगे बढ़ें और ऐसे सार्थक कौशल विकसित करें जो उन्हें परीक्षाओं से आगे के जीवनके लिए तैयार करें।
-
+<img src="images/about3.jpg" class="img-left2">
+Sheshank Prajapati द्वारा शुरू की गई...
 </p>
 
 <div style="clear:both;"></div>
 
 <div class="vision-container">
-  
+
 <h2>Our Vision</h2>
+
 <p>
 <img src="images/about4.jpg" class="img-right2">
-Our vision is to empower students to become capable individuals and valuable assets for the nation, who will use their skills, knowledge, and creativity to contribute towards building a stronger and more progressive India.
+Our vision is to empower students...
+</p>
+
 <div class="vision-hindi">
 
 <h2 lang="hi">हमारा उद्देश्य</h2>
+
 <p lang="hi">
-  हमारा उद्देश्य छात्रों को सक्षम और योग्य व्यक्तियों के रूप में विकसित करना है, ताकि वे राष्ट्र के लिए एक मूल्यवान संपत्ति बन सकें। वे अपने कौशल, ज्ञान और रचनात्मकता का उपयोग करते हुए एक अधिक मजबूत और प्रगतिशील भारत के निर्माण में योगदान दे सकेंगे।
+हमारा उद्देश्य छात्रों को सक्षम बनाना है...
 </p>
-</p>
+
+</div>
 
 <h2>Why Karma and Concepts?</h2>
 
 <p>
-Karma and Concepts is built on the belief that education should go beyond rote memorization and focus on true understanding. Our platform aims to transform the way students experience learning. Here students can experience easy learning with indepth concept building without any difficulty and misunderstandings. Our goal is to encourage a modern, practical, and skill-based learning style where students build conceptual clarity, critical thinking, and the ability to apply knowledge in real-life situations. The resources available on this platform are designed to support effective revision, reduce academic stress, and make quality study material accessible and affordable for students. Through this initiative, we aim to guide learners towards becoming capable individuals who not only succeed academically but also develop the skills and confidence needed to contribute positively to society and to the progress of the nation.
+Karma and Concepts is built on the belief...
+</p>
 
 <h2 lang="hi">क्यों चुनें Karma And Concepts को</h2>
-<p lang="hi">
-हमारा उद्देश्य एक ऐसी आधुनिक, व्यावहारिक और कौशल-आधारित शिक्षण प्रणाली को प्रोत्साहित करना है, जिसमें विद्यार्थी केवल रटने तक सीमित न रहकर विषयों की गहरी समझ (Conceptual Clarity), तार्किक सोच (Critical Thinking) और अपने ज्ञान को वास्तविक जीवन की परिस्थितियों में लागू करने की क्षमता विकसित कर सकें। इस मंच पर उपलब्ध अध्ययन सामग्री को विशेष रूप से इस प्रकार तैयार किया गया है कि वह प्रभावी पुनरावृत्ति (Revision) में सहायक हो, विद्यार्थियों पर अनावश्यक शैक्षणिक तनाव को कम करे और गुणवत्तापूर्ण अध्ययन सामग्री सभी विद्यार्थियों के लिए सरल, सुलभ तथा किफायती रूप में उपलब्ध हो सके।
 
-इस पहल के माध्यम से हमारा उद्देश्य विद्यार्थियों को ऐसे सक्षम और आत्मविश्वासी व्यक्तियों के रूप में विकसित करने में मार्गदर्शन देना है, जो न केवल अपनी शैक्षणिक यात्रा में सफलता प्राप्त करें, बल्कि अपने ज्ञान, कौशल और रचनात्मकता के माध्यम से समाज के लिए सकारात्मक योगदान दें तथा एक सशक्त और प्रगतिशील भारत के निर्माण में महत्वपूर्ण भूमिका निभाएँ।
-</p>
+<p lang="hi">
+हमारा उद्देश्य एक आधुनिक शिक्षा प्रणाली...
 </p>
 
 </div>
-</body>
+</div>
 
+</div>
+
+
+<!-- 🔥 NAVBAR LOAD SCRIPT -->
+<script>
+fetch("navbar.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("navbar-container").innerHTML = data;
+  });
+</script>
+
+
+<!-- 🔥 FIREBASE SCRIPT -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { 
-  getAuth, 
-  onAuthStateChanged 
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyAl45OqZNLnZfyg61GLYQx18s7wTXEYHZg",
   authDomain: "karmconcepts.firebaseapp.com",
@@ -183,25 +116,29 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// 🔥 USER STATE STORE KARNE KE LIYE
 let currentUser = null;
 
-// 🔥 once load pe user fetch karo
+// 🔥 wait for auth
 onAuthStateChanged(auth, (user) => {
   currentUser = user;
 });
 
-// 🔥 CLICK HANDLER
-document.querySelectorAll(".protectedLink").forEach(link => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
+// 🔥 IMPORTANT: delay so navbar loads first
+setTimeout(() => {
+  document.querySelectorAll(".protectedLink").forEach(link => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
 
-    if (currentUser) {
-      window.location.href = link.dataset.page;
-    } else {
-      window.location.href = "register.html";
-    }
+      if (currentUser) {
+        window.location.href = link.dataset.page;
+      } else {
+        window.location.href = "register.html";
+      }
+    });
   });
-});
+}, 500);
 
 </script>
+
+</body>
+</html>
