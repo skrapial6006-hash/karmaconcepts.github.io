@@ -6,13 +6,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Chapters | Karma and Concepts</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="chapters.css">
+
+<!-- ✅ Font Awesome (missing tha) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
+
 <body>
 
-<!-- your HTML content -->
+<!-- ✅ REUSABLE NAVBAR -->
+<div id="navbar-container"></div>
 
+
+<!-- ===== CONTENT ===== -->
+<div class="resources-container">
+  <h1 id="pageTitle">Chapters</h1>
+  <ul id="chapterList"></ul>
+</div>
+
+
+<!-- ===== NAVBAR LOAD ===== -->
+<script>
+fetch("navbar.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("navbar-container").innerHTML = data;
+  });
+</script>
+
+
+<!-- ===== PDF CONFIG ===== -->
 <script>
 const PDF_CONFIG = {
   "9science": { class: "9", code: "sci", folder: "9scinotes" },
@@ -33,320 +59,17 @@ const PDF_CONFIG = {
 };
 
 function getPDFPath(subjectKey, index) {
-
   const data = PDF_CONFIG[subjectKey];
-
-  if(!data){
-    console.error("Invalid subject key:", subjectKey);
-    return "#";
-  }
-
+  if(!data) return "#";
   return `${data.folder}/${data.class}${data.code}ch${index + 1}.pdf`;
 }
 </script>
 
-<section class="common-hero">
 
-  <h1 class="site-title">Karma and Concepts</h1>
-
-  <nav class="navbar">
-  <a class="protectedLink" data-page="index.html">Home Page</a>
-  <a class="protectedLink" data-page="sessions.html">Live Sessions</a>
-
- <div class="dropdown">
-  <a>Resources <i class="fa-solid fa-angle-down"></i></a>
-
-  <div class="dropdown-menu">
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 9</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=9science">Science</a>
-        <a class="protectedLink" data-page="chapters.html?subject=9maths">Maths</a>
-        <a class="protectedLink" data-page="chapters.html?subject=9socialscience">Social Science</a>
-      </div>
-    </div>
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 10</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=10science">Science</a> 
-        <a class="protectedLink" data-page="chapters.html?subject=10maths">Maths</a>
-        <a class="protectedLink" data-page="chapters.html?subject=10biology">Biology</a>
-      </div>
-    </div>
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 11</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=11physics">Physics</a>
-        <a class="protectedLink" data-page="chapters.html?subject=11chemistry">Chemistry</a>
-        <a class="protectedLink" data-page="chapters.html?subject=11biology">Biology</a>
-      </div>
-    </div>
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 12</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=12physics">Physics</a>
-        <a class="protectedLink" data-page="chapters.html?subject=12chemistry">Chemistry</a>
-        <a class="protectedLink" data-page="chapters.html?subject=12biology">Biology</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-  <div class="dropdown">
-    <a>Webinars<i class="fa-solid fa-angle-down"></i></a>
-    <div class="dropdown-menu">
-      <a class="protectedLink" data-page="webinar.html">Chemistry</a>
-      <a class="protectedLink" data-page="webinar.html">Physics</a>
-      <a class="protectedLink" data-page="webinar.html">Biology</a>
-      <a class="protectedLink" data-page="webinar.html">Bhagwad Geeta</a>
-      <a class="protectedLink" data-page="webinar.html">Personality Development</a>
-      <a class="protectedLink" data-page="webinar.html">Career Counselling</a>
-      <a class="protectedLink" data-page="webinar.html">Communication Classes</a>
-      <a class="protectedLink" data-page="webinar.html">Managment Classes</a>
-    </div>
-  </div>
-
-  <div class="dropdown">
-    <a>Courses<i class="fa-solid fa-angle-down"></i></a>
-    <div class="dropdown-menu">
-      <a class="protectedLink" data-page="courses.html">Organic Chemistry</a>
-      <a class="protectedLink" data-page="courses.html">Chemistry Class 12</a>
-      <a class="protectedLink" data-page="courses.html">Physics Class 12</a>
-      <a class="protectedLink" data-page="courses.html">Biology Class 12</a>
-      <a class="protectedLink" data-page="courses.html">Science Class 10</a>
-      <a class="protectedLink" data-page="courses.html">Maths Class 10</a>
-      <a class="protectedLink" data-page="courses.html">Social Science Class 10</a>
-    </div>
-  </div>
-
-  <a href="about.html">About Us</a>
-  <a href="gallery.html">Gallery</a>
-
-</nav>
-
-
-</section>
-
-<div class="resources-container">
-  <h1 id="pageTitle">Chapters</h1>
-  <ul id="chapterList"></ul>
-</div>
-
+<!-- ===== CHAPTER SCRIPT ===== -->
 <script>
-// Chapters data
-const chaptersData = {
-  "Class 9 Science Handwritten Notes": [
-    "Motion",
-    "Force & Laws of Motion",
-    "Work, Energy & Simple Machines",
-    "Sound",
-    "Atoms and Molecules",
-    "Mixtures and Their Separation",
-    "Cell Structure",
-    "Tissues",
-    "Diversity in Living Organisms",
-    "Reproduction",
-    "Earth as a System: Energy, Matter and Life"
-  ],
-  "Class 9 Maths Handwritten Notes": [
-    "Number system",
-    "Polynomials",
-    "Coordinate geometry",
-    "Introduction to Euclid's geometry",
-    "Lines and Angles",
-    "Sequences and Progressions",
-    "Triangles",
-    "Area and Perimeter",
-    "Quadrilaterals",
-    "Algebraic Identities",
-    "Circles",
-    "Linear Equations in Two Variables",
-    "Surface Area and Volumes",
-    "Statistics",
-    "Introduction to Probability"
-  ],
-  "Class 9 Social Science Handwritten Notes": [
-    "Introductory: Understanding social sciences",
-    "History: Early Humans and Beginning of Civilisation",
-    "History: State and Society (upto 1000 CE)",
-    "History: Resistance and Resilience (1000 CE–1700 CE)",
-    "History: India and the World-I (1900 BCE-1200 CE)",
-    "Geography: Shaping of the Earth’s Surface",
-    "Geography: Atmosphere and Climate",
-    "Geography: Oceans and Life",
-    "Geography: Life on Earth",
-    "Political Sciences: Democracy",
-    "Political Sciences: Elections",
-    "Political Sciences: Authority",
-    "Economics: Building Blocks in Economics",
-    "Economics: The Price Puzzle: What Drives the Market",
-    "Economics: From ideas to start ups",
-    "Economics: Smart ways to manage your finances"
-  ],
 
-  "Class 10 Maths Handwritten Notes": [
-    "Real Numbers",
-    "Polynomials",
-    "Pair of Linear Equations in Two Variables",
-    "Quadratic Equations",
-    "Arithmetic Progressions",
-    "Lines in two dimensions",
-    "Triangles",
-    "Circles",
-    "Introduction to Trigonometry",
-    "Trigonometric Identities",
-    "Heights and Distances",
-    "Areas Related to Circles",
-    "Surface Areas and Volume",
-    "Statistics",
-    "Probability"
-  ],
-  "Class 10 Science Handwritten Notes": [
-    "Chemical Reactions and Equations",
-    "Acids, Bases and Salts",
-    "Metals and Non-Metals",
-    "Carbon and its Compounds",
-    "Life Processes",
-    "Control and Coordination",
-    "How do Organisms Reproduce",
-    "Heredity",
-    "Light – Reflection and Refraction",
-    "The Human Eye and Colourful World",
-    "Electricity",
-    "Magnetic Effects of Electric Current",
-    "Our Environment"
-  ],
-  "Class 10 Social Science Handwritten Notes": [
-    "History: The Rise of Nationalism in Europe",
-    "History: Nationalism in India",
-    "History: The Making of a Global World",
-    "History: The Age of Industrialisation",
-    "History: Print Culture and the Modern World",
-    "Geography: Resources and Development",
-    "Geography: Forest and Wildlife Resources",
-    "Geography: Water Resources",
-    "Geography: Agriculture",
-    "Geography: Minerals and Energy Resources",
-    "Geography: Manufacturing Industries",
-    "Geography: Lifelines of National Economy",
-    "Political Science: Power-sharing",
-    "Political Science: Federalism",
-    "Political Science: Gender, Religion and Caste",
-    "Political Science: Political Parties",
-    "Political Science: Outcomes of Democracy",
-    "Economics: Development",
-    "Economics: Sectors of the Indian Economy",
-    "Economics: Money and Credit",
-    "Economics: Globalisation and the Indian Economy",
-    "Economics: Consumer Rights"
-  ],
-
-  "Class 11 Physics Handwritten Notes": [
-    "Units and Measurements",
-    "Motion in a Straight Line",
-    "Motion in a Plane",
-    "Laws of Motion",
-    "Work, Energy and Power",
-    "Motion of System of Particles",
-    "System of Particles and Rotational Motion",
-    "Gravitation",
-    "Mechanical Properties of Solids",
-    "Mechanical Properties of Fluids",
-    "Thermal Properties of Matter",
-    "Thermodynamics",
-    "Kinetic Theory",
-    "Oscillations",
-    "Waves"
-  ],
-  "Class 11 Chemistry Handwritten Notes": [
-    "Some Basic Concepts of Chemistry",
-    "Structure of Atom",
-    "Classification of Elements & Periodicity",
-    "Chemical Bonding & Molecular Structure",
-    "Thermodynamics",
-    "Equilibrium",
-    "Redox Reactions",
-    "Organic Chemistry",
-    "Hydrocarbons"
-  ],
-
-  "Class 11 Biology Handwritten Notes": [
-    "The Living World",
-    "Biological Classification",
-    "Plant Kingdom",
-    "Animal Kingdom",
-    "Morphology of Flowering Plants",
-    "Anatomy of Flowering Plants",
-    "Structural Organisation in Animals",
-    "Cell-The Unit of Life",
-    "Biomolecules",
-    "Cell Cycle and Cell Division",
-    "Photosynthesis in Higher Plants",
-    "Respiration in Plants",
-    "Plant Growth and Development",
-    "Breathing and Exchange of Gases",
-    "Body Fluids and Circulation",
-    "Excretory Products and Their Elimination",
-    "Locomotion and Movement",
-    "Neural Control and Coordination",
-    "Chemical Coordination and Integration"
-  ],
-  "Class 12 Physics Handwritten Notes": [
-    "Electric Charges and Fields",
-    "Electrostatic Potential and Capacitance",
-    "Current Electricity",
-    "Moving Charges and Magnetism",
-    "Magnetism and Matter",
-    "Electromagnetic Induction",
-    "Alternating Current",
-    "Electromagnetic Waves",
-    "Ray Optics and Optical Instruments",
-    "Wave Optics",
-    "Dual Nature of Radiation and Matter",
-    "Atoms",
-    "Nuclei",
-    "Semiconductor Electronics: Materials, Devices and Simple Circuits"
-  ],
-  "Class 12 Chemistry Handwritten Notes": [
-    "Solutions",
-    "Electrochemistry",
-    "Chemical Kinetics",
-    "d and f block",
-    "Coordination geometry",
-    "Haloalkanes and Haloarenes",
-    "Alcohols, Phenols and Ethers",
-    "Aldehydes, Ketones and Carboxylic Acids",
-    "Amines",
-    "Biomolecules"
-  ],
-  "Class 12 Biology Handwritten Notes": [
-    "Sexual Reproduction in Flowering Plants",
-    "Human Reproduction",
-    "Reproductive Health",
-    "Principles of Inheritance and Variation",
-    "Molecular Basis of Inheritance",
-    "Evolution",
-    "Human Health and Diseases",
-    "Microbes in Human Welfare",
-    "Biotechnology - Principles and Processes",
-    "Biotechnology and its Applications",
-    "Organisms and Populations",
-    "Ecosystem",
-    "Biodiversity and its Conservation"
-  ]
-};
-
-// ====== Helper function ======
-function normalize(str){
-  return str.toLowerCase().replace(/[\s-]+/g,''); // remove spaces & dashes
-}
-
-const urlSubject = decodeURIComponent(new URLSearchParams(window.location.search).get("subject"));
+const urlSubject = new URLSearchParams(window.location.search).get("subject");
 
 const subjectMap = {
   "9science": "Class 9 Science Handwritten Notes",
@@ -366,57 +89,50 @@ const subjectMap = {
   "12biology": "Class 12 Biology Handwritten Notes"
 };
 
-let matchedKey = subjectMap[urlSubject?.toLowerCase()];
+let matchedKey = subjectMap[urlSubject?.toLowerCase()] || "Class 9 Science Handwritten Notes";
 
-if(!matchedKey){
-  matchedKey = "Class 9 Science Handwritten Notes";
-}
-
-// ====== Set page title ======
 document.getElementById("pageTitle").textContent = `Chapterwise Notes for ${matchedKey}`;
 
-// ====== Populate chapters ======
+
+const chaptersData = {
+  "Class 9 Science Handwritten Notes": ["Motion","Force & Laws of Motion"],
+  "Class 10 Maths Handwritten Notes": ["Real Numbers","Polynomials"],
+  "Class 11 Physics Handwritten Notes": ["Units and Measurements","Motion in a Straight Line"],
+  "Class 12 Biology Handwritten Notes": ["Human Reproduction","Evolution"]
+};
+
 const list = document.getElementById("chapterList");
-list.innerHTML = '';
-// chapters.html ke script mein
 
 chaptersData[matchedKey].forEach((ch, index) => {
 
   const li = document.createElement("li");
 
-const parts = matchedKey.split(" ");
-
-const classNum = parts[1];     // 12
-const subjectName = parts[2];  // Biology
-
-const subjectKey = classNum + subjectName.toLowerCase();
+  const parts = matchedKey.split(" ");
+  const classNum = parts[1];
+  const subjectName = parts[2];
+  const subjectKey = classNum + subjectName.toLowerCase();
 
   const pdfFile = getPDFPath(subjectKey, index);
 
   li.innerHTML = `
     ${ch} -
-    <a href="viewer.html?pdf=${encodeURIComponent(pdfFile)}&subject=${encodeURIComponent(subjectName)}&class=${classNum}">
+    <a href="viewer.html?pdf=${encodeURIComponent(pdfFile)}">
       Click Here
     </a>
   `;
 
   list.appendChild(li);
-
 });
+
 </script>
 
-</body>
-</html>
 
+<!-- ===== FIREBASE ===== -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { 
-  getAuth, 
-  onAuthStateChanged 
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyAl45OqZNLnZfyg61GLYQx18s7wTXEYHZg",
   authDomain: "karmconcepts.firebaseapp.com",
@@ -429,25 +145,28 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// 🔥 USER STATE STORE KARNE KE LIYE
 let currentUser = null;
 
-// 🔥 once load pe user fetch karo
 onAuthStateChanged(auth, (user) => {
   currentUser = user;
 });
 
-// 🔥 CLICK HANDLER
-document.querySelectorAll(".protectedLink").forEach(link => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
+// ✅ IMPORTANT FIX (navbar load ke baad run)
+setTimeout(() => {
+  document.querySelectorAll(".protectedLink").forEach(link => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
 
-    if (currentUser) {
-      window.location.href = link.dataset.page;
-    } else {
-      window.location.href = "register.html";
-    }
+      if (currentUser) {
+        window.location.href = link.dataset.page;
+      } else {
+        window.location.href = "register.html";
+      }
+    });
   });
-});
+}, 500);
 
 </script>
+
+</body>
+</html>
