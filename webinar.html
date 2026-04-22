@@ -8,162 +8,105 @@
 <title>Webinars | Karma and Concepts</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="webinar.css">
+
+<!-- ✅ Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 
 <body>
 
+<!-- ✅ NAVBAR LOAD -->
+<div id="navbar-container"></div>
+
+<!-- ✅ THEME LOAD -->
 <script>
-
 const savedTheme = localStorage.getItem("theme");
-
 if(savedTheme){
-document.body.classList.add(savedTheme);
+  document.body.classList.add(savedTheme);
 }
-
 </script>
-<section class="common-hero">
 
-  <h1 class="site-title">Karma and Concepts</h1>
-
-    <nav class="navbar">
-  <a class="protectedLink" data-page="index.html">Home Page</a>
-  <a class="protectedLink" data-page="sessions.html">Live Sessions</a>
-
- <div class="dropdown">
-  <a>Resources <i class="fa-solid fa-angle-down"></i></a>
-
-  <div class="dropdown-menu">
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 9</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=9science">Science</a>
-        <a class="protectedLink" data-page="chapters.html?subject=9maths">Maths</a>
-        <a class="protectedLink" data-page="chapters.html?subject=9socialscience">Social Science</a>
-      </div>
-    </div>
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 10</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=10science">Science</a> 
-        <a class="protectedLink" data-page="chapters.html?subject=10maths">Maths</a>
-        <a class="protectedLink" data-page="chapters.html?subject=10biology">Biology</a>
-      </div>
-    </div>
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 11</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=11physics">Physics</a>
-        <a class="protectedLink" data-page="chapters.html?subject=11chemistry">Chemistry</a>
-        <a class="protectedLink" data-page="chapters.html?subject=11biology">Biology</a>
-      </div>
-    </div>
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 12</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=12physics">Physics</a>
-        <a class="protectedLink" data-page="chapters.html?subject=12chemistry">Chemistry</a>
-        <a class="protectedLink" data-page="chapters.html?subject=12biology">Biology</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-  <div class="dropdown">
-    <a>Webinars<i class="fa-solid fa-angle-down"></i></a>
-    <div class="dropdown-menu">
-      <a class="protectedLink" data-page="webinar.html">Chemistry</a>
-      <a class="protectedLink" data-page="webinar.html">Physics</a>
-      <a class="protectedLink" data-page="webinar.html">Biology</a>
-      <a class="protectedLink" data-page="webinar.html">Bhagwad Geeta</a>
-      <a class="protectedLink" data-page="webinar.html">Personality Development</a>
-      <a class="protectedLink" data-page="webinar.html">Career Counselling</a>
-      <a class="protectedLink" data-page="webinar.html">Communication Classes</a>
-      <a class="protectedLink" data-page="webinar.html">Managment Classes</a>
-    </div>
-  </div>
-
-  <div class="dropdown">
-    <a>Courses<i class="fa-solid fa-angle-down"></i></a>
-    <div class="dropdown-menu">
-      <a class="protectedLink" data-page="courses.html">Organic Chemistry</a>
-      <a class="protectedLink" data-page="courses.html">Chemistry Class 12</a>
-      <a class="protectedLink" data-page="courses.html">Physics Class 12</a>
-      <a class="protectedLink" data-page="courses.html">Biology Class 12</a>
-      <a class="protectedLink" data-page="courses.html">Science Class 10</a>
-      <a class="protectedLink" data-page="courses.html">Maths Class 10</a>
-      <a class="protectedLink" data-page="courses.html">Social Science Class 10</a>
-    </div>
-  </div>
-
-  <a href="about.html">About Us</a>
-  <a href="gallery.html">Gallery</a>
-
-</nav>
-
-
-</section>
-
+<!-- ✅ CONTENT -->
 <div class="webinar-container">
 
 <h1 class="title">Webinars</h1>
 
-<!-- CARD -->
 <div class="webinar-card">
   <h3>Chemistry Concept Mapping – 3 Days Webinar</h3>
- <a href="webinar-details.html?webinar=chemistry" class="webinar-btn">
-Book Your Seat Now
-</a>
+  <a href="webinar-details.html?webinar=chemistry" class="webinar-btn">
+    Book Your Seat Now
+  </a>
 </div>
 
 <div class="webinar-card">
   <h3>Physics Concept Mapping – 3 Days Webinar</h3>
-<a href="webinar-details.html?webinar=physics" class="webinar-btn">Book you seat Now</a></div>
+  <a href="webinar-details.html?webinar=physics" class="webinar-btn">
+    Book Your Seat Now
+  </a>
+</div>
 
 <div class="webinar-card">
   <h3>Biology Concept Mapping – 3 Days Webinar</h3>
-<a href="webinar-details.html?webinar=biology" class="webinar-btn">Book you seat Now</a></div>
+  <a href="webinar-details.html?webinar=biology" class="webinar-btn">
+    Book Your Seat Now
+  </a>
+</div>
 
 <div class="webinar-card">
   <h3>Understanding the Teachings of Bhagwad Geeta – 3 Days Programme</h3>
-<a href="webinar-details.html?webinar=geeta" class="webinar-btn">Book you seat Now</a></div>
+  <a href="webinar-details.html?webinar=geeta" class="webinar-btn">
+    Book Your Seat Now
+  </a>
+</div>
 
 <div class="webinar-card">
   <h3>Knowing Yourself for Future Pathways – 3 Days Webinar</h3>
-<a href="webinar-details.html?webinar=self" class="webinar-btn">Book you seat Now</a></div>
+  <a href="webinar-details.html?webinar=self" class="webinar-btn">
+    Book Your Seat Now
+  </a>
+</div>
 
 <div class="webinar-card">
   <h3>How to Communicate Effectively & Effortlessly – 3 Days Webinar</h3>
-<a href="webinar-details.html?webinar=communication" class="webinar-btn">Book you seat Now</a></div>
+  <a href="webinar-details.html?webinar=communication" class="webinar-btn">
+    Book Your Seat Now
+  </a>
+</div>
 
 <div class="webinar-card">
-  <h3>Effective Study Management Webinar – 3 Days Webinar</h3>
-<a href="webinar-details.html?webinar=study" class="webinar-btn">Book you seat Now</a></div>
+  <h3>Effective Study Management – 3 Days Webinar</h3>
+  <a href="webinar-details.html?webinar=study" class="webinar-btn">
+    Book Your Seat Now
+  </a>
+</div>
 
 <div class="webinar-card">
   <h3>Build a Strong & Effective Personality – 3 Days Webinar</h3>
-<a href="webinar-details.html?webinar=personality" class="webinar-btn">Book you seat Now</a></div>
+  <a href="webinar-details.html?webinar=personality" class="webinar-btn">
+    Book Your Seat Now
+  </a>
+</div>
 
 </div>
 
-</body>
-</html>
+<!-- ✅ NAVBAR FETCH -->
+<script>
+fetch("navbar.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("navbar-container").innerHTML = data;
+    initAuth(); // 🔥 IMPORTANT
+  });
+</script>
 
+<!-- ✅ FIREBASE AUTH (COMMON SYSTEM) -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { 
-  getAuth, 
-  onAuthStateChanged 
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyAl45OqZNLnZfyg61GLYQx18s7wTXEYHZg",
   authDomain: "karmconcepts.firebaseapp.com",
@@ -176,25 +119,30 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// 🔥 USER STATE STORE KARNE KE LIYE
-let currentUser = null;
+window.initAuth = function(){
 
-// 🔥 once load pe user fetch karo
-onAuthStateChanged(auth, (user) => {
-  currentUser = user;
-});
+  let currentUser = null;
 
-// 🔥 CLICK HANDLER
-document.querySelectorAll(".protectedLink").forEach(link => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
+  onAuthStateChanged(auth, (user) => {
+    currentUser = user;
 
-    if (currentUser) {
-      window.location.href = link.dataset.page;
-    } else {
-      window.location.href = "register.html";
-    }
+    document.querySelectorAll(".protectedLink").forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        if (currentUser) {
+          window.location.href = link.dataset.page;
+        } else {
+          window.location.href = "register.html";
+        }
+      });
+    });
+
   });
-});
+
+};
 
 </script>
+
+</body>
+</html>
