@@ -4,17 +4,24 @@ body {
   background: #E8F5E9;
 }
 
+/* ===== REMOVE DEFAULT MARGIN ===== */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 /* ===== COMMON HERO ===== */
 .common-hero {
-  height: 180px;   /* 👈 chhota hero (compact pages ke liye) */
+  height: 180px;
   background: linear-gradient(120deg, #156066 0%, #187A6F 45%, #2BBF7A 95%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: visible; /* ✅ dropdown cut nahi hoga */
 }
 
-/* Title */
+/* ===== TITLE ===== */
 .site-title {
   font-family: 'Cinzel', serif;
   color: white;
@@ -22,11 +29,15 @@ body {
   margin-bottom: 20px;
 }
 
-/* Navbar same rahega */
+/* ===== NAVBAR ===== */
 .navbar {
+  position: relative;
   display: flex;
   gap: 40px;
   justify-content: center;
+  align-items: center;
+  width: 100%;
+  z-index: 10;
 }
 
 .navbar a {
@@ -34,6 +45,113 @@ body {
   text-decoration: none;
   font-family: 'Cinzel', serif;
   font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===== DROPDOWN ===== */
+.dropdown {
+  position: relative;
+}
+
+/* Hidden state */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #E8F5E9;
+  width: 260px;
+  border-radius: 6px;
+  padding: 12px 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  opacity: 0;                 /* ✅ FIXED */
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+/* Dropdown links */
+.dropdown-menu a {
+  color: black;
+  padding: 8px 16px;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+/* Hover effect */
+.dropdown-menu a:hover {
+  background: #f0f0f0;
+}
+
+/* SHOW dropdown */
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ===== ARROW ICON ===== */
+.dropdown > a i {
+  font-size: 12px;
+  margin-left: 6px;
+  color: white;
+  transition: 0.3s;
+}
+
+.dropdown:hover > a i {
+  transform: rotate(180deg);
+}
+
+/* ===== SUBMENU (SIDE MENU) ===== */
+.submenu {
+  position: relative;
+}
+
+/* Hidden */
+.submenu-menu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: #E8F5E9;
+  width: 200px;
+  border-radius: 6px;
+  padding: 10px 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+}
+
+/* Submenu links */
+.submenu-menu a {
+  display: block;
+  padding: 8px 16px;
+  color: black;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+/* Show submenu */
+.submenu:hover .submenu-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* Arrow for submenu */
+.submenu > a::after {
+  content: "›";
+  float: right;
+  font-size: 14px;
 }
 
 /* GALLERY GRID */
