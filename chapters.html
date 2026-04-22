@@ -26,17 +26,67 @@
   <ul id="chapterList"></ul>
 </div>
 
-<!-- ===== NAVBAR LOAD ===== -->
-<script>
+<!-- ===== SCRIPT START ===== -->
+<script type="module">
+
+/* 🔥 FIREBASE */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, onAuthStateChanged } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAl45OqZNLnZfyg61GLYQx18s7wTXEYHZg",
+  authDomain: "karmconcepts.firebaseapp.com",
+  projectId: "karmconcepts",
+  storageBucket: "karmconcepts.appspot.com",
+  messagingSenderId: "627618765063",
+  appId: "1:627618765063:web:dae9cb992f5aec2c8e4da2"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+/* 🔐 AUTH STATE */
+let currentUser = null;
+let isAuthReady = false;
+
+onAuthStateChanged(auth, (user) => {
+  currentUser = user;
+  isAuthReady = true;
+});
+
+/* ✅ LOAD NAVBAR */
 fetch("navbar.html")
-  .then(res => res.text())
+  .then(res => {
+    if (!res.ok) throw new Error("Navbar load failed");
+    return res.text();
+  })
   .then(data => {
     document.getElementById("navbar-container").innerHTML = data;
-  });
-</script>
+  })
+  .catch(err => console.error(err));
 
-<!-- ===== PDF CONFIG ===== -->
-<script>
+/* 🔥 GLOBAL PROTECTED LINK HANDLER */
+document.addEventListener("click", function(e){
+  const link = e.target.closest(".protectedLink");
+  if(!link) return;
+
+  e.preventDefault();
+
+  if(!isAuthReady){
+    alert("Please wait...");
+    return;
+  }
+
+  if(currentUser){
+    window.location.href = link.dataset.page;
+  } else {
+    window.location.href = "register.html";
+  }
+});
+
+
+/* ===== PDF CONFIG ===== */
 const PDF_CONFIG = {
   "9science": { class: "9", code: "sci", folder: "9scinotes" },
   "9maths": { class: "9", code: "math", folder: "9mathnotes" },
@@ -60,10 +110,9 @@ function getPDFPath(subjectKey, index) {
   if (!data) return "#";
   return `${data.folder}/${data.class}${data.code}ch${index + 1}.pdf`;
 }
-</script>
 
-<!-- ===== CHAPTER SCRIPT ===== -->
-<script>
+
+/* ===== CHAPTER SCRIPT ===== */
 
 const urlSubject = new URLSearchParams(window.location.search).get("subject");
 
@@ -85,12 +134,10 @@ const subjectMap = {
   "12biology": "Class 12 Biology Handwritten Notes"
 };
 
-// fallback safe
 let matchedKey = subjectMap[urlSubject?.toLowerCase()] || "Class 9 Science Handwritten Notes";
 
 document.getElementById("pageTitle").textContent = `Chapterwise Notes for ${matchedKey}`;
 
-// 🔥 minimal demo data (expand later)
 const chaptersData = {
   "Class 9 Science Handwritten Notes": ["Motion","Force & Laws of Motion"],
   "Class 10 Maths Handwritten Notes": ["Real Numbers","Polynomials"],
@@ -100,7 +147,6 @@ const chaptersData = {
 
 const list = document.getElementById("chapterList");
 
-// ✅ safe check (important)
 if (!chaptersData[matchedKey]) {
   list.innerHTML = "<li>No chapters available</li>";
 } else {
@@ -126,48 +172,8 @@ if (!chaptersData[matchedKey]) {
     list.appendChild(li);
 
   });
+
 }
-
-</script>
-
-<!-- ===== FIREBASE ===== -->
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAl45OqZNLnZfyg61GLYQx18s7wTXEYHZg",
-  authDomain: "karmconcepts.firebaseapp.com",
-  projectId: "karmconcepts",
-  storageBucket: "karmconcepts.appspot.com",
-  messagingSenderId: "627618765063",
-  appId: "1:627618765063:web:dae9cb992f5aec2c8e4da2"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-let currentUser = null;
-
-onAuthStateChanged(auth, (user) => {
-  currentUser = user;
-});
-
-// 🔥 navbar load hone ke baad hi bind karo
-setTimeout(() => {
-  document.querySelectorAll(".protectedLink").forEach(link => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-
-      if (currentUser) {
-        window.location.href = link.dataset.page;
-      } else {
-        window.location.href = "register.html";
-      }
-    });
-  });
-}, 500);
 
 </script>
 
