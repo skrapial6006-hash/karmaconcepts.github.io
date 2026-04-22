@@ -10,23 +10,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="chapters.css">
 
-<!-- ✅ Font Awesome (missing tha) -->
+<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 
 <body>
 
-<!-- ✅ REUSABLE NAVBAR -->
+<!-- 🔥 NAVBAR -->
 <div id="navbar-container"></div>
-
 
 <!-- ===== CONTENT ===== -->
 <div class="resources-container">
   <h1 id="pageTitle">Chapters</h1>
   <ul id="chapterList"></ul>
 </div>
-
 
 <!-- ===== NAVBAR LOAD ===== -->
 <script>
@@ -36,7 +34,6 @@ fetch("navbar.html")
     document.getElementById("navbar-container").innerHTML = data;
   });
 </script>
-
 
 <!-- ===== PDF CONFIG ===== -->
 <script>
@@ -60,11 +57,10 @@ const PDF_CONFIG = {
 
 function getPDFPath(subjectKey, index) {
   const data = PDF_CONFIG[subjectKey];
-  if(!data) return "#";
+  if (!data) return "#";
   return `${data.folder}/${data.class}${data.code}ch${index + 1}.pdf`;
 }
 </script>
-
 
 <!-- ===== CHAPTER SCRIPT ===== -->
 <script>
@@ -89,11 +85,12 @@ const subjectMap = {
   "12biology": "Class 12 Biology Handwritten Notes"
 };
 
+// fallback safe
 let matchedKey = subjectMap[urlSubject?.toLowerCase()] || "Class 9 Science Handwritten Notes";
 
 document.getElementById("pageTitle").textContent = `Chapterwise Notes for ${matchedKey}`;
 
-
+// 🔥 minimal demo data (expand later)
 const chaptersData = {
   "Class 9 Science Handwritten Notes": ["Motion","Force & Laws of Motion"],
   "Class 10 Maths Handwritten Notes": ["Real Numbers","Polynomials"],
@@ -103,29 +100,35 @@ const chaptersData = {
 
 const list = document.getElementById("chapterList");
 
-chaptersData[matchedKey].forEach((ch, index) => {
+// ✅ safe check (important)
+if (!chaptersData[matchedKey]) {
+  list.innerHTML = "<li>No chapters available</li>";
+} else {
 
-  const li = document.createElement("li");
+  chaptersData[matchedKey].forEach((ch, index) => {
 
-  const parts = matchedKey.split(" ");
-  const classNum = parts[1];
-  const subjectName = parts[2];
-  const subjectKey = classNum + subjectName.toLowerCase();
+    const li = document.createElement("li");
 
-  const pdfFile = getPDFPath(subjectKey, index);
+    const parts = matchedKey.split(" ");
+    const classNum = parts[1];
+    const subjectName = parts[2];
+    const subjectKey = classNum + subjectName.toLowerCase();
 
-  li.innerHTML = `
-    ${ch} -
-    <a href="viewer.html?pdf=${encodeURIComponent(pdfFile)}">
-      Click Here
-    </a>
-  `;
+    const pdfFile = getPDFPath(subjectKey, index);
 
-  list.appendChild(li);
-});
+    li.innerHTML = `
+      ${ch} -
+      <a href="viewer.html?pdf=${encodeURIComponent(pdfFile)}">
+        Click Here
+      </a>
+    `;
+
+    list.appendChild(li);
+
+  });
+}
 
 </script>
-
 
 <!-- ===== FIREBASE ===== -->
 <script type="module">
@@ -151,7 +154,7 @@ onAuthStateChanged(auth, (user) => {
   currentUser = user;
 });
 
-// ✅ IMPORTANT FIX (navbar load ke baad run)
+// 🔥 navbar load hone ke baad hi bind karo
 setTimeout(() => {
   document.querySelectorAll(".protectedLink").forEach(link => {
     link.addEventListener("click", (e) => {
