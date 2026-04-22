@@ -170,3 +170,39 @@ if(webinar){
 
 </body>
 </html>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+// Firebase config
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "karmconcepts.firebaseapp.com",
+  projectId: "karmconcepts",
+  storageBucket: "karmconcepts.appspot.com",
+  messagingSenderId: "627618765063",
+  appId: "1:627618765063:web:dae9cb992f5aec2c8e4da2"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// ✅ CLICK HANDLER (FIXED)
+document.querySelectorAll(".protectedLink").forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const user = auth.currentUser;  // 🔥 direct check
+
+    if (user) {
+      window.location.href = link.dataset.page;
+    } else {
+      window.location.href = "register.html";
+    }
+  });
+});
+
+</script>
