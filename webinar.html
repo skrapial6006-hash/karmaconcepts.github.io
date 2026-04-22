@@ -10,14 +10,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="webinar.css">
 
-<!-- ✅ Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 
 <body>
 
-<!-- ✅ NAVBAR LOAD -->
+<!-- ✅ NAVBAR -->
 <div id="navbar-container"></div>
 
 <!-- ✅ THEME LOAD -->
@@ -35,73 +34,61 @@ if(savedTheme){
 
 <div class="webinar-card">
   <h3>Chemistry Concept Mapping – 3 Days Webinar</h3>
-  <a href="webinar-details.html?webinar=chemistry" class="webinar-btn">
-    Book Your Seat Now
-  </a>
+  <a href="webinar-details.html?webinar=chemistry" class="webinar-btn">Book Your Seat Now</a>
 </div>
 
 <div class="webinar-card">
   <h3>Physics Concept Mapping – 3 Days Webinar</h3>
-  <a href="webinar-details.html?webinar=physics" class="webinar-btn">
-    Book Your Seat Now
-  </a>
+  <a href="webinar-details.html?webinar=physics" class="webinar-btn">Book Your Seat Now</a>
 </div>
 
 <div class="webinar-card">
   <h3>Biology Concept Mapping – 3 Days Webinar</h3>
-  <a href="webinar-details.html?webinar=biology" class="webinar-btn">
-    Book Your Seat Now
-  </a>
+  <a href="webinar-details.html?webinar=biology" class="webinar-btn">Book Your Seat Now</a>
 </div>
 
 <div class="webinar-card">
   <h3>Understanding the Teachings of Bhagwad Geeta – 3 Days Programme</h3>
-  <a href="webinar-details.html?webinar=geeta" class="webinar-btn">
-    Book Your Seat Now
-  </a>
+  <a href="webinar-details.html?webinar=geeta" class="webinar-btn">Book Your Seat Now</a>
 </div>
 
 <div class="webinar-card">
   <h3>Knowing Yourself for Future Pathways – 3 Days Webinar</h3>
-  <a href="webinar-details.html?webinar=self" class="webinar-btn">
-    Book Your Seat Now
-  </a>
+  <a href="webinar-details.html?webinar=self" class="webinar-btn">Book Your Seat Now</a>
 </div>
 
 <div class="webinar-card">
   <h3>How to Communicate Effectively & Effortlessly – 3 Days Webinar</h3>
-  <a href="webinar-details.html?webinar=communication" class="webinar-btn">
-    Book Your Seat Now
-  </a>
+  <a href="webinar-details.html?webinar=communication" class="webinar-btn">Book Your Seat Now</a>
 </div>
 
 <div class="webinar-card">
   <h3>Effective Study Management – 3 Days Webinar</h3>
-  <a href="webinar-details.html?webinar=study" class="webinar-btn">
-    Book Your Seat Now
-  </a>
+  <a href="webinar-details.html?webinar=study" class="webinar-btn">Book Your Seat Now</a>
 </div>
 
 <div class="webinar-card">
   <h3>Build a Strong & Effective Personality – 3 Days Webinar</h3>
-  <a href="webinar-details.html?webinar=personality" class="webinar-btn">
-    Book Your Seat Now
-  </a>
+  <a href="webinar-details.html?webinar=personality" class="webinar-btn">Book Your Seat Now</a>
 </div>
 
 </div>
 
-<!-- ✅ NAVBAR FETCH -->
+<!-- ✅ NAVBAR LOAD (SAFE) -->
 <script>
 fetch("navbar.html")
   .then(res => res.text())
   .then(data => {
     document.getElementById("navbar-container").innerHTML = data;
-    initAuth(); // 🔥 IMPORTANT
-  });
+
+    if (window.initAuth) {
+      window.initAuth();
+    }
+  })
+  .catch(() => console.error("Navbar load failed"));
 </script>
 
-<!-- ✅ FIREBASE AUTH (COMMON SYSTEM) -->
+<!-- ✅ FIREBASE AUTH (BEST VERSION) -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -119,25 +106,27 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+/* 🔥 GLOBAL AUTH SYSTEM */
 window.initAuth = function(){
 
   let currentUser = null;
 
   onAuthStateChanged(auth, (user) => {
     currentUser = user;
+  });
 
-    document.querySelectorAll(".protectedLink").forEach(link => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
+  // ✅ EVENT DELEGATION (SUPER STABLE)
+  document.addEventListener("click", function(e){
+    const link = e.target.closest(".protectedLink");
+    if(!link) return;
 
-        if (currentUser) {
-          window.location.href = link.dataset.page;
-        } else {
-          window.location.href = "register.html";
-        }
-      });
-    });
+    e.preventDefault();
 
+    if(currentUser){
+      window.location.href = link.dataset.page;
+    } else {
+      window.location.href = "register.html";
+    }
   });
 
 };
