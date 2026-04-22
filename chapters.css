@@ -1,8 +1,16 @@
-body{
-  font-family:'Poppins',sans-serif;
-  background:#E8F5E9;
-  color:#2d3748;
-  padding:0 20px; /* body ke content ka horizontal alignment */
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== BASE BODY ===== */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #E8F5E9;
+  color: #2d3748;
+  padding: 0 20px;
 }
 
 /* ===== REMOVE DEFAULT MARGIN ===== */
@@ -11,248 +19,109 @@ html, body {
   padding: 0;
 }
 
-/* ===== COMMON HERO ===== */
-.common-hero {
-  height: 180px;
-  background: linear-gradient(120deg, #156066 0%, #187A6F 45%, #2BBF7A 95%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: visible; /* ✅ dropdown cut nahi hoga */
-}
-
-/* ===== TITLE ===== */
-.site-title {
-  font-family: 'Cinzel', serif;
-  color: white;
-  font-size: 32px;
-  margin-bottom: 20px;
-}
-
-/* ===== NAVBAR ===== */
-.navbar {
-  position: relative;
-  display: flex;
-  gap: 40px;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  z-index: 10;
-}
-
-.navbar a {
-  color: white;
-  text-decoration: none;
-  font-family: 'Cinzel', serif;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* ===== DROPDOWN ===== */
-.dropdown {
+/* ===== PAGE CONTAINER ===== */
+.resources-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
   position: relative;
 }
 
-/* Hidden state */
-.dropdown-menu {
+/* ===== WATERMARK LOGO ===== */
+.resources-container::before {
+  content: "";
   position: absolute;
-  top: 100%;
-  left: 0;
-  background: #E8F5E9;
-  width: 260px;
-  border-radius: 6px;
-  padding: 12px 0;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-
-  opacity: 0;                 /* ✅ FIXED */
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: url('images/logo.png') no-repeat center;
+  background-size: contain;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* Dropdown links */
-.dropdown-menu a {
-  color: black;
-  padding: 8px 16px;
+/* Content above watermark */
+.resources-container * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== PAGE TITLE ===== */
+#pageTitle {
   font-family: 'Cinzel', serif;
-  font-size: 13px;
-  font-weight: 400;
+  font-size: 2rem;
+  margin-bottom: 25px;
+  text-align: left;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+/* ===== CHAPTER LIST ===== */
+#chapterList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* ===== LIST ITEM ===== */
+#chapterList li {
+  background: #fff;
+  padding: 14px 18px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.25s ease;
 }
 
 /* Hover effect */
-.dropdown-menu a:hover {
-  background: #f0f0f0;
+#chapterList li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
 }
 
-/* SHOW dropdown */
-.dropdown:hover .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+/* ===== LINKS ===== */
+#chapterList li a {
+  font-size: 0.9rem;
+  color: #187A6F;
+  text-decoration: none;
+  font-weight: 600;
 }
 
-/* ===== ARROW ICON ===== */
-.dropdown > a i {
-  font-size: 12px;
-  margin-left: 6px;
-  color: white;
-  transition: 0.3s;
+#chapterList li a:hover {
+  text-decoration: underline;
 }
 
-.dropdown:hover > a i {
-  transform: rotate(180deg);
-}
-
-/* ===== SUBMENU (SIDE MENU) ===== */
-.submenu {
-  position: relative;
-}
-
-/* Hidden */
-.submenu-menu {
-  position: absolute;
+/* ===== THEME POPUP ===== */
+.theme-popup {
+  position: fixed;
   top: 0;
-  left: 100%;
-  background: #E8F5E9;
-  width: 200px;
-  border-radius: 6px;
-  padding: 10px 0;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  left: 0;
+  width: 100%;
+  height: 100%;
 
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(10px);
-  transition: all 0.3s ease;
+  background: rgba(0,0,0,0.6);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
 }
 
-/* Submenu links */
-.submenu-menu a {
-  display: block;
-  padding: 8px 16px;
-  color: black;
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  font-weight: 400;
-}
-
-/* Show submenu */
-.submenu:hover .submenu-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(0);
-}
-
-/* Arrow for submenu */
-.submenu > a::after {
-  content: "›";
-  float: right;
-  font-size: 14px;
-}
-/* Chapters Container */
-.resources-container{
-  max-width:1000px;
-  margin:0 auto 50px auto; /* Center horizontally */
-  padding:20px;
-  position:relative;
-  z-index:0;
-}
-
-/* Watermark logo */
-.resources-container::before{
-  content:"";
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:300px;
-  height:300px;
-  background:url('images/logo.png') no-repeat center;
-  background-size:contain;
-  opacity:0.1;
-  z-index:2;
-}
-
-/* Ensure all content above watermark */
-.resources-container *{
-  position:relative;
-  z-index:1;
-}
-
-/* Page Title aligned with body content */
-#pageTitle{
-  font-family:'Cinzel', serif;
-  font-size: 2em;
-  color: black;
-  margin-bottom:20px;
-  text-align:left;
-  padding-left:12px 18px; /* Body ke padding already hai, container ke andar aligned hai */
-  opacity:0;
-  animation: fadeIn 1s ease forwards;
-}
-
-/* Chapter List */
-#chapterList{
-  display:flex;
-  flex-direction:column;
-  gap:15px;
-  max-width:800px;
-  margin:0 auto;
-}
-
-#chapterList li{
-  background:#fff;
-  padding:12px 18px;
-  border-radius:8px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.08);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  transition:transform 0.2s, box-shadow 0.2s;
-}
-
-#chapterList li:hover{
-  transform:translateY(-2px);
-  box-shadow:0 4px 10px rgba(0,0,0,0.1);
-}
-
-#chapterList li a{
-  font-size:0.85rem;
-  color:#187A6F;
-  text-decoration:none;
-  font-weight:600;
-}
-
-#chapterList li a:hover{
-  text-decoration:underline;
-}
-
-/* Fade In Animation */
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(10px);}
-  to{opacity:1; transform:translateY(0);}
-}
-
-.theme-popup{
-
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-
-background:rgba(0,0,0,0.6);
-
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-
-z-index:9999;
-
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
