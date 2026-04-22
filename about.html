@@ -7,34 +7,27 @@
 
 <title>About Us | Karma and Concepts</title>
 
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-<!-- CSS -->
 <link rel="stylesheet" href="about.css">
 
-<!-- Font Awesome (IMPORTANT for icons) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 
 <body>
 
-<!-- 🔥 NAVBAR LOAD HOGA YAHA -->
+<!-- ✅ Navbar -->
 <div id="navbar-container"></div>
 
-
-<!-- PAGE CONTENT -->
+<!-- CONTENT -->
 <div class="content-wrapper">
 
 <h1>About Us</h1>
 
 <p>
 <img src="images/about1.jpg" class="img-right1">
-
 An initiative by Sheshank Prajapati...
 <img src="images/about2.jpg" class="img-left1">
-
 At Karma and Concepts, our mission...
 </p>
 
@@ -85,24 +78,12 @@ Karma and Concepts is built on the belief...
 </div>
 </div>
 
-</div>
-
-
-<!-- 🔥 NAVBAR LOAD SCRIPT -->
-<script>
-fetch("navbar.html")
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("navbar-container").innerHTML = data;
-  });
-</script>
-
-
-<!-- 🔥 FIREBASE SCRIPT -->
+<!-- 🔥 MAIN SCRIPT -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getAuth, onAuthStateChanged } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAl45OqZNLnZfyg61GLYQx18s7wTXEYHZg",
@@ -117,26 +98,38 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 let currentUser = null;
+let isAuthReady = false;
 
-// 🔥 wait for auth
+// ✅ Auth state
 onAuthStateChanged(auth, (user) => {
   currentUser = user;
+  isAuthReady = true;
 });
 
-// 🔥 IMPORTANT: delay so navbar loads first
-setTimeout(() => {
-  document.querySelectorAll(".protectedLink").forEach(link => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
+// ✅ Load navbar + attach events
+fetch("navbar.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("navbar-container").innerHTML = data;
 
-      if (currentUser) {
-        window.location.href = link.dataset.page;
-      } else {
-        window.location.href = "register.html";
-      }
+    // 🔥 attach after load
+    document.querySelectorAll(".protectedLink").forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        if (!isAuthReady) {
+          alert("Please wait...");
+          return;
+        }
+
+        if (currentUser) {
+          window.location.href = link.dataset.page;
+        } else {
+          window.location.href = "register.html";
+        }
+      });
     });
   });
-}, 500);
 
 </script>
 
