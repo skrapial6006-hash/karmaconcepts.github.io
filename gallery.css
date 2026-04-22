@@ -4,22 +4,36 @@ body {
   background: #E8F5E9;
 }
 
-/* HEADER */
-.gallery-header {
-  text-align: center;
-  padding: 60px 20px;
-  background: linear-gradient(120deg, #156066, #2BBF7A);
-  color: white;
+/* ===== COMMON HERO ===== */
+.common-hero {
+  height: 180px;   /* 👈 chhota hero (compact pages ke liye) */
+  background: linear-gradient(120deg, #156066 0%, #187A6F 45%, #2BBF7A 95%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.gallery-header h1 {
+/* Title */
+.site-title {
   font-family: 'Cinzel', serif;
-  font-size: 40px;
-  margin-bottom: 10px;
+  color: white;
+  font-size: 32px;
+  margin-bottom: 20px;
 }
 
-.gallery-header p {
-  font-size: 16px;
+/* Navbar same rahega */
+.navbar {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
 }
 
 /* GALLERY GRID */
