@@ -7,84 +7,95 @@
 
 <title>About Us | Karma and Concepts</title>
 
+<!-- FONTS -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- CSS -->
 <link rel="stylesheet" href="about.css">
 
+<!-- ICONS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 
 <body>
 
-<!-- ✅ Navbar -->
+<!-- ✅ NAVBAR LOAD -->
 <div id="navbar-container"></div>
 
-<!-- CONTENT -->
+<!-- ================= CONTENT ================= -->
 <div class="content-wrapper">
 
-<h1>About Us</h1>
+  <h1>About Us</h1>
 
-<p>
-<img src="images/about1.jpg" class="img-right1">
-An initiative by Sheshank Prajapati...
-<img src="images/about2.jpg" class="img-left1">
-At Karma and Concepts, our mission...
-</p>
+  <p>
+    <img src="images/about1.jpg" class="img-right1">
+    An initiative by Sheshank Prajapati...
+    
+    <img src="images/about2.jpg" class="img-left1">
+    At Karma and Concepts, our mission...
+  </p>
 
-<div style="clear:both;"></div>
+  <div style="clear:both;"></div>
 
-<div class="about-hindi">
+  <!-- HINDI SECTION -->
+  <div class="about-hindi">
 
-<h2 lang="hi">हमारे बारे में</h2>
+    <h2 lang="hi">हमारे बारे में</h2>
 
-<p lang="hi">
-<img src="images/about3.jpg" class="img-left2">
-Sheshank Prajapati द्वारा शुरू की गई...
-</p>
+    <p lang="hi">
+      <img src="images/about3.jpg" class="img-left2">
+      Sheshank Prajapati द्वारा शुरू की गई...
+    </p>
 
-<div style="clear:both;"></div>
+  </div>
 
-<div class="vision-container">
+  <div style="clear:both;"></div>
 
-<h2>Our Vision</h2>
+  <!-- VISION -->
+  <div class="vision-container">
 
-<p>
-<img src="images/about4.jpg" class="img-right2">
-Our vision is to empower students...
-</p>
+    <h2>Our Vision</h2>
 
-<div class="vision-hindi">
+    <p>
+      <img src="images/about4.jpg" class="img-right2">
+      Our vision is to empower students...
+    </p>
 
-<h2 lang="hi">हमारा उद्देश्य</h2>
+    <div class="vision-hindi">
 
-<p lang="hi">
-हमारा उद्देश्य छात्रों को सक्षम बनाना है...
-</p>
+      <h2 lang="hi">हमारा उद्देश्य</h2>
+
+      <p lang="hi">
+        हमारा उद्देश्य छात्रों को सक्षम बनाना है...
+      </p>
+
+    </div>
+
+    <h2>Why Karma and Concepts?</h2>
+
+    <p>
+      Karma and Concepts is built on the belief...
+    </p>
+
+    <h2 lang="hi">क्यों चुनें Karma And Concepts को</h2>
+
+    <p lang="hi">
+      हमारा उद्देश्य एक आधुनिक शिक्षा प्रणाली...
+    </p>
+
+  </div>
 
 </div>
 
-<h2>Why Karma and Concepts?</h2>
-
-<p>
-Karma and Concepts is built on the belief...
-</p>
-
-<h2 lang="hi">क्यों चुनें Karma And Concepts को</h2>
-
-<p lang="hi">
-हमारा उद्देश्य एक आधुनिक शिक्षा प्रणाली...
-</p>
-
-</div>
-</div>
-
-<!-- 🔥 MAIN SCRIPT -->
+<!-- ================= SCRIPT ================= -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, onAuthStateChanged } 
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+/* 🔐 Firebase Config */
 const firebaseConfig = {
   apiKey: "AIzaSyAl45OqZNLnZfyg61GLYQx18s7wTXEYHZg",
   authDomain: "karmconcepts.firebaseapp.com",
@@ -97,39 +108,46 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+/* ✅ Auth State */
 let currentUser = null;
 let isAuthReady = false;
 
-// ✅ Auth state
 onAuthStateChanged(auth, (user) => {
   currentUser = user;
   isAuthReady = true;
 });
 
-// ✅ Load navbar + attach events
+/* ✅ LOAD NAVBAR (SAFE) */
 fetch("navbar.html")
-  .then(res => res.text())
+  .then(res => {
+    if (!res.ok) throw new Error("Navbar not found");
+    return res.text();
+  })
   .then(data => {
     document.getElementById("navbar-container").innerHTML = data;
-
-    // 🔥 attach after load
-    document.querySelectorAll(".protectedLink").forEach(link => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        if (!isAuthReady) {
-          alert("Please wait...");
-          return;
-        }
-
-        if (currentUser) {
-          window.location.href = link.dataset.page;
-        } else {
-          window.location.href = "register.html";
-        }
-      });
-    });
+  })
+  .catch(err => {
+    console.error("Navbar load error:", err);
   });
+
+/* 🔥 GLOBAL PROTECTED LINK HANDLER (BEST PRACTICE) */
+document.addEventListener("click", function(e){
+  const link = e.target.closest(".protectedLink");
+  if(!link) return;
+
+  e.preventDefault();
+
+  if(!isAuthReady){
+    alert("Please wait...");
+    return;
+  }
+
+  if(currentUser){
+    window.location.href = link.dataset.page;
+  } else {
+    window.location.href = "register.html";
+  }
+});
 
 </script>
 
