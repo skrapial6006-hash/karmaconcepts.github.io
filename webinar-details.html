@@ -9,156 +9,86 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="webinar-details.css">
+
 </head>
+
 <body>
 
-<section class="common-hero">
+<!-- ✅ NAVBAR LOAD -->
+<div id="navbar-container"></div>
 
-  <h1 class="site-title">Karma and Concepts</h1>
 
-  <nav class="navbar">
-  <a class="protectedLink" data-page="index.html">Home Page</a>
-  <a class="protectedLink" data-page="sessions.html">Live Sessions</a>
-
- <div class="dropdown">
-  <a>Resources <i class="fa-solid fa-angle-down"></i></a>
-
-  <div class="dropdown-menu">
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 9</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=9science">Science</a>
-        <a class="protectedLink" data-page="chapters.html?subject=9maths">Maths</a>
-        <a class="protectedLink" data-page="chapters.html?subject=9socialscience">Social Science</a>
-      </div>
-    </div>
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 10</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=10science">Science</a> 
-        <a class="protectedLink" data-page="chapters.html?subject=10maths">Maths</a>
-        <a class="protectedLink" data-page="chapters.html?subject=10biology">Biology</a>
-      </div>
-    </div>
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 11</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=11physics">Physics</a>
-        <a class="protectedLink" data-page="chapters.html?subject=11chemistry">Chemistry</a>
-        <a class="protectedLink" data-page="chapters.html?subject=11biology">Biology</a>
-      </div>
-    </div>
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 12</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=12physics">Physics</a>
-        <a class="protectedLink" data-page="chapters.html?subject=12chemistry">Chemistry</a>
-        <a class="protectedLink" data-page="chapters.html?subject=12biology">Biology</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-  <div class="dropdown">
-    <a>Webinars<i class="fa-solid fa-angle-down"></i></a>
-    <div class="dropdown-menu">
-      <a class="protectedLink" data-page="webinar.html">Chemistry</a>
-      <a class="protectedLink" data-page="webinar.html">Physics</a>
-      <a class="protectedLink" data-page="webinar.html">Biology</a>
-      <a class="protectedLink" data-page="webinar.html">Bhagwad Geeta</a>
-      <a class="protectedLink" data-page="webinar.html">Personality Development</a>
-      <a class="protectedLink" data-page="webinar.html">Career Counselling</a>
-      <a class="protectedLink" data-page="webinar.html">Communication Classes</a>
-      <a class="protectedLink" data-page="webinar.html">Managment Classes</a>
-    </div>
-  </div>
-
-  <div class="dropdown">
-    <a>Courses<i class="fa-solid fa-angle-down"></i></a>
-    <div class="dropdown-menu">
-      <a class="protectedLink" data-page="courses.html">Organic Chemistry</a>
-      <a class="protectedLink" data-page="courses.html">Chemistry Class 12</a>
-      <a class="protectedLink" data-page="courses.html">Physics Class 12</a>
-      <a class="protectedLink" data-page="courses.html">Biology Class 12</a>
-      <a class="protectedLink" data-page="courses.html">Science Class 10</a>
-      <a class="protectedLink" data-page="courses.html">Maths Class 10</a>
-      <a class="protectedLink" data-page="courses.html">Social Science Class 10</a>
-    </div>
-  </div>
-
-  <a href="about.html">About Us</a>
-  <a href="gallery.html">Gallery</a>
-
-</nav>
-
-</section>
-
-<!-- DETAIL CARD -->
+<!-- ===== DETAIL CARD ===== -->
 <div class="detail-container">
   <h1 id="title"></h1>
   <p id="description"></p>
   <a href="webinarr.html" class="main-btn">Register Now</a>
 </div>
 
-<script>
 
-/* WEBINAR DATA */
+<!-- ===== NAVBAR FETCH ===== -->
+<script>
+fetch("navbar.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("navbar-container").innerHTML = data;
+    initAuth(); // 🔥 IMPORTANT
+  });
+</script>
+
+
+<!-- ===== WEBINAR DATA SCRIPT ===== -->
+<script>
 
 const webinarData = {
 
 chemistry:{
 title:"Chemistry Concept Mapping – 3 Days Webinar",
-description:"Join our exclusive 3-day Chemistry webinar designed to simplify concepts and boost your confidence for exams. This session is specially crafted for students who want to strengthen their fundamentals, clear doubts, and learn smart strategies to score better. Over the three days, we will provide easy-to-understand explanations of chapters, and share effective revision techniques. Whether you're preparing for school exams or competitive tests, this webinar will guide you step-by-step towards better performance. Don’t miss this opportunity to learn Chemistry in a smarter and more engaging way."
+description:"Join our exclusive 3-day Chemistry webinar designed to simplify concepts and boost your confidence for exams..."
 },
 
 physics:{
 title:"Physics Concept Mapping – 3 Days Webinar",
-description:"Join our exclusive 3-day Physics webinar designed to make complex concepts simple and easy to understand. This session is perfect for students who want to strengthen their fundamentals, clear their doubts, and improve problem-solving skills. Over the three days, we will cover important topics with clear explanations, real-life examples, and smart strategies to help you score better in exams. Whether you're preparing for school exams or competitive tests, this webinar will guide you step-by-step towards mastering Physics with confidence. Don’t miss this opportunity to learn Physics in a smarter and more engaging way."
+description:"Join our exclusive 3-day Physics webinar designed to make complex concepts simple..."
 },
 
 biology:{
 title:"Biology Concept Mapping – 3 Days Webinar",
-description:"Join our exclusive 3-day Biology webinar designed to make learning easy, clear, and interesting. This session is perfect for students who want to strengthen their concepts, improve retention, and clear their doubts effectively. Over the three days, we will cover important topics with simple explanations, diagrams, and smart revision techniques to help you score better in exams. Whether you're preparing for school exams or competitive exams, this webinar will guide you step-by-step towards mastering Biology with confidence. Don’t miss this opportunity to learn Biology in a smarter and more engaging way."
+description:"Join our exclusive 3-day Biology webinar designed to make learning easy..."
 },
 
 geeta:{
 title:"Understanding the Teachings of Bhagwad Geeta – 3 Days Programme",
-description:"Join our exclusive 3-day webinar on understanding the teachings of the Bhagavad Gita, designed for individuals of all age groups who seek clarity, peace, and direction in life. This session is thoughtfully structured to make timeless wisdom simple, practical, and relatable for everyone—whether you are a student, a working professional, or someone on a journey of self-growth. Over the three days, we will explore powerful teachings with easy explanations and real-life applications that can help you manage stress, improve focus, and develop a balanced mindset. No prior knowledge is required—just a willingness to learn and grow. Don’t miss this opportunity to connect with ancient wisdom in a way that fits modern life."
+description:"Join our exclusive 3-day webinar on understanding the teachings of the Bhagavad Gita..."
 },
 
 self:{
 title:"Knowing Yourself for Future Pathways – 3 Days Programme",
-description:"Join our exclusive 3-day webinar on knowing yourself for future pathways, designed for individuals of all age groups who want clarity about their goals, strengths, and life direction. This session will help you understand your true potential, identify your interests, and make confident decisions about your future. Over the three days, we will guide you through practical exercises, self-reflection techniques, and proven strategies to help you choose the right path—whether in academics, career, or personal growth. No prior experience is needed—just an open mind and a willingness to explore yourself. Don’t miss this opportunity to gain clarity and take the first step towards a more focused and purposeful future."
+description:"Join our exclusive 3-day webinar on knowing yourself..."
 },
 
 communication:{
 title:"How to Communicate Effectively & Effortlessly – 3 Days Programme",
-description:"Join our exclusive 3-day webinar on how to communicate effectively and effortlessly, designed for individuals of all age groups who want to express themselves with clarity and confidence. This session will help you improve your speaking skills, overcome hesitation, and build strong connections in both personal and professional life. Over the three days, we will cover practical techniques, real-life examples, and simple strategies to help you communicate your thoughts clearly and naturally. Whether it’s public speaking, daily conversations, or professional communication, this webinar will guide you step-by-step towards becoming a confident and impactful communicator. Don’t miss this opportunity to transform the way you express yourself."
+description:"Join our exclusive 3-day webinar on communication..."
 },
 
 study:{
 title:"Effective Study Management – 3 Days Programme",
-description:"Join our exclusive 3-day webinar on managing all your chores and tasks effortlessly as a student, designed to help you stay organized, productive, and stress-free. This session is perfect for students who struggle to balance studies, daily responsibilities, and personal time. Over the three days, we will share practical strategies, time management techniques, and smart planning methods to help you handle your tasks efficiently without feeling overwhelmed. You will learn how to build a balanced routine, stay consistent, and make the most of your time. Don’t miss this opportunity to take control of your schedule and become a more focused and productive student."
+description:"Join our exclusive 3-day webinar on managing tasks..."
 },
 
 personality:{
 title:"Build a Strong & Effective Personality – 3 Days Programme",
-description:"Join our exclusive 3-day webinar on building a strong and effective personality, designed for individuals of all age groups who want to grow with confidence and purpose. This session will help you develop a powerful mindset, improve your self-image, and build habits that reflect a strong personality. Over the three days, we will cover practical strategies, real-life insights, and simple techniques to help you become more confident, disciplined, and impactful in every area of life. Whether it’s personal growth, communication, or self-confidence, this webinar will guide you step-by-step towards becoming the best version of yourself. Don’t miss this opportunity to transform your personality and stand out with confidence."
+description:"Join our exclusive 3-day webinar on personality development..."
 }
 
 };
 
-// GET URL PARAMETER
 const params = new URLSearchParams(window.location.search);
 const webinarName = params.get("webinar");
 
-// LOAD DATA
 const webinar = webinarData[webinarName];
+
 if(webinar){
   document.getElementById("title").textContent = webinar.title;
   document.getElementById("description").textContent = webinar.description;
@@ -166,20 +96,16 @@ if(webinar){
   document.getElementById("title").textContent = "Webinar Not Found";
   document.getElementById("description").textContent = "";
 }
+
 </script>
 
-</body>
-</html>
 
+<!-- ===== FIREBASE AUTH (FIXED) ===== -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { 
-  getAuth, 
-  onAuthStateChanged 
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyAl45OqZNLnZfyg61GLYQx18s7wTXEYHZg",
   authDomain: "karmconcepts.firebaseapp.com",
@@ -192,25 +118,31 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// 🔥 USER STATE STORE KARNE KE LIYE
-let currentUser = null;
+/* 🔥 GLOBAL FUNCTION */
+window.initAuth = function () {
 
-// 🔥 once load pe user fetch karo
-onAuthStateChanged(auth, (user) => {
-  currentUser = user;
-});
+  let currentUser = null;
 
-// 🔥 CLICK HANDLER
-document.querySelectorAll(".protectedLink").forEach(link => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
+  onAuthStateChanged(auth, (user) => {
+    currentUser = user;
 
-    if (currentUser) {
-      window.location.href = link.dataset.page;
-    } else {
-      window.location.href = "register.html";
-    }
+    document.querySelectorAll(".protectedLink").forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        if (currentUser) {
+          window.location.href = link.dataset.page;
+        } else {
+          window.location.href = "register.html";
+        }
+      });
+    });
+
   });
-});
+
+};
 
 </script>
+
+</body>
+</html>
