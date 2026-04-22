@@ -1,22 +1,21 @@
-/* ===== RESET ===== */
+/* ===== CLEAN RESET ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ===== BASE BODY ===== */
 body {
   font-family: 'Poppins', sans-serif;
   background: #E8F5E9;
   color: #2d3748;
-  padding: 0 20px;
 }
 
-/* ===== REMOVE DEFAULT MARGIN ===== */
-html, body {
-  margin: 0;
-  padding: 0;
+/* ===== NAVBAR PROTECTION ===== */
+#navbar-container {
+  width: 100%;
+  position: relative;
+  z-index: 10000; /* 🔥 always above content */
 }
 
 /* ===== PAGE CONTAINER ===== */
@@ -27,38 +26,37 @@ html, body {
   position: relative;
 }
 
-/* ===== WATERMARK LOGO ===== */
+/* ===== WATERMARK (FIXED SAFE) ===== */
 .resources-container::before {
   content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 300px;
-  height: 300px;
-  background: url('images/logo.png') no-repeat center;
-  background-size: contain;
-  opacity: 0.08;
+  width: 280px;
+  height: 280px;
+  background: url('images/logo.png') no-repeat center/contain;
+  opacity: 0.06;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Content above watermark */
-.resources-container * {
+/* ✅ Only content layer */
+.resources-container > * {
   position: relative;
   z-index: 1;
 }
 
-/* ===== PAGE TITLE ===== */
+/* ===== TITLE ===== */
 #pageTitle {
   font-family: 'Cinzel', serif;
   font-size: 2rem;
   margin-bottom: 25px;
   text-align: left;
-  animation: fadeIn 0.8s ease forwards;
+  animation: fadeIn 0.6s ease forwards;
 }
 
-/* ===== CHAPTER LIST ===== */
+/* ===== LIST ===== */
 #chapterList {
   display: flex;
   flex-direction: column;
@@ -67,7 +65,7 @@ html, body {
   margin: auto;
 }
 
-/* ===== LIST ITEM ===== */
+/* ===== ITEM ===== */
 #chapterList li {
   background: #fff;
   padding: 14px 18px;
@@ -79,7 +77,6 @@ html, body {
   transition: all 0.25s ease;
 }
 
-/* Hover effect */
 #chapterList li:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 14px rgba(0,0,0,0.12);
@@ -97,24 +94,23 @@ html, body {
   text-decoration: underline;
 }
 
-/* ===== THEME POPUP ===== */
+/* ===== THEME POPUP (CONTROLLED) ===== */
 .theme-popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-
   background: rgba(0,0,0,0.6);
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  z-index: 9999;
+  z-index: 20000; /* 🔥 above navbar intentionally */
 }
 
-/* ===== ANIMATIONS ===== */
+/* ===== ANIMATION ===== */
 @keyframes fadeIn {
   from {
     opacity: 0;
