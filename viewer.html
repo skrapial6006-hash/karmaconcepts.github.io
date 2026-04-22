@@ -3,7 +3,6 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="color-scheme" content="light">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>PDF Viewer | Karma and Concepts</title>
@@ -14,101 +13,17 @@
 
 </head>
 
-<section class="common-hero">
-
-  <h1 class="site-title">Karma and Concepts</h1>
-
-  <nav class="navbar">
-  <a class="protectedLink" data-page="index.html">Home Page</a>
-  <a class="protectedLink" data-page="sessions.html">Live Sessions</a>
-
- <div class="dropdown">
-  <a>Resources <i class="fa-solid fa-angle-down"></i></a>
-
-  <div class="dropdown-menu">
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 9</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=9science">Science</a>
-        <a class="protectedLink" data-page="chapters.html?subject=9maths">Maths</a>
-        <a class="protectedLink" data-page="chapters.html?subject=9socialscience">Social Science</a>
-      </div>
-    </div>
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 10</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=10science">Science</a> 
-        <a class="protectedLink" data-page="chapters.html?subject=10maths">Maths</a>
-        <a class="protectedLink" data-page="chapters.html?subject=10biology">Biology</a>
-      </div>
-    </div>
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 11</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=11physics">Physics</a>
-        <a class="protectedLink" data-page="chapters.html?subject=11chemistry">Chemistry</a>
-        <a class="protectedLink" data-page="chapters.html?subject=11biology">Biology</a>
-      </div>
-    </div>
-
-    <div class="submenu">
-      <a class="protectedLink" data-page="resources.html">Class 12</a>
-      <div class="submenu-menu">
-        <a class="protectedLink" data-page="chapters.html?subject=12physics">Physics</a>
-        <a class="protectedLink" data-page="chapters.html?subject=12chemistry">Chemistry</a>
-        <a class="protectedLink" data-page="chapters.html?subject=12biology">Biology</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-  <div class="dropdown">
-    <a>Webinars<i class="fa-solid fa-angle-down"></i></a>
-    <div class="dropdown-menu">
-      <a class="protectedLink" data-page="webinar.html">Chemistry</a>
-      <a class="protectedLink" data-page="webinar.html">Physics</a>
-      <a class="protectedLink" data-page="webinar.html">Biology</a>
-      <a class="protectedLink" data-page="webinar.html">Bhagwad Geeta</a>
-      <a class="protectedLink" data-page="webinar.html">Personality Development</a>
-      <a class="protectedLink" data-page="webinar.html">Career Counselling</a>
-      <a class="protectedLink" data-page="webinar.html">Communication Classes</a>
-      <a class="protectedLink" data-page="webinar.html">Managment Classes</a>
-    </div>
-  </div>
-
-  <div class="dropdown">
-    <a>Courses<i class="fa-solid fa-angle-down"></i></a>
-    <div class="dropdown-menu">
-      <a class="protectedLink" data-page="courses.html">Organic Chemistry</a>
-      <a class="protectedLink" data-page="courses.html">Chemistry Class 12</a>
-      <a class="protectedLink" data-page="courses.html">Physics Class 12</a>
-      <a class="protectedLink" data-page="courses.html">Biology Class 12</a>
-      <a class="protectedLink" data-page="courses.html">Science Class 10</a>
-      <a class="protectedLink" data-page="courses.html">Maths Class 10</a>
-      <a class="protectedLink" data-page="courses.html">Social Science Class 10</a>
-    </div>
-  </div>
-
-  <a href="about.html">About Us</a>
-  <a href="gallery.html">Gallery</a>
-
-</nav>
-
-</section>
-
 <body>
 
+<!-- ✅ NAVBAR LOAD -->
+<div id="navbar-container"></div>
+
+<!-- ===== VIEWER ===== -->
 <div class="viewer-container">
   <div class="notes-card">
 
     <button class="arrow" id="prev">&#10094;</button>
-
     <canvas id="pdfCanvas"></canvas>
-
     <button class="arrow" id="next">&#10095;</button>
 
     <!-- 🔒 Overlay -->
@@ -125,22 +40,28 @@
   </div>
 </div>
 
-<!-- Scripts -->
+<!-- ===== NAVBAR FETCH ===== -->
+<script>
+fetch("navbar.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("navbar-container").innerHTML = data;
+    initAuth(); // 🔥 IMPORTANT
+  });
+</script>
+
+<!-- ===== LIBRARIES ===== -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
+<!-- ===== PDF SCRIPT ===== -->
 <script>
 
-/* ================= PARAMS ================= */
 const params = new URLSearchParams(window.location.search);
 
 const pdfFile = params.get("pdf");
 const subject = params.get("subject") || "Subject";
 const classStd = params.get("class") || "";
-
-const subjectKey = (classStd + "th " + subject)
-  .toUpperCase()
-  .trim();
 
 if(!pdfFile){
   alert("PDF file missing!");
@@ -150,7 +71,6 @@ if(!pdfFile){
 document.getElementById("subjectName").textContent = subject;
 document.getElementById("classStd").textContent = classStd;
 
-/* ================= VARIABLES ================= */
 let freePages = 3;
 let pdfDoc = null;
 let pageNum = 1;
@@ -159,102 +79,86 @@ const canvas = document.getElementById("pdfCanvas");
 const ctx = canvas.getContext("2d");
 const card = document.querySelector(".notes-card");
 
-/* 🔐 Subject-wise lock */
+/* 🔐 Paid check */
 function isPaidUser(){
   return localStorage.getItem(pdfFile) === "paid";
 }
 
-/* ================= WATERMARK ================= */
-// const watermark = new Image();
-// watermark.src = "images/logo2.png";
+/* ✅ WATERMARK FIX */
+const watermark = new Image();
+watermark.src = "images/logo2.png";
 
-/* ================= PDF LOAD ================= */
+/* ===== PDF LOAD ===== */
 pdfjsLib.GlobalWorkerOptions.workerSrc =
   "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
-pdfjsLib.getDocument({
-  url: pdfFile
-}).promise
-.then(function(pdf){
+
+pdfjsLib.getDocument({ url: pdfFile }).promise
+.then(pdf => {
   pdfDoc = pdf;
   renderPage(pageNum);
 })
-.catch(function(error){
-  console.error("PDF LOAD ERROR:", error);
-
-  document.body.innerHTML = `
-    <h2 style="text-align:center;margin-top:50px;">
-      PDF Load Failed ❌<br>
-      Check file path or folder name
-    </h2>
-  `;
+.catch(err => {
+  console.error(err);
+  document.body.innerHTML = "<h2 style='text-align:center'>PDF Load Failed ❌</h2>";
 });
 
-/* ================= RENDER ================= */
+/* ===== RENDER ===== */
 function renderPage(num){
 
-  /* 🔒 LOCK LOGIC */
   if(num > freePages && !isPaidUser()){
-    document.getElementById("overlay").style.display="flex";
+    overlay.style.display="flex";
     card.classList.add("blur");
   }else{
-    document.getElementById("overlay").style.display="none";
+    overlay.style.display="none";
     card.classList.remove("blur");
   }
 
-  pdfDoc.getPage(num).then(function(page){
+  pdfDoc.getPage(num).then(page => {
 
     const viewport = page.getViewport({scale:1.5});
-
     canvas.height = viewport.height;
     canvas.width = viewport.width;
 
     page.render({
       canvasContext: ctx,
       viewport: viewport
-    }).promise.then(function(){
+    }).promise.then(() => {
 
-const w = canvas.width * 0.18;
-const h = w * (watermark.height / watermark.width);
+      const w = canvas.width * 0.18;
+      const h = w * (watermark.height / watermark.width);
 
-ctx.globalAlpha = 0.18;
+      ctx.globalAlpha = 0.15;
 
-const positions = [
-  [canvas.width/2 - w/2, canvas.height/2 - h/2],
-  [30,30],
-  [canvas.width - w - 30,30],
-  [30,canvas.height - h - 30],
-  [canvas.width - w - 30,canvas.height - h - 30]
-];
+      ctx.drawImage(watermark,
+        canvas.width/2 - w/2,
+        canvas.height/2 - h/2,
+        w,h
+      );
 
-positions.forEach(pos=>{
-  ctx.drawImage(watermark,pos[0],pos[1],w,h);
-});
-
-ctx.globalAlpha = 1;
-
+      ctx.globalAlpha = 1;
     });
 
   });
 
 }
 
-/* ================= NAVIGATION ================= */
-document.getElementById("next").onclick = function(){
+/* ===== NAVIGATION ===== */
+next.onclick = () => {
   if(pageNum < pdfDoc.numPages){
     pageNum++;
     renderPage(pageNum);
   }
 };
 
-document.getElementById("prev").onclick = function(){
+prev.onclick = () => {
   if(pageNum > 1){
     pageNum--;
     renderPage(pageNum);
   }
 };
 
-/* ================= PAYMENT ================= */
-document.getElementById("payBtn").onclick = function(){
+/* ===== PAYMENT ===== */
+payBtn.onclick = function(){
 
   var options = {
     key: "rzp_test_ScXkkjBHd3KyZV",
@@ -263,70 +167,33 @@ document.getElementById("payBtn").onclick = function(){
     name: "Karma and Concepts",
     description: "Full Notes Access",
 
-handler: function (){
-
-  alert("Payment Successful ✅");
-
-  const folderLink = driveFolders[subjectKey];
-
-  if(folderLink){
-    localStorage.setItem(pdfFile, "paid"); renderPage(pageNum);
-  }else{
-    alert("Folder link not found ❌");
-    console.log("Generated key:", subjectKey);
-  }
-
-},
-    theme: {
-      color: "#156066"
+    handler: function (){
+      alert("Payment Successful ✅");
+      localStorage.setItem(pdfFile, "paid");
+      renderPage(pageNum);
     }
   };
 
   new Razorpay(options).open();
 };
 
-/* ================= BASIC PROTECTION ================= */
-
-/* Right click disable */
+/* ===== BASIC PROTECTION ===== */
 document.addEventListener("contextmenu", e => e.preventDefault());
 
-/* F12 disable */
 document.onkeydown = function(e){
   if(e.keyCode == 123){
     return false;
   }
 };
 
-const driveFolders = {
-  "9TH SCIENCE": "https://drive.google.com/drive/folders/1RfyyD3-Gs7qKh2CRaYpqBFaYc6JkzeHD?usp=sharing",
-  "9TH MATHS": "https://drive.google.com/drive/folders/1JDMRPYD4KLyqPG5q8_NObnGTPzAF1AZq?usp=sharing",
-  "9TH SOCIAL SCIENCE": "https://drive.google.com/drive/folders/1OlwV8QlICsAYKGb2ckB1mbJdytcjH0zy?usp=sharing",
-  "10TH SCIENCE": "https://drive.google.com/drive/folders/1RdhV2RLh_-Ow7Onvhg49u7OSrQ7MZd7M?usp=sharing",
-  "10TH MATHS": "https://drive.google.com/drive/folders/1rqng1MpS8ZY9qtggwRB-sbWtw0k1eLFx?usp=sharing",
-  "10TH SOCIAL SCIENCE": "https://drive.google.com/drive/folders/13jA9Xq0VcinMYlVuUQRgxfvHttVqpfV_?usp=sharing",
-  "11TH PHYSICS": "https://drive.google.com/drive/folders/1YkpTNQXVP7bGSEZosymush7pft1XjHIX?usp=sharing",
-  "11TH CHEMISTRY": "https://drive.google.com/drive/folders/1gevaNeAtofvNAn9jYRfOVsTO_HEVg4Pi?usp=sharing",
-  "11TH BIOLOGY": "https://drive.google.com/drive/folders/1y47q-yYNao5bQni9Gj5uBuYjIiVNa6f5?usp=sharing",
-  "12TH PHYSICS": "https://drive.google.com/drive/folders/1UPXrSb8r_MBF11KdMnnC0JkFNp3F0dXC?usp=sharing",
-  "12TH CHEMISTRY": "https://drive.google.com/drive/folders/1MZvtWCRlJSQM9_Dvun1qsOZFFlAsH9F7?usp=sharing",
-  "12TH BIOLOGY": "https://drive.google.com/drive/folders/1_WiP46WXD98YIoX6aHnvFYpoHA_oHVlf?usp=sharing"
-
-};
-
 </script>
 
-</body>
-</html>
-
+<!-- ===== FIREBASE AUTH ===== -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { 
-  getAuth, 
-  onAuthStateChanged 
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyAl45OqZNLnZfyg61GLYQx18s7wTXEYHZg",
   authDomain: "karmconcepts.firebaseapp.com",
@@ -339,25 +206,31 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// 🔥 USER STATE STORE KARNE KE LIYE
-let currentUser = null;
+/* ✅ GLOBAL FUNCTION */
+window.initAuth = function() {
 
-// 🔥 once load pe user fetch karo
-onAuthStateChanged(auth, (user) => {
-  currentUser = user;
-});
+  let currentUser = null;
 
-// 🔥 CLICK HANDLER
-document.querySelectorAll(".protectedLink").forEach(link => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
+  onAuthStateChanged(auth, (user) => {
+    currentUser = user;
 
-    if (currentUser) {
-      window.location.href = link.dataset.page;
-    } else {
-      window.location.href = "register.html";
-    }
+    document.querySelectorAll(".protectedLink").forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        if (currentUser) {
+          window.location.href = link.dataset.page;
+        } else {
+          window.location.href = "register.html";
+        }
+      });
+    });
+
   });
-});
+
+};
 
 </script>
+
+</body>
+</html>
