@@ -9,14 +9,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="gallery.css">
 
-<!-- ✅ Font Awesome (icons ke liye) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 
 <body>
 
-<!-- 🔥 REUSABLE NAVBAR -->
+<!-- 🔥 NAVBAR -->
 <div id="navbar-container"></div>
 
 <!-- ===== GALLERY ===== -->
@@ -45,9 +44,10 @@ fetch("navbar.html")
   .then(data => {
     document.getElementById("navbar-container").innerHTML = data;
 
-    // ✅ navbar load ke baad auth init
-    if (window.initAuth) window.initAuth();
-  });
+    // ✅ navbar load hone ke baad auth init
+    initAuth();
+  })
+  .catch(err => console.error("Navbar load error:", err));
 </script>
 
 <!-- 🔥 FIREBASE + AUTH -->
@@ -68,34 +68,30 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// 🔥 GLOBAL AUTH FUNCTION
-window.initAuth = function () {
+// 🔥 CLEAN AUTH SYSTEM
+function initAuth() {
 
   let currentUser = null;
 
   onAuthStateChanged(auth, (user) => {
     currentUser = user;
-
-    // ❌ duplicate event fix
-    document.querySelectorAll(".protectedLink").forEach(link => {
-      link.replaceWith(link.cloneNode(true));
-    });
-
-    document.querySelectorAll(".protectedLink").forEach(link => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        if (currentUser) {
-          window.location.href = link.dataset.page;
-        } else {
-          window.location.href = "register.html";
-        }
-      });
-    });
-
   });
 
-};
+  // ✅ BEST METHOD → EVENT DELEGATION
+  document.addEventListener("click", function(e){
+    const link = e.target.closest(".protectedLink");
+    if(!link) return;
+
+    e.preventDefault();
+
+    if(currentUser){
+      window.location.href = link.dataset.page;
+    } else {
+      window.location.href = "register.html";
+    }
+  });
+
+}
 
 </script>
 
