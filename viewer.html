@@ -15,7 +15,7 @@
 
 <body>
 
-<!-- ✅ NAVBAR LOAD -->
+<!-- ✅ NAVBAR -->
 <div id="navbar-container"></div>
 
 <!-- ===== VIEWER ===== -->
@@ -40,13 +40,19 @@
   </div>
 </div>
 
-<!-- ===== NAVBAR FETCH ===== -->
+<!-- ===== NAVBAR LOAD (FIXED) ===== -->
 <script>
 fetch("navbar.html")
   .then(res => res.text())
   .then(data => {
     document.getElementById("navbar-container").innerHTML = data;
-    initAuth(); // 🔥 IMPORTANT
+
+    // ✅ wait for auth function safely
+    if (window.initAuth) {
+      window.initAuth();
+    } else {
+      document.addEventListener("authReady", () => window.initAuth());
+    }
   });
 </script>
 
@@ -84,7 +90,7 @@ function isPaidUser(){
   return localStorage.getItem(pdfFile) === "paid";
 }
 
-/* ✅ WATERMARK FIX */
+/* Watermark */
 const watermark = new Image();
 watermark.src = "images/logo2.png";
 
@@ -97,8 +103,7 @@ pdfjsLib.getDocument({ url: pdfFile }).promise
   pdfDoc = pdf;
   renderPage(pageNum);
 })
-.catch(err => {
-  console.error(err);
+.catch(() => {
   document.body.innerHTML = "<h2 style='text-align:center'>PDF Load Failed ❌</h2>";
 });
 
@@ -188,7 +193,7 @@ document.onkeydown = function(e){
 
 </script>
 
-<!-- ===== FIREBASE AUTH ===== -->
+<!-- ===== FIREBASE AUTH (FIXED) ===== -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -206,7 +211,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-/* ✅ GLOBAL FUNCTION */
+/* ✅ GLOBAL AUTH FUNCTION (SAFE + CLEAN) */
 window.initAuth = function() {
 
   let currentUser = null;
@@ -214,6 +219,13 @@ window.initAuth = function() {
   onAuthStateChanged(auth, (user) => {
     currentUser = user;
 
+    // ✅ REMOVE OLD EVENTS
+    document.querySelectorAll(".protectedLink").forEach(link => {
+      const newLink = link.cloneNode(true);
+      link.replaceWith(newLink);
+    });
+
+    // ✅ ADD NEW EVENTS
     document.querySelectorAll(".protectedLink").forEach(link => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
@@ -228,6 +240,8 @@ window.initAuth = function() {
 
   });
 
+  // 🔥 notify navbar loader
+  document.dispatchEvent(new Event("authReady"));
 };
 
 </script>
