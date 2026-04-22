@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- ===== NAVBAR CSS ===== -->
+<style>
+
+/* ===== NAVBAR WRAPPER (SCOPED) ===== */
+.nav-wrapper {
+  width: 100%;
+}
+
+/* ===== HERO ===== */
+.nav-wrapper .common-hero {
+  height: 180px;
+  background: linear-gradient(120deg, #156066 0%, #187A6F 45%, #2BBF7A 95%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== TITLE ===== */
+.nav-wrapper .site-title {
+  font-family: 'Cinzel', serif;
+  color: white;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+/* ===== NAVBAR ===== */
+.nav-wrapper .navbar {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-wrapper .navbar a {
+  color: white;
+  text-decoration: none;
+  font-family: 'Cinzel', serif;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===== DROPDOWN ===== */
+.nav-wrapper .dropdown {
+  position: relative;
+}
+
+.nav-wrapper .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #E8F5E9;
+  width: 260px;
+  border-radius: 6px;
+  padding: 10px 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.nav-wrapper .dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-wrapper .dropdown-menu a {
+  display: block;
+  color: black;
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+/* ===== SUBMENU ===== */
+.nav-wrapper .submenu {
+  position: relative;
+}
+
+.nav-wrapper .submenu-menu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: #E8F5E9;
+  width: 200px;
+  border-radius: 6px;
+  padding: 10px 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+}
+
+.nav-wrapper .submenu:hover .submenu-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* ===== HOVER ===== */
+.nav-wrapper a:hover {
+  opacity: 0.8;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR START ===== -->
+<div class="nav-wrapper">
+
+<section class="common-hero">
+
+<h1 class="site-title">Karma and Concepts</h1>
+
+<nav class="navbar">
+
+<a class="protectedLink" data-page="index.html">Home</a>
+<a class="protectedLink" data-page="sessions.html">Live Sessions</a>
+
+<!-- RESOURCES -->
+<div class="dropdown">
+<a>Resources</a>
+
+<div class="dropdown-menu">
+
+<div class="submenu">
+<a>Class 9</a>
+<div class="submenu-menu">
+<a class="protectedLink" data-page="chapters.html?subject=9science">Science</a>
+<a class="protectedLink" data-page="chapters.html?subject=9maths">Maths</a>
+</div>
+</div>
+
+<div class="submenu">
+<a>Class 10</a>
+<div class="submenu-menu">
+<a class="protectedLink" data-page="chapters.html?subject=10science">Science</a>
+<a class="protectedLink" data-page="chapters.html?subject=10maths">Maths</a>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- WEBINARS -->
+<div class="dropdown">
+<a>Webinars</a>
+<div class="dropdown-menu">
+<a class="protectedLink" data-page="webinar.html">Chemistry</a>
+<a class="protectedLink" data-page="webinar.html">Physics</a>
+<a class="protectedLink" data-page="webinar.html">Biology</a>
+</div>
+</div>
+
+<!-- COURSES -->
+<div class="dropdown">
+<a>Courses</a>
+<div class="dropdown-menu">
+<a class="protectedLink" data-page="courses.html">Class 12</a>
+<a class="protectedLink" data-page="courses.html">Class 10</a>
+</div>
+</div>
+
+<a href="about.html">About</a>
+<a href="gallery.html">Gallery</a>
+
+</nav>
+
+</section>
+</div>
+<!-- ===== NAVBAR END ===== -->
+
+
+<!-- ===== NAVBAR JS ===== -->
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "YOUR_KEY",
+  authDomain: "YOUR_DOMAIN",
+  projectId: "YOUR_ID",
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+let currentUser = null;
+
+onAuthStateChanged(auth, (user) => {
+  currentUser = user;
+});
+
+document.querySelectorAll(".protectedLink").forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (currentUser) {
+      window.location.href = link.dataset.page;
+    } else {
+      window.location.href = "register.html";
+    }
+  });
+});
+
+</script>
+
+</body>
+</html>
