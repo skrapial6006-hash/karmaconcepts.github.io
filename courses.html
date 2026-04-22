@@ -10,13 +10,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="courses.css">
 
+<!-- ✅ Font Awesome (future dropdown support) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 
 <body>
 
-<!-- 🔥 NAVBAR LOAD -->
+<!-- 🔥 NAVBAR -->
 <div id="navbar-container"></div>
 
+<!-- ===== CONTENT ===== -->
 <div class="courses-container">
 
 <h1 class="courses-title">Courses</h1>
@@ -25,22 +29,28 @@
   You can check the "Live Courses" Section when these courses will go live!
 </p>
 
-<!-- cards same -->
-<div class="card"><div class="overlay">COMING SOON</div><div class="card-content"><h2>Organic Course</h2></div></div>
+<div class="card">
+  <div class="overlay">COMING SOON</div>
+  <div class="card-content">
+    <h2>Organic Course</h2>
+  </div>
+</div>
 
 </div>
 
-<!-- 🔥 NAVBAR FETCH -->
+<!-- 🔥 NAVBAR LOAD -->
 <script>
 fetch("navbar.html")
   .then(res => res.text())
   .then(data => {
     document.getElementById("navbar-container").innerHTML = data;
-    initAuth(); // 🔥 IMPORTANT
+
+    // ✅ navbar load hone ke baad auth init
+    if (window.initAuth) window.initAuth();
   });
 </script>
 
-<!-- 🔥 FIREBASE + AUTH (INLINE HI) -->
+<!-- 🔥 FIREBASE + AUTH -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -58,12 +68,19 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-window.initAuth = function() {
+// 🔥 GLOBAL FUNCTION (navbar ke baad chalega)
+window.initAuth = function () {
 
   let currentUser = null;
 
   onAuthStateChanged(auth, (user) => {
     currentUser = user;
+
+    document.querySelectorAll(".protectedLink").forEach(link => {
+
+      // ❌ duplicate event se bachne ke liye
+      link.replaceWith(link.cloneNode(true));
+    });
 
     document.querySelectorAll(".protectedLink").forEach(link => {
       link.addEventListener("click", (e) => {
