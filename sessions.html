@@ -14,7 +14,7 @@
 
 <body>
 
-<!-- ✅ NAVBAR LOAD -->
+<!-- 🔥 NAVBAR -->
 <div id="navbar-container"></div>
 
 <!-- ===== CONTENT ===== -->
@@ -41,17 +41,20 @@ Join our personalized live counselling sessions designed to guide students for c
 </div>
 </div>
 
-<!-- ===== NAVBAR FETCH ===== -->
+<!-- 🔥 NAVBAR LOAD -->
 <script>
 fetch("navbar.html")
   .then(res => res.text())
   .then(data => {
     document.getElementById("navbar-container").innerHTML = data;
-    initAuth(); // 🔥 VERY IMPORTANT
-  });
+
+    // ✅ Navbar load hone ke baad auth init
+    initAuth();
+  })
+  .catch(err => console.error("Navbar load error:", err));
 </script>
 
-<!-- ===== FIREBASE AUTH ===== -->
+<!-- 🔥 FIREBASE + AUTH -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -69,29 +72,30 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// 🔥 GLOBAL FUNCTION
-window.initAuth = function() {
+// 🔥 CLEAN AUTH SYSTEM
+function initAuth() {
 
   let currentUser = null;
 
   onAuthStateChanged(auth, (user) => {
     currentUser = user;
-
-    document.querySelectorAll(".protectedLink").forEach(link => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        if (currentUser) {
-          window.location.href = link.dataset.page;
-        } else {
-          window.location.href = "register.html";
-        }
-      });
-    });
-
   });
 
-};
+  // ✅ EVENT DELEGATION (ONE LISTENER ONLY)
+  document.addEventListener("click", function(e){
+    const link = e.target.closest(".protectedLink");
+    if(!link) return;
+
+    e.preventDefault();
+
+    if(currentUser){
+      window.location.href = link.dataset.page;
+    } else {
+      window.location.href = "register.html";
+    }
+  });
+
+}
 
 </script>
 
