@@ -1,183 +1,71 @@
-body {
+/* ===== RESET ===== */
+* {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #E8F5E9;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* ===== REMOVE DEFAULT MARGIN ===== */
+/* ===== BASE ===== */
 html, body {
   margin: 0;
   padding: 0;
 }
 
-/* ===== COMMON HERO ===== */
-.common-hero {
-  height: 180px;
-  background: linear-gradient(120deg, #156066 0%, #187A6F 45%, #2BBF7A 95%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: visible; /* ✅ dropdown cut nahi hoga */
-}
-
-/* ===== TITLE ===== */
-.site-title {
-  font-family: 'Cinzel', serif;
-  color: white;
-  font-size: 32px;
-  margin-bottom: 20px;
-}
-
-/* ===== NAVBAR ===== */
-.navbar {
-  position: relative;
-  display: flex;
-  gap: 40px;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  z-index: 10;
-}
-
-.navbar a {
-  color: white;
-  text-decoration: none;
-  font-family: 'Cinzel', serif;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* ===== DROPDOWN ===== */
-.dropdown {
-  position: relative;
-}
-
-/* Hidden state */
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
+body {
+  font-family: 'Poppins', sans-serif;
   background: #E8F5E9;
-  width: 260px;
-  border-radius: 6px;
-  padding: 12px 0;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-
-  opacity: 0;                 /* ✅ FIXED */
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
+  color: #2d3748;
 }
 
-/* Dropdown links */
-.dropdown-menu a {
-  color: black;
-  padding: 8px 16px;
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  font-weight: 400;
-}
-
-/* Hover effect */
-.dropdown-menu a:hover {
-  background: #f0f0f0;
-}
-
-/* SHOW dropdown */
-.dropdown:hover .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-/* ===== ARROW ICON ===== */
-.dropdown > a i {
-  font-size: 12px;
-  margin-left: 6px;
-  color: white;
-  transition: 0.3s;
-}
-
-.dropdown:hover > a i {
-  transform: rotate(180deg);
-}
-
-/* ===== SUBMENU (SIDE MENU) ===== */
-.submenu {
-  position: relative;
-}
-
-/* Hidden */
-.submenu-menu {
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background: #E8F5E9;
-  width: 200px;
-  border-radius: 6px;
-  padding: 10px 0;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(10px);
-  transition: all 0.3s ease;
-}
-
-/* Submenu links */
-.submenu-menu a {
-  display: block;
-  padding: 8px 16px;
-  color: black;
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  font-weight: 400;
-}
-
-/* Show submenu */
-.submenu:hover .submenu-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(0);
-}
-
-/* Arrow for submenu */
-.submenu > a::after {
-  content: "›";
-  float: right;
-  font-size: 14px;
-}
-
-/* GALLERY GRID */
+/* ===== GALLERY CONTAINER ===== */
 .gallery {
-  padding: 50px;
+  padding: 50px 20px;
+  max-width: 1200px;
+  margin: auto;
+
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
-/* IMAGE CARD */
+/* ===== IMAGE CARD ===== */
 .gallery-item {
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 14px;
   cursor: pointer;
+  position: relative;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* IMAGE */
+/* Hover card effect */
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+
+/* ===== IMAGE ===== */
 .gallery-item img {
   width: 100%;
   height: 250px;
   object-fit: cover;
-  transition: 0.4s ease;
+  transition: transform 0.4s ease;
 }
 
-/* HOVER EFFECT */
+/* ===== IMAGE HOVER ZOOM ===== */
 .gallery-item:hover img {
   transform: scale(1.1);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .gallery {
+    padding: 30px 15px;
+    gap: 15px;
+  }
+
+  .gallery-item img {
+    height: 200px;
+  }
 }
