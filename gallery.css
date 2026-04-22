@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #E8F5E9;
+}
+
+/* HEADER */
+.gallery-header {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(120deg, #156066, #2BBF7A);
+  color: white;
+}
+
+.gallery-header h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.gallery-header p {
+  font-size: 16px;
+}
+
+/* GALLERY GRID */
+.gallery {
+  padding: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* IMAGE CARD */
+.gallery-item {
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* IMAGE */
+.gallery-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: 0.4s ease;
+}
+
+/* HOVER EFFECT */
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
