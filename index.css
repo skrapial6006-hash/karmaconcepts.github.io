@@ -380,3 +380,48 @@ body {
 .dropdown:hover > a i {
   transform: rotate(180deg);
 }
+
+/* Submenu container */
+.submenu {
+  position: relative;
+}
+
+/* Submenu hidden */
+.submenu-menu {
+  position: absolute;
+  top: 0;
+  left: 100%;   /* 👉 side me open hoga */
+  background: #E8F5E9;
+  width: 200px;
+  border-radius: 6px;
+  padding: 10px 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+}
+
+/* Submenu links */
+.submenu-menu a {
+  display: block;
+  padding: 8px 16px;
+  color: black;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+/* Hover pe show */
+.submenu:hover .submenu-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.submenu > a::after {
+  content: "›";
+  float: right;
+  font-size: 14px;
+}
