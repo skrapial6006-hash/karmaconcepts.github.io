@@ -13,9 +13,8 @@ body{
   text-align:center;
 }
 
-/* ✅ NAVBAR SAFE WRAPPER */
 .page-content{
-  margin-top:90px; /* 🔥 navbar height */
+  margin-top:40px;   /* 🔥 90px bahut zyada tha */
   padding:20px;
 }
 
