@@ -5,32 +5,48 @@
   box-sizing: border-box;
 }
 
-/* ===== BODY ===== */
+/* ===== BASE ===== */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   background: #E8F5E9;
   color: #2d3748;
 }
 
+/* ✅ NAVBAR SPACE FIX (VERY IMPORTANT) */
+#navbar-container {
+  width: 100%;
+  position: relative;
+  z-index: 999;
+}
+
 /* ===== DETAIL CONTAINER ===== */
 .detail-container {
   max-width: 700px;
-  margin: 60px auto;
+
+  /* 🔥 navbar ke niche push */
+  margin: 100px auto 40px;
+
   background: #ffffff;
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
   text-align: left;
 }
 
 /* ===== TITLE ===== */
-.detail-title {
+#title {
   font-family: 'Cinzel', serif;
   margin-bottom: 20px;
 }
 
 /* ===== DESCRIPTION ===== */
-.detail-text {
+#description {
   line-height: 1.6;
   margin-bottom: 25px;
   color: #444;
@@ -53,13 +69,25 @@ body {
   box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
-/* ===== OPTIONAL CARD (if reused) ===== */
+/* ===== OPTIONAL CARD (SAFE REUSE) ===== */
 .webinar-card {
   background: #ffffff;
   padding: 30px 40px;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
   max-width: 700px;
   margin: 40px auto;
+
   text-align: left;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+  .detail-container {
+    margin: 80px 15px 30px;
+    padding: 20px;
+  }
+
 }
