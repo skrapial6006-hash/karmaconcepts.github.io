@@ -17,9 +17,14 @@ body {
   color: #2d3748;
 }
 
+/* ✅ NAVBAR SPACE FIX */
+.page-content {
+  margin-top: 90px; /* 🔥 navbar height ke hisaab se */
+}
+
 /* ===== GALLERY CONTAINER ===== */
 .gallery {
-  padding: 50px 20px;
+  padding: 40px 20px;
   max-width: 1200px;
   margin: auto;
 
@@ -60,6 +65,11 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+
+  .page-content {
+    margin-top: 80px;
+  }
+
   .gallery {
     padding: 30px 15px;
     gap: 15px;
