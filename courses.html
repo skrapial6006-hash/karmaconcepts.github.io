@@ -28,7 +28,7 @@
   You can check the "Live Courses" Section when these courses will go live!
 </p>
 
-<div class="card">
+<div class="card slide-right">
   <div class="overlay">COMING SOON</div>
   <div class="card-content">
     <h2>Organic Course</h2>
@@ -44,8 +44,10 @@ fetch("navbar.html")
   .then(data => {
     document.getElementById("navbar-container").innerHTML = data;
 
-    // ✅ Navbar load hone ke baad auth init karo
-    initAuth();
+    // ✅ SAFE CALL
+    if (window.initAuth) {
+      window.initAuth();
+    }
   })
   .catch(err => console.error("Navbar load error:", err));
 </script>
@@ -68,8 +70,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// 🔥 CLEAN & SAFE AUTH SYSTEM
-function initAuth() {
+// 🔥 GLOBAL FUNCTION (IMPORTANT FIX)
+window.initAuth = function () {
 
   let currentUser = null;
 
@@ -77,7 +79,7 @@ function initAuth() {
     currentUser = user;
   });
 
-  // ✅ EVENT DELEGATION (BEST METHOD 🔥)
+  // ✅ EVENT DELEGATION
   document.addEventListener("click", function(e){
     const link = e.target.closest(".protectedLink");
     if(!link) return;
@@ -91,7 +93,7 @@ function initAuth() {
     }
   });
 
-}
+};
 
 </script>
 
