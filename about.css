@@ -106,6 +106,33 @@ body::before {
   line-height: 1.6;
 }
 
+/* ===== INITIAL STATE ===== */
+.animate {
+  opacity: 0;
+}
+
+/* ===== FADE ===== */
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+/* ===== SLIDE RIGHT ===== */
+.slide-right {
+  animation: slideRight 1s ease forwards;
+}
+
+/* ===== SLIDE LEFT ===== */
+.slide-left {
+  animation: slideLeft 1s ease forwards;
+}
+
+/* ===== DELAYS ===== */
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.6s; }
+delay-3 { animation-delay: 0.9s; }
+delay-4 { animation-delay: 1.2s; }
+delay-5 { animation-delay: 1.5s; }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
 
