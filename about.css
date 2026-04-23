@@ -1,169 +1,120 @@
-/* ===== SAFE RESET (NAVBAR SAFE) ===== */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+/* ===== SAFE RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-  font-family:'Poppins',sans-serif;
-  background:#E8F5E9;
-  color:#2d3748;
+/* ===== BODY ===== */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #E8F5E9;
+  color: #2d3748;
 }
 
-/* ===== NAVBAR PROTECTION ===== */
-#navbar-container{
-  position:relative;
-  z-index:9999; /* 🔥 navbar always on top */
+/* ===== NAVBAR SAFE ===== */
+#navbar-container {
+  position: relative;
+  z-index: 9999;
 }
 
-/* ===== CONTENT WRAPPER ===== */
-.content-wrapper{
-  position:relative;
-  max-width:900px;
-  margin:0 auto;
-  padding:40px 20px;
+/* ===== MAIN CONTENT ===== */
+.content-wrapper {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
 }
 
-/* ===== SECTION ===== */
-.section{
-  max-width:900px;
-  margin:auto;
-  padding:60px 20px;
+/* ===== HEADINGS ===== */
+.content-wrapper h1 {
+  font-family: 'Cinzel', serif;
+  margin: 40px 0 25px;
+  font-size: 1.8rem;
 }
 
-/* ===== HEADINGS (SCOPED) ===== */
-.content-wrapper h1{
-  font-family:'Cinzel', serif;
-  margin:40px 0 25px;
-  font-size:1.8rem;
-}
-
-.content-wrapper h2{
-  font-family:'Cinzel', serif;
-  margin:40px 0 20px;
-  font-size:1.4rem;
+.content-wrapper h2 {
+  font-family: 'Cinzel', serif;
+  margin: 40px 0 20px;
+  font-size: 1.4rem;
 }
 
 /* ===== TEXT ===== */
-.content-wrapper p{
-  font-size:1.05rem;
-  line-height:1.6;
-  text-align:justify;
+.content-wrapper p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  text-align: justify;
 }
 
-/* ===== FLEX IMAGE LAYOUT (FLOAT REMOVE) ===== */
-.flex-row{
-  display:flex;
-  gap:20px;
-  align-items:flex-start;
-  margin-bottom:20px;
+/* ===== IMAGE FLOAT FIX (IMPORTANT 🔥) ===== */
+.img-right1,
+.img-right2 {
+  float: right;
+  width: 200px;            /* 👈 FIXED SIZE */
+  margin-left: 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
 }
 
-.flex-row.reverse{
-  flex-direction:row-reverse;
+.img-left1,
+.img-left2 {
+  float: left;
+  width: 200px;            /* 👈 FIXED SIZE */
+  margin-right: 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
 }
 
-.flex-row img{
-  width:240px;
-  border-radius:8px;
-  flex-shrink:0;
-}
-
-.flex-row p{
-  flex:1;
+/* ===== CLEAR FIX ===== */
+.clear {
+  clear: both;
 }
 
 /* ===== HINDI SECTION ===== */
 .about-hindi h2,
-.vision-hindi h2{
-  font-size:1.4rem;
-  margin-top:20px;
+.vision-hindi h2 {
+  font-size: 1.4rem;
+  margin-top: 20px;
 }
 
 .about-hindi p,
-.vision-hindi p{
-  font-size:1.05rem;
-  line-height:1.6;
+.vision-hindi p {
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 
-/* ===== BACKGROUND LOGO (FIXED) ===== */
-body::before{
-  content:"";
-  position:fixed; /* 🔥 FIX */
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:300px;
-  height:300px;
-  background:url('images/logo.png') no-repeat center/contain;
-  opacity:0.08;
-  pointer-events:none;
-  z-index:0;
-}
-
-/* ===== ENSURE CONTENT ABOVE BG ===== */
-.content-wrapper{
-  position:relative;
-  z-index:1;
+/* ===== BACKGROUND LOGO ===== */
+body::before {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: url('images/logo.png') no-repeat center/contain;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ===== VISION ===== */
-.vision-container{
-  margin-top:30px;
+.vision-container {
+  margin-top: 30px;
 }
 
-.vision-container h2{
-  font-size:1.4rem;
-}
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
 
-.vision-container p{
-  font-size:1.05rem;
-  line-height:1.7;
-}
+  .img-right1,
+  .img-right2,
+  .img-left1,
+  .img-left2 {
+    float: none;
+    display: block;
+    margin: 15px auto;
+    width: 80%;
+  }
 
-/* ===== ANIMATIONS ===== */
-@keyframes slideDown{
-  from{
-    opacity:0;
-    transform:translateY(-40px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-@keyframes slideLeft{
-  from{
-    opacity:0;
-    transform:translateX(80px);
-  }
-  to{
-    opacity:1;
-    transform:translateX(0);
-  }
-}
-
-@keyframes slideRight{
-  from{
-    opacity:0;
-    transform:translateX(-80px);
-  }
-  to{
-    opacity:1;
-    transform:translateX(0);
-  }
-}
-
-/* ===== APPLY ANIMATION (SCOPED) ===== */
-.content-wrapper h1,
-.content-wrapper p,
-.about-hindi h2,
-.about-hindi p,
-.vision-container h2,
-.vision-container p,
-.vision-hindi h2,
-.vision-hindi p{
-  animation: slideDown 1.2s ease forwards;
 }
