@@ -28,7 +28,8 @@
   You can check the "Live Courses" Section when these courses will go live!
 </p>
 
-<div class="card slide-right">
+<!-- ✅ REMOVE opacity issue -->
+<div class="card">
   <div class="overlay">COMING SOON</div>
   <div class="card-content">
     <h2>Organic Course</h2>
@@ -43,11 +44,6 @@ fetch("navbar.html")
   .then(res => res.text())
   .then(data => {
     document.getElementById("navbar-container").innerHTML = data;
-
-    // ✅ SAFE CALL
-    if (window.initAuth) {
-      window.initAuth();
-    }
   })
   .catch(err => console.error("Navbar load error:", err));
 </script>
@@ -70,30 +66,26 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// 🔥 GLOBAL FUNCTION (IMPORTANT FIX)
-window.initAuth = function () {
+let currentUser = null;
 
-  let currentUser = null;
+// ✅ Auth state
+onAuthStateChanged(auth, (user) => {
+  currentUser = user;
+});
 
-  onAuthStateChanged(auth, (user) => {
-    currentUser = user;
-  });
+// ✅ GLOBAL CLICK HANDLER (BEST PRACTICE)
+document.addEventListener("click", function(e){
+  const link = e.target.closest(".protectedLink");
+  if(!link) return;
 
-  // ✅ EVENT DELEGATION
-  document.addEventListener("click", function(e){
-    const link = e.target.closest(".protectedLink");
-    if(!link) return;
+  e.preventDefault();
 
-    e.preventDefault();
-
-    if(currentUser){
-      window.location.href = link.dataset.page;
-    } else {
-      window.location.href = "register.html";
-    }
-  });
-
-};
+  if(currentUser){
+    window.location.href = link.dataset.page;
+  } else {
+    window.location.href = "register.html";
+  }
+});
 
 </script>
 
