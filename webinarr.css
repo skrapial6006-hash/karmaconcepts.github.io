@@ -1,172 +1,40 @@
-body {
+/* ===== RESET (SAFE) ===== */
+* {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #E8F5E9;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.form-container {
-  position: relative;
-  z-index: 1;
-}
-
-.main-container {
-  position: relative;
-}
-
-/* ===== REMOVE DEFAULT MARGIN ===== */
+/* ===== BASE ===== */
 html, body {
   margin: 0;
   padding: 0;
 }
 
-/* ===== COMMON HERO ===== */
-.common-hero {
-  height: 180px;
-  background: linear-gradient(120deg, #156066 0%, #187A6F 45%, #2BBF7A 95%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: visible; /* ✅ dropdown cut nahi hoga */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #E8F5E9;
 }
 
-/* ===== TITLE ===== */
-.site-title {
-  font-family: 'Cinzel', serif;
-  color: white;
-  font-size: 32px;
-  margin-bottom: 20px;
-}
-
-/* ===== NAVBAR ===== */
-.navbar {
-  position: relative;
-  display: flex;
-  gap: 40px;
-  justify-content: center;
-  align-items: center;
+/* ✅ NAVBAR SAFE */
+#navbar-container {
   width: 100%;
-  z-index: 10;
+  position: relative;
+  z-index: 999;
 }
 
-.navbar a {
-  color: white;
-  text-decoration: none;
-  font-family: 'Cinzel', serif;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* ===== DROPDOWN ===== */
-.dropdown {
+/* ===== MAIN WRAPPER ===== */
+.main-container {
   position: relative;
 }
 
-/* Hidden state */
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #E8F5E9;
-  width: 260px;
-  border-radius: 6px;
-  padding: 12px 0;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-
-  opacity: 0;                 /* ✅ FIXED */
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
-}
-
-/* Dropdown links */
-.dropdown-menu a {
-  color: black;
-  padding: 8px 16px;
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  font-weight: 400;
-}
-
-/* Hover effect */
-.dropdown-menu a:hover {
-  background: #f0f0f0;
-}
-
-/* SHOW dropdown */
-.dropdown:hover .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-/* ===== ARROW ICON ===== */
-.dropdown > a i {
-  font-size: 12px;
-  margin-left: 6px;
-  color: white;
-  transition: 0.3s;
-}
-
-.dropdown:hover > a i {
-  transform: rotate(180deg);
-}
-
-/* ===== SUBMENU (SIDE MENU) ===== */
-.submenu {
-  position: relative;
-}
-
-/* Hidden */
-.submenu-menu {
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background: #E8F5E9;
-  width: 200px;
-  border-radius: 6px;
-  padding: 10px 0;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(10px);
-  transition: all 0.3s ease;
-}
-
-/* Submenu links */
-.submenu-menu a {
-  display: block;
-  padding: 8px 16px;
-  color: black;
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  font-weight: 400;
-}
-
-/* Show submenu */
-.submenu:hover .submenu-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(0);
-}
-
-/* Arrow for submenu */
-.submenu > a::after {
-  content: "›";
-  float: right;
-  font-size: 14px;
-}
-
+/* ===== FORM CONTAINER ===== */
 .form-container {
   max-width: 500px;
-  width: 90%;              /* responsive */
-  margin: -80px auto 40px; /* center + overlap */
+  width: 90%;
+
+  /* 🔥 navbar ke niche + hero overlap adjust */
+  margin: 120px auto 40px;
 
   background: white;
   padding: 30px;
@@ -175,9 +43,10 @@ html, body {
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
+/* ===== WATERMARK ===== */
 .form-container::before {
   content: "";
   position: absolute;
@@ -189,31 +58,33 @@ html, body {
   width: 200px;
   height: 200px;
 
-  background-image: url('images/logo.png');
+  background: url('images/logo.png') no-repeat center;
   background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 
   opacity: 0.1;
   z-index: 0;
 }
 
-/* TITLE */
-h1{
-  font-family:'Cinzel',serif;
-  margin-bottom:20px;
+/* ===== TITLE (SCOPED) ===== */
+.form-container h1 {
+  font-family: 'Cinzel', serif;
+  margin-bottom: 20px;
 }
 
-/* INPUTS */
-input{
-  width:100%;
-  padding:12px;
-  margin:8px 0;
-  border-radius:8px;
-  border:1px solid #ccc;
-  box-sizing: border-box;
+/* ===== INPUTS ===== */
+.form-container input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+
+  border-radius: 8px;
+  border: 1px solid #ccc;
+
+  font-size: 14px;
+  transition: 0.3s;
 }
 
+/* ===== ROW ===== */
 .row {
   display: flex;
   gap: 15px;
@@ -223,45 +94,37 @@ input{
   flex: 1;
 }
 
-/* BUTTON */
-button{
-  width:100%;
-  padding:12px;
-  margin-top:15px;
-  border:none;
-  background:#156066;
-  color:white;
-  font-size:16px;
-  border-radius:8px;
-  cursor:pointer;
-}
-
-button:hover{
-  background:#0F8F78;
-}
-
-input {
+/* ===== BUTTON ===== */
+.form-container button {
   width: 100%;
   padding: 12px;
-  margin: 8px 0;
+  margin-top: 15px;
+
+  border: none;
+  background: #156066;
+  color: white;
+
+  font-size: 16px;
   border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
+  cursor: pointer;
   transition: 0.3s;
 }
 
-/* Error state */
-input.error-border {
+.form-container button:hover {
+  background: #0F8F78;
+}
+
+/* ===== INPUT STATES ===== */
+.form-container input.error-border {
   border: 1px solid red;
   background: #ffe6e6;
 }
 
-/* Success state */
-input.valid-border {
+.form-container input.valid-border {
   border: 1px solid green;
 }
 
-/* Error text */
+/* ===== ERROR TEXT ===== */
 .error {
   color: red;
   font-size: 12px;
@@ -270,12 +133,16 @@ input.valid-border {
   margin-top: 4px;
 }
 
-/* Disabled button */
-button:disabled {
+/* ===== DISABLED BUTTON ===== */
+.form-container button:disabled {
   background: #aaa;
   cursor: not-allowed;
 }
 
-.main-container {
-  position: relative;
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .form-container {
+    margin: 100px 15px 30px;
+    padding: 20px;
+  }
 }
