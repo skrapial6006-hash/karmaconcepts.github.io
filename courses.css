@@ -30,18 +30,22 @@ body {
 .page-content::before {
   content: "";
   position: fixed;
-  top: 50%;
+
+  top: 60%; /* 🔥 50% → 60% (neeche shift) */
   left: 50%;
   transform: translate(-50%, -50%);
+
   width: 280px;
   height: 280px;
+
   background: url('images/logo.png') no-repeat center;
   background-size: contain;
+
   opacity: 0.06;
   pointer-events: none;
+
   z-index: -1;
 }
-
 /* ===== TITLE ===== */
 .courses-title {
   font-family: 'Cinzel', serif;
