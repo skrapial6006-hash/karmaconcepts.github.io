@@ -1,223 +1,134 @@
 /* ===== RESET ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-/* ===== BASE ===== */
-html, body {
-  margin: 0;
-  padding: 0;
+html, body{
+  margin:0;
+  padding:0;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #E8F5E9;
-  color: #2d3748;
+/* ===== BODY ===== */
+body{
+  font-family:'Poppins',sans-serif;
+  background:#E8F5E9;
+  color:#2d3748;
 }
 
-/* ===== MAIN CONTAINER ===== */
-.courses-container {
+/* ✅ NAVBAR SAFE SPACE */
+#navbar-container{
   position: relative;
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 20px;
+  z-index: 9999;
 }
 
-/* ===== WATERMARK LOGO ===== */
-.courses-container::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  width: 300px;
-  height: 300px;
-
-  background: url('images/logo.png') no-repeat center;
-  background-size: contain;
-
-  opacity: 0.08;
-  pointer-events: none;
-  z-index: 0;
+/* ===== CONTENT WRAPPER ===== */
+.content-wrapper{
+  position:relative;
+  max-width:900px;
+  margin:80px auto 40px; /* 🔥 TOP SPACE for navbar */
+  padding:20px;
 }
 
-/* Content above watermark */
-.courses-container * {
-  position: relative;
-  z-index: 1;
+/* ===== BACKGROUND LOGO (FIXED) ===== */
+body::before{
+  content:"";
+  position:fixed; /* 🔥 FIXED instead of absolute */
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:320px;
+  height:320px;
+  background:url('images/logo.png') no-repeat center/contain;
+  opacity:0.1;
+  pointer-events:none;
+  z-index:0;
 }
 
-/* ===== TITLE ===== */
-.courses-title {
-  font-family: 'Cinzel', serif;
-  margin-bottom: 15px;
-  animation: slideDown 1s ease forwards;
+/* Ensure content above background */
+.content-wrapper *{
+  position:relative;
+  z-index:1;
 }
 
-/* ===== NOTE ===== */
-.course-note {
-  margin-bottom: 30px;
-  font-size: 0.95rem;
-  color: #333;
-  animation: fadeIn 1.5s ease forwards;
+/* ===== HEADINGS ===== */
+h1{
+  font-family:'Cinzel', serif;
+  margin-top:20px;
+  margin-bottom:25px;
 }
 
-/* ===== CARDS WRAPPER ===== */
-.cards {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+h2{
+  margin-top:10px;
+  margin-bottom:20px;
 }
 
-/* ===== CARD ===== */
-.card {
-  opacity: 0;
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 22px;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
-  overflow: hidden;
-  position: relative;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+/* ===== TEXT ===== */
+.section p,
+.content-wrapper p{
+  font-size:1.05rem;
+  line-height:1.6;
+  text-align:justify;
 }
 
-/* Hover effect */
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+/* ===== IMAGES ===== */
+.img-right1,
+.img-right2{
+  float:right;
+  width:250px;
+  margin-left:20px;
+  margin-bottom:10px;
+  border-radius:8px;
+  animation: slideLeft 1.5s ease forwards;
 }
 
-/* ===== CARD CONTENT ===== */
-.card-content {
-  position: relative;
-  z-index: 1;
+.img-left1,
+.img-left2{
+  float:left;
+  width:220px;
+  margin-right:20px;
+  margin-bottom:10px;
+  margin-top:10px;
+  border-radius:8px;
+  animation: slideRight 1.5s ease forwards;
 }
 
-.card-content h2 {
-  font-family: 'Cinzel', serif;
-  font-size: 1.3rem;
-  margin-bottom: 8px;
+/* ===== VISION SECTION ===== */
+.vision-container{
+  clear:both;
+  max-width:900px;
+  margin:0 auto;
 }
 
-.card-content p {
-  font-size: 0.95rem;
-  color: #555;
-  line-height: 1.5;
+.vision-container h2{
+  font-family:'Cinzel', serif;
+  font-size:1.6rem;
 }
 
-/* ===== RIBBON OVERLAY ===== */
-.overlay {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-
-  width: 100%;
-  height: 60px;
-
-  background: rgba(24, 122, 111, 0.5);
-  backdrop-filter: blur(4px);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #fff;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  font-size: 1.1rem;
-
-  z-index: 2;
-}
-
-/* ===== SMALL TEXT ===== */
-.small-text {
-  font-size: 0.85rem;
-}
-
-.small-text a {
-  font-size: 0.8rem;
+.vision-container p{
+  font-size:1.1rem;
+  line-height:1.7;
 }
 
 /* ===== ANIMATIONS ===== */
-
-/* Top → Bottom */
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes slideDown{
+  from{ opacity:0; transform:translateY(-30px); }
+  to{ opacity:1; transform:translateY(0); }
 }
 
-/* Fade */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes slideLeft{
+  from{ opacity:0; transform:translateX(60px); }
+  to{ opacity:1; transform:translateX(0); }
 }
 
-/* Left → Right */
-@keyframes slideRight {
-  from {
-    opacity: 0;
-    transform: translateX(-80px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+@keyframes slideRight{
+  from{ opacity:0; transform:translateX(-60px); }
+  to{ opacity:1; transform:translateX(0); }
 }
 
-/* Right → Left */
-@keyframes slideLeft {
-  from {
-    opacity: 0;
-    transform: translateX(80px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Apply animations */
-.slide-right {
-  animation: slideRight 1s ease forwards;
-}
-
-.slide-left {
-  animation: slideLeft 1s ease forwards;
-}
-
-/* Delay helpers */
-.delay-1 { animation-delay: 0.4s; }
-.delay-2 { animation-delay: 0.8s; }
-.delay-3 { animation-delay: 1.2s; }
-.delay-4 { animation-delay: 1.6s; }
-.delay-5 { animation-delay: 2s; }
-.delay-6 { animation-delay: 2.4s; }
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-
-  .courses-container {
-    margin: 20px auto;
-    padding: 15px;
-  }
-
-  .overlay {
-    font-size: 0.95rem;
-    height: 50px;
-  }
-
-  .card-content h2 {
-    font-size: 1.1rem;
-  }
-
+/* APPLY */
+.content-wrapper h1,
+.content-wrapper p{
+  animation: slideDown 1s ease forwards;
 }
