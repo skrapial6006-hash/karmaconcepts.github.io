@@ -10,12 +10,34 @@ body {
   font-family: 'Poppins', sans-serif;
   background: #E8F5E9;
   color: #2d3748;
+  position: relative;
 }
 
 /* ===== NAVBAR SAFE ===== */
 #navbar-container {
   position: relative;
   z-index: 9999;
+}
+
+/* ===== WATERMARK (FINAL FIX 🔥) ===== */
+body::before {
+  content: "";
+  position: fixed; /* 👈 FIXED POSITION */
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 260px;  /* 👈 thoda balanced size */
+  height: 260px;
+
+  background: url('images/logo.png') no-repeat center;
+  background-size: contain;
+
+  opacity: 0.07; /* 👈 subtle rakha */
+  pointer-events: none;
+
+  z-index: -1; /* 👈 IMPORTANT: content ke peeche */
 }
 
 /* ===== MAIN CONTENT ===== */
@@ -47,11 +69,11 @@ body {
   text-align: justify;
 }
 
-/* ===== IMAGE FLOAT FIX (IMPORTANT 🔥) ===== */
+/* ===== IMAGE FLOAT ===== */
 .img-right1,
 .img-right2 {
   float: right;
-  width: 200px;            /* 👈 FIXED SIZE */
+  width: 200px;
   margin-left: 20px;
   margin-bottom: 10px;
   border-radius: 8px;
@@ -60,7 +82,7 @@ body {
 .img-left1,
 .img-left2 {
   float: left;
-  width: 200px;            /* 👈 FIXED SIZE */
+  width: 200px;
   margin-right: 20px;
   margin-bottom: 10px;
   border-radius: 8px;
@@ -82,26 +104,6 @@ body {
 .vision-hindi p {
   font-size: 1.05rem;
   line-height: 1.6;
-}
-
-/* ===== BACKGROUND LOGO ===== */
-body::before {
-  content: "";
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  height: 300px;
-  background: url('images/logo.png') no-repeat center/contain;
-  opacity: 0.08;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ===== VISION ===== */
-.vision-container {
-  margin-top: 30px;
 }
 
 /* ===== RESPONSIVE ===== */
