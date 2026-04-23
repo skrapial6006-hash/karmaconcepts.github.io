@@ -1,31 +1,45 @@
-/* ===== RESET ===== */
+/* ===== RESET (SAFE) ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ===== BODY ===== */
+/* ===== BASE ===== */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   background: #E8F5E9;
   color: #2d3748;
 }
 
-/* ===== CONTAINER ===== */
+/* ✅ NAVBAR SAFE LAYER */
+#navbar-container {
+  width: 100%;
+  position: relative;
+  z-index: 999;
+}
+
+/* ===== MAIN CONTAINER ===== */
 .webinar-container {
   max-width: 900px;
-  margin: 40px auto;
+
+  /* 🔥 navbar ke niche push */
+  margin: 100px auto 40px;
+
   padding: 20px;
 }
 
 /* ===== TITLE ===== */
-.title {
+.webinar-container .title {
   font-family: 'Cinzel', serif;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   margin-bottom: 30px;
   text-align: left;
-  padding-left: 5px;
 }
 
 /* ===== CARD ===== */
@@ -34,7 +48,9 @@ body {
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+
   margin-bottom: 25px;
+
   transition: all 0.3s ease;
 
   /* Animation */
@@ -51,7 +67,7 @@ body {
 
 /* ===== CARD TEXT ===== */
 .webinar-card h3 {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   margin-bottom: 10px;
 }
 
@@ -85,4 +101,18 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+  .webinar-container {
+    margin: 80px 15px 30px;
+    padding: 15px;
+  }
+
+  .webinar-container .title {
+    font-size: 1.8rem;
+  }
+
 }
