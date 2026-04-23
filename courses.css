@@ -5,11 +5,6 @@
   box-sizing:border-box;
 }
 
-html, body{
-  margin:0;
-  padding:0;
-}
-
 /* ===== BODY ===== */
 body{
   font-family:'Poppins',sans-serif;
@@ -17,55 +12,48 @@ body{
   color:#2d3748;
 }
 
-/* ✅ NAVBAR SAFE SPACE */
+/* ✅ NAVBAR SPACE FIX */
 #navbar-container{
-  position: relative;
-  z-index: 9999;
+  width:100%;
+  position:relative;
+  z-index:1000; /* always on top */
 }
 
 /* ===== CONTENT WRAPPER ===== */
 .content-wrapper{
   position:relative;
   max-width:900px;
-  margin:80px auto 40px; /* 🔥 TOP SPACE for navbar */
+  margin:100px auto 40px; /* 🔥 top space for navbar */
   padding:20px;
+  z-index:1;
 }
 
 /* ===== BACKGROUND LOGO (FIXED) ===== */
 body::before{
   content:"";
-  position:fixed; /* 🔥 FIXED instead of absolute */
+  position:fixed; /* 🔥 absolute se fixed */
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  width:320px;
-  height:320px;
+  width:300px;
+  height:300px;
   background:url('images/logo.png') no-repeat center/contain;
-  opacity:0.1;
+  opacity:0.08;
   pointer-events:none;
-  z-index:0;
-}
-
-/* Ensure content above background */
-.content-wrapper *{
-  position:relative;
-  z-index:1;
+  z-index:0; /* 🔥 always behind */
 }
 
 /* ===== HEADINGS ===== */
 h1{
   font-family:'Cinzel', serif;
-  margin-top:20px;
   margin-bottom:25px;
 }
 
 h2{
-  margin-top:10px;
   margin-bottom:20px;
 }
 
 /* ===== TEXT ===== */
-.section p,
 .content-wrapper p{
   font-size:1.05rem;
   line-height:1.6;
@@ -80,7 +68,7 @@ h2{
   margin-left:20px;
   margin-bottom:10px;
   border-radius:8px;
-  animation: slideLeft 1.5s ease forwards;
+  animation: slideLeft 1.2s ease forwards;
 }
 
 .img-left1,
@@ -91,24 +79,13 @@ h2{
   margin-bottom:10px;
   margin-top:10px;
   border-radius:8px;
-  animation: slideRight 1.5s ease forwards;
+  animation: slideRight 1.2s ease forwards;
 }
 
-/* ===== VISION SECTION ===== */
+/* ===== VISION ===== */
 .vision-container{
   clear:both;
-  max-width:900px;
-  margin:0 auto;
-}
-
-.vision-container h2{
-  font-family:'Cinzel', serif;
-  font-size:1.6rem;
-}
-
-.vision-container p{
-  font-size:1.1rem;
-  line-height:1.7;
+  margin-top:40px;
 }
 
 /* ===== ANIMATIONS ===== */
