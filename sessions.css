@@ -13,39 +13,44 @@ body{
   text-align:center;
 }
 
+/* ✅ NAVBAR SAFE WRAPPER */
+.page-content{
+  margin-top:90px; /* 🔥 navbar height */
+  padding:20px;
+}
+
 /* ===== MAIN CONTAINER ===== */
 .live-container{
   max-width:800px;
-  margin:40px auto;
-  padding:20px;
+  margin:auto;
   position:relative;
-  z-index:1;
 
-  /* Animation */
   opacity:0;
   animation: fadeIn 1s ease forwards;
 }
 
-/* ===== WATERMARK ===== */
-.live-container::before{
+/* ===== WATERMARK (SAFE FIX) ===== */
+.page-content::before{
   content:"";
-  position:absolute;
+  position:fixed; /* 🔥 important change */
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
 
-  width:280px;
-  height:280px;
+  width:260px;
+  height:260px;
 
   background:url('images/live-session.png') no-repeat center;
   background-size:contain;
 
-  opacity:0.08;
-  z-index:0;
+  opacity:0.06;
+  pointer-events:none;
+
+  z-index:-1; /* 🔥 navbar ke neeche */
 }
 
-/* ===== TITLE ===== */
-.title{
+/* ===== TITLE (SCOPED) ===== */
+.live-container .title{
   font-family:'Cinzel', serif;
   font-size:2rem;
   margin-bottom:20px;
@@ -130,7 +135,12 @@ body{
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
-  .title{
+
+  .page-content{
+    margin-top:80px;
+  }
+
+  .live-container .title{
     font-size:1.5rem;
   }
 }
