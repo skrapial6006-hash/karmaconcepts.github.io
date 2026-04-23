@@ -6,11 +6,6 @@
 }
 
 /* ===== BASE ===== */
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
 body {
   font-family: 'Poppins', sans-serif;
   background: #E8F5E9;
@@ -23,15 +18,15 @@ body {
   z-index: 9999;
 }
 
-/* ===== PAGE WRAPPER (IMPORTANT FIX) ===== */
+/* ===== PAGE WRAPPER ===== */
 .page-content {
-  margin-top: 100px; /* navbar ke niche space */
+  margin-top: 100px;
   padding: 20px;
   position: relative;
   z-index: 1;
 }
 
-/* ===== WATERMARK (FIXED CENTER) ===== */
+/* ===== WATERMARK ===== */
 body::before {
   content: "";
   position: fixed;
@@ -50,7 +45,7 @@ body::before {
   z-index: 0;
 }
 
-/* ===== MAIN CONTAINER ===== */
+/* ===== CONTAINER ===== */
 .courses-container {
   max-width: 1100px;
   margin: auto;
@@ -67,21 +62,22 @@ body::before {
 .course-note {
   margin-bottom: 30px;
   font-size: 0.95rem;
-  color: #333;
-  animation: fadeIn 1.5s ease forwards;
+  animation: fadeIn 1.2s ease forwards;
 }
 
 /* ===== CARD ===== */
 .card {
-  opacity: 0; /* animation se visible hoga */
+  opacity: 0;
+  transform: translateX(-80px);
+
   background: #ffffff;
   border-radius: 14px;
   padding: 22px;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
-  position: relative;
   margin-bottom: 20px;
 
-  animation: slideRight 1s ease forwards; /* 🔥 FIX */
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+
+  transition: 0.3s;
 }
 
 /* Hover */
@@ -90,14 +86,24 @@ body::before {
   box-shadow: 0 10px 20px rgba(0,0,0,0.12);
 }
 
-/* ===== CARD CONTENT ===== */
+/* ===== ANIMATION APPLY (IMPORTANT FIX) ===== */
+.card.show {
+  animation: slideRight 0.8s ease forwards;
+}
+
+/* ===== DELAYS ===== */
+.card:nth-child(1) { animation-delay: 0.2s; }
+.card:nth-child(2) { animation-delay: 0.5s; }
+.card:nth-child(3) { animation-delay: 0.8s; }
+.card:nth-child(4) { animation-delay: 1.1s; }
+
+/* ===== CONTENT ===== */
 .card-content h2 {
   font-family: 'Cinzel', serif;
   font-size: 1.3rem;
-  margin-bottom: 8px;
 }
 
-/* ===== OVERLAY ===== */
+/* ===== OVERLAY (NO BLUR NOW) ===== */
 .overlay {
   position: absolute;
   top: 50%;
@@ -106,8 +112,7 @@ body::before {
   width: 100%;
   height: 60px;
 
-  background: rgba(24, 122, 111, 0.5);
-  backdrop-filter: blur(4px);
+  background: rgba(24, 122, 111, 0.7); /* 🔥 darker instead of blur */
 
   display: flex;
   align-items: center;
@@ -115,13 +120,19 @@ body::before {
 
   color: #fff;
   font-weight: 600;
-  letter-spacing: 1.5px;
-  font-size: 1.1rem;
+  letter-spacing: 1px;
 
   z-index: 1;
 }
 
 /* ===== ANIMATIONS ===== */
+@keyframes slideRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -134,35 +145,5 @@ body::before {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
   to { opacity: 1; }
-}
-
-@keyframes slideRight {
-  from {
-    opacity: 0;
-    transform: translateX(-80px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-
-  .page-content {
-    margin-top: 80px;
-    padding: 15px;
-  }
-
-  .overlay {
-    font-size: 0.95rem;
-    height: 50px;
-  }
-
-  .card-content h2 {
-    font-size: 1.1rem;
-  }
 }
