@@ -16,7 +16,7 @@ body{
 .page-content{
   margin-top:90px; /* 🔥 navbar height */
   min-height:calc(100vh - 90px);
-  display:flex;
+  display:none;
   justify-content:center;
   align-items:center;
   padding:20px;
