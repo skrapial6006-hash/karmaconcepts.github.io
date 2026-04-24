@@ -40,14 +40,13 @@
   </div>
 </div>
 
-<!-- ===== NAVBAR LOAD (FIXED) ===== -->
+<!-- ===== NAVBAR LOAD ===== -->
 <script>
 fetch("navbar.html")
   .then(res => res.text())
   .then(data => {
     document.getElementById("navbar-container").innerHTML = data;
 
-    // ✅ wait for auth function safely
     if (window.initAuth) {
       window.initAuth();
     } else {
@@ -84,6 +83,7 @@ let pageNum = 1;
 const canvas = document.getElementById("pdfCanvas");
 const ctx = canvas.getContext("2d");
 const card = document.querySelector(".notes-card");
+const overlay = document.getElementById("overlay");
 
 /* 🔐 Paid check */
 function isPaidUser(){
@@ -101,7 +101,14 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
 pdfjsLib.getDocument({ url: pdfFile }).promise
 .then(pdf => {
   pdfDoc = pdf;
-  renderPage(pageNum);
+
+  // 🔥 ensure watermark loaded first
+  if (watermark.complete) {
+    renderPage(pageNum);
+  } else {
+    watermark.onload = () => renderPage(pageNum);
+  }
+
 })
 .catch(() => {
   document.body.innerHTML = "<h2 style='text-align:center'>PDF Load Failed ❌</h2>";
@@ -109,6 +116,8 @@ pdfjsLib.getDocument({ url: pdfFile }).promise
 
 /* ===== RENDER ===== */
 function renderPage(num){
+
+  if(!pdfDoc) return;
 
   if(num > freePages && !isPaidUser()){
     overlay.style.display="flex";
@@ -129,18 +138,23 @@ function renderPage(num){
       viewport: viewport
     }).promise.then(() => {
 
-      const w = canvas.width * 0.18;
-      const h = w * (watermark.height / watermark.width);
+      if (watermark.width) {
+        const w = canvas.width * 0.18;
+        const h = w * (watermark.height / watermark.width);
 
-      ctx.globalAlpha = 0.15;
+        ctx.globalAlpha = 0.15;
 
-      ctx.drawImage(watermark,
-        canvas.width/2 - w/2,
-        canvas.height/2 - h/2,
-        w,h
-      );
+        ctx.drawImage(
+          watermark,
+          canvas.width/2 - w/2,
+          canvas.height/2 - h/2,
+          w,
+          h
+        );
 
-      ctx.globalAlpha = 1;
+        ctx.globalAlpha = 1;
+      }
+
     });
 
   });
@@ -148,14 +162,14 @@ function renderPage(num){
 }
 
 /* ===== NAVIGATION ===== */
-next.onclick = () => {
-  if(pageNum < pdfDoc.numPages){
+document.getElementById("next").onclick = () => {
+  if(pdfDoc && pageNum < pdfDoc.numPages){
     pageNum++;
     renderPage(pageNum);
   }
 };
 
-prev.onclick = () => {
+document.getElementById("prev").onclick = () => {
   if(pageNum > 1){
     pageNum--;
     renderPage(pageNum);
@@ -163,7 +177,7 @@ prev.onclick = () => {
 };
 
 /* ===== PAYMENT ===== */
-payBtn.onclick = function(){
+document.getElementById("payBtn").onclick = function(){
 
   var options = {
     key: "rzp_test_ScXkkjBHd3KyZV",
@@ -193,7 +207,7 @@ document.onkeydown = function(e){
 
 </script>
 
-<!-- ===== FIREBASE AUTH (FIXED) ===== -->
+<!-- ===== FIREBASE AUTH ===== -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -211,7 +225,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-/* ✅ GLOBAL AUTH FUNCTION (SAFE + CLEAN) */
 window.initAuth = function() {
 
   let currentUser = null;
@@ -219,13 +232,11 @@ window.initAuth = function() {
   onAuthStateChanged(auth, (user) => {
     currentUser = user;
 
-    // ✅ REMOVE OLD EVENTS
     document.querySelectorAll(".protectedLink").forEach(link => {
       const newLink = link.cloneNode(true);
       link.replaceWith(newLink);
     });
 
-    // ✅ ADD NEW EVENTS
     document.querySelectorAll(".protectedLink").forEach(link => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
@@ -240,7 +251,6 @@ window.initAuth = function() {
 
   });
 
-  // 🔥 notify navbar loader
   document.dispatchEvent(new Event("authReady"));
 };
 
