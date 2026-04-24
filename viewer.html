@@ -63,7 +63,7 @@ fetch("navbar.html")
 
 const params = new URLSearchParams(window.location.search);
 
-/* ✅ NEW SYSTEM */
+/* ✅ USE ONLY ONE VARIABLE */
 const subject = params.get("subject");
 const chapter = params.get("chapter");
 
@@ -73,33 +73,33 @@ if(!subject || !chapter){
   throw new Error("Missing subject/chapter");
 }
 
-/* ===== 🔥 MAPPING SYSTEM ===== */
+/* ===== 🔥 MAPPING SYSTEM (LOWERCASE FIXED) ===== */
 const folderMap = {
-  "12biology": "12BIONOTES",
-  "12chemistry": "12CHEMNOTES",
-  "12physics": "12PHYSICSNOTES",
+  "12biology": "12bionotes",
+  "12chemistry": "12chemnotes",
+  "12physics": "12physicsnotes",
 
-  "11biology": "11BIONOTES",
-  "11chemistry": "11CHEMNOTES",
-  "11physics": "11PHYSICSNOTES",
+  "11biology": "11bionotes",
+  "11chemistry": "11chemnotes",
+  "11physics": "11physicsnotes",
 
-  "10science": "10SCIENCENOTES",
-  "10maths": "10MATHSNOTES",
-  "10socialscience": "10SSTNOTES",
+  "10science": "10sciencenotes",
+  "10maths": "10mathnotes",
+  "10socialscience": "10sstnotes",
 
-  "9science": "9SCIENCENOTES",
-  "9maths": "9MATHSNOTES",
-  "9socialscience": "9SSTNOTES"
+  "9science": "9sciencenotes",
+  "9maths": "9mathnotes",
+  "9socialscience": "9sstnotes"
 };
 
 const prefixMap = {
   "12biology": "12bioch",
   "12chemistry": "12chemch",
-  "12physics": "12phych",
+  "12physics": "12physch",
 
   "11biology": "11bioch",
   "11chemistry": "11chemch",
-  "11physics": "11phych",
+  "11physics": "11physch",
 
   "10science": "10scich",
   "10maths": "10mathch",
@@ -111,19 +111,23 @@ const prefixMap = {
 };
 
 /* ===== GENERATE PDF PATH ===== */
-const folder = folderMap[subject.toLowerCase()];
-const prefix = prefixMap[subject.toLowerCase()];
+const key = subject.toLowerCase();
+
+const folder = folderMap[key];
+const prefix = prefixMap[key];
 
 if(!folder || !prefix){
   alert("Invalid subject!");
   throw new Error("Mapping error");
 }
 
+/* ✅ FINAL PATH */
 const pdfFile = `notes/${folder}/${prefix}${chapter}.pdf`;
 
 /* ===== UI TEXT ===== */
 document.getElementById("subjectName").textContent = subject;
-document.getElementById("classStd").textContent = subject.slice(0,2);
+document.getElementById("classStd").textContent = subject.match(/\d+/)[0];
+
 
 /* ===== CORE ===== */
 let freePages = 3;
