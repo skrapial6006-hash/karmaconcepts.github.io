@@ -360,7 +360,9 @@ if (!chaptersData[matchedKey]) {
 
     li.innerHTML = `
       ${ch}
-      <a href="viewer.html?pdf=sample.pdf">Click Here</a>
+      <a href="viewer.html?subject=${urlSubject}&chapter=${index + 1}">
+  Click Here
+</a>
     `;
 
     list.appendChild(li);
