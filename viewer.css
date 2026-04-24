@@ -176,7 +176,7 @@ body.screenshot canvas{
   font-family:'Cinzel', serif;
   font-size:28px;
 
-  margin-top:20px;     /* 🔥 hero se gap */
+  margin-top:10px;     /* 🔥 hero se gap */
   margin-bottom:30px;  /* 🔥 canvas se gap */
 
   position:relative;   /* 🔥 important */
