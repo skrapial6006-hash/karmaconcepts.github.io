@@ -168,3 +168,11 @@ body.screenshot canvas{
     font-size:22px;
   }
 }
+
+.chapter-title{
+  text-align:center;
+  font-family:'Cinzel', serif;
+  font-size:28px;
+  margin-bottom:25px; /* 🔥 gap from PDF */
+  margin-top:10px;   /* 🔥 gap from hero/navbar */
+}
