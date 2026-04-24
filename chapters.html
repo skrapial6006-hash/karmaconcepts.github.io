@@ -106,6 +106,66 @@ const matchedKey = subjectMap[urlSubject?.toLowerCase()]
 document.getElementById("pageTitle").textContent =
   `Chapterwise Notes for ${matchedKey}`;
 
+  const folderMap = {
+  "12biology": "12bionotes",
+  "12chemistry": "12chemnotes",
+  "12physics": "12phynotes",
+
+  "11biology": "11bionotes",
+  "11chemistry": "11chemnotes",
+  "11physics": "11phynotes",
+
+  "10science": "10scinotes",
+  "10maths": "10mathnotes",
+  "10socialscience": "10sstnotes",
+
+  "9science": "9scinotes",
+  "9maths": "9mathnotes",
+  "9socialscience": "9sstnotes"
+};
+
+const prefixMap = {
+  "12biology": "12bioch",
+  "12chemistry": "12chemch",
+  "12physics": "12phych",
+
+  "11biology": "11bioch",
+  "11chemistry": "11chemch",
+  "11physics": "11phych",
+
+  "10science": "10scich",
+  "10maths": "10mathch",
+  "10socialscience": "10sstch",
+
+  "9science": "9scich",
+  "9maths": "9mathch",
+  "9socialscience": "9sstch"
+};
+
+  const subjectMap = {
+
+  // CLASS 9
+  "9science": "Class 9 Science Handwritten Notes",
+  "9maths": "Class 9 Maths Handwritten Notes",
+  "9socialscience": "Class 9 Social Science Handwritten Notes",
+
+  // CLASS 10
+  "10science": "Class 10 Science Handwritten Notes",
+  "10maths": "Class 10 Maths Handwritten Notes",
+  "10socialscience": "Class 10 Social Science Handwritten Notes",
+
+  // CLASS 11
+  "11physics": "Class 11 Physics Handwritten Notes",
+  "11chemistry": "Class 11 Chemistry Handwritten Notes",
+  "11biology": "Class 11 Biology Handwritten Notes",
+
+  // CLASS 12
+  "12physics": "Class 12 Physics Handwritten Notes",
+  "12chemistry": "Class 12 Chemistry Handwritten Notes",
+  "12biology": "Class 12 Biology Handwritten Notes"
+
+};
+
 /* DATA */
 // Chapters data
 const chaptersData = {
