@@ -71,7 +71,10 @@ const subject = params.get("subject");
 const chapter = params.get("chapter");
 
 /* ===== CHAPTER NAME DATA ===== */
-"Class 9 Science Handwritten Notes": [
+
+const chaptersData = {
+  
+"9science": [
     "Motion",
     "Force & Laws of Motion",
     "Work, Energy & Simple Machines",
@@ -84,7 +87,7 @@ const chapter = params.get("chapter");
     "Reproduction",
     "Earth as a System: Energy, Matter and Life"
   ],
-  "Class 9 Maths Handwritten Notes": [
+  "9maths": [
     "Number system",
     "Polynomials",
     "Coordinate geometry",
@@ -101,7 +104,7 @@ const chapter = params.get("chapter");
     "Statistics",
     "Introduction to Probability"
   ],
-  "Class 9 Social Science Handwritten Notes": [
+  "9socialscience": [
     "Introductory: Understanding social sciences",
     "History: Early Humans and Beginning of Civilisation",
     "History: State and Society (upto 1000 CE)",
@@ -120,7 +123,7 @@ const chapter = params.get("chapter");
     "Economics: Smart ways to manage your finances"
   ],
 
-  "Class 10 Maths Handwritten Notes": [
+  "10maths": [
     "Real Numbers",
     "Polynomials",
     "Pair of Linear Equations in Two Variables",
@@ -137,7 +140,7 @@ const chapter = params.get("chapter");
     "Statistics",
     "Probability"
   ],
-  "Class 10 Science Handwritten Notes": [
+  "10science": [
     "Chemical Reactions and Equations",
     "Acids, Bases and Salts",
     "Metals and Non-Metals",
@@ -152,7 +155,7 @@ const chapter = params.get("chapter");
     "Magnetic Effects of Electric Current",
     "Our Environment"
   ],
-  "Class 10 Social Science Handwritten Notes": [
+  "10socialscience": [
     "History: The Rise of Nationalism in Europe",
     "History: Nationalism in India",
     "History: The Making of a Global World",
@@ -177,7 +180,7 @@ const chapter = params.get("chapter");
     "Economics: Consumer Rights"
   ],
 
-  "Class 11 Physics Handwritten Notes": [
+  "11physics": [
     "Units and Measurements",
     "Motion in a Straight Line",
     "Motion in a Plane",
@@ -194,7 +197,7 @@ const chapter = params.get("chapter");
     "Oscillations",
     "Waves"
   ],
-  "Class 11 Chemistry Handwritten Notes": [
+  "11chemistry": [
     "Some Basic Concepts of Chemistry",
     "Structure of Atom",
     "Classification of Elements & Periodicity",
@@ -206,7 +209,7 @@ const chapter = params.get("chapter");
     "Hydrocarbons"
   ],
 
-  "Class 11 Biology Handwritten Notes": [
+  "11biology": [
     "The Living World",
     "Biological Classification",
     "Plant Kingdom",
@@ -227,7 +230,7 @@ const chapter = params.get("chapter");
     "Neural Control and Coordination",
     "Chemical Coordination and Integration"
   ],
-  "Class 12 Physics Handwritten Notes": [
+  "12physics": [
     "Electric Charges and Fields",
     "Electrostatic Potential and Capacitance",
     "Current Electricity",
@@ -243,7 +246,7 @@ const chapter = params.get("chapter");
     "Nuclei",
     "Semiconductor Electronics: Materials, Devices and Simple Circuits"
   ],
-  "Class 12 Chemistry Handwritten Notes": [
+  "12chemistry": [
     "Solutions",
     "Electrochemistry",
     "Chemical Kinetics",
@@ -255,7 +258,7 @@ const chapter = params.get("chapter");
     "Amines",
     "Biomolecules"
   ],
-  "Class 12 Biology Handwritten Notes": [
+  "12biology": [
     "Sexual Reproduction in Flowering Plants",
     "Human Reproduction",
     "Reproductive Health",
@@ -272,13 +275,31 @@ const chapter = params.get("chapter");
   ]
 };
 
+  const subjectTitles = {
+
+  "9science": "Class 9 Science Handwritten Notes",
+  "9maths": "Class 9 Maths Handwritten Notes",
+  "9socialscience": "Class 9 Social Science Handwritten Notes",
+  "10science": "Class 10 Science Handwritten Notes",
+  "10maths": "Class 10 Maths Handwritten Notes",
+  "10socialscience": "Class 10 Social Science Handwritten Notes",
+  "11physics": "Class 11 Physics Handwritten Notes",
+  "11chemistry": "Class 11 Chemistry Handwritten Notes",
+  "11biology": "Class 11 biology Handwritten Notes",
+  "12physics": "Class 12 Physics Handwritten Notes"
+  "12chemistry": "Class 12 Chemistry Handwritten Notes"
+  "12biology": "Class 12 Biology Handwritten Notes"
+};
+
 /* ===== SET CHAPTER TITLE ===== */
 const titleEl = document.getElementById("chapterTitle");
 
 let chapterName = `Chapter ${chapter}`;
 
 if(chaptersData[subject.toLowerCase()]){
-  chapterName = chaptersData[subject.toLowerCase()][chapter - 1] || chapterName;
+  const chapterNum = parseInt(chapter);
+
+chapterName = chaptersData[subject.toLowerCase()][chapterNum - 1] || chapterName;
 }
 
 titleEl.textContent = chapterName;
