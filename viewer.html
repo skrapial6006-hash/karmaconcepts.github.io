@@ -69,6 +69,11 @@ const params = new URLSearchParams(window.location.search);
 /* ✅ USE ONLY ONE VARIABLE */
 const subject = params.get("subject");
 const chapter = params.get("chapter");
+if(!subject || !chapter){
+  alert("Invalid PDF request!");
+  throw new Error("Missing subject/chapter");
+}
+const key = subject.toLowerCase();
 
 /* ===== CHAPTER NAME DATA ===== */
 
@@ -293,8 +298,6 @@ const chaptersData = {
 
 /* ===== SET CHAPTER TITLE ===== */
 const titleEl = document.getElementById("chapterTitle");
-
-const key = subject.toLowerCase();
 const chapterNum = parseInt(chapter);
 
 /* default */
@@ -309,13 +312,7 @@ if(chaptersData[key]){
 const subjectTitle = subjectTitles[key] || subject;
 
 /* FINAL OUTPUT */
-titleEl.textContent = `${subjectTitle} - ${chapterName}`;
-
-/* ❌ safety */
-if(!subject || !chapter){
-  alert("Invalid PDF request!");
-  throw new Error("Missing subject/chapter");
-}
+titleEl.textContent = chapterName;
 
 /* ===== 🔥 MAPPING SYSTEM (LOWERCASE FIXED) ===== */
 const folderMap = {
@@ -355,7 +352,6 @@ const prefixMap = {
 };
 
 /* ===== GENERATE PDF PATH ===== */
-const key = subject.toLowerCase();
 
 const folder = folderMap[key];
 const prefix = prefixMap[key];
