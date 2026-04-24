@@ -19,7 +19,6 @@
 <div id="navbar-container"></div>
 
 <!-- VIEWER -->
-<!-- VIEWER -->
 <div class="page-content">
   <div class="viewer-container">
     <div class="notes-card">
@@ -175,6 +174,9 @@ pdfjsLib.getDocument({ url: pdfFile }).promise
 function renderPage(num){
 
   if(!pdfDoc) return;
+
+  // ✅ ADD THIS LINE HERE
+  overlay.style.display = "none";
 
   if(num > freePages && !isPaidUser()){
     overlay.style.display="flex";
