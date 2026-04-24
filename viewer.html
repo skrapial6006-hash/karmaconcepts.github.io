@@ -286,23 +286,30 @@ const chaptersData = {
   "11physics": "Class 11 Physics Handwritten Notes",
   "11chemistry": "Class 11 Chemistry Handwritten Notes",
   "11biology": "Class 11 biology Handwritten Notes",
-  "12physics": "Class 12 Physics Handwritten Notes"
-  "12chemistry": "Class 12 Chemistry Handwritten Notes"
+  "12physics": "Class 12 Physics Handwritten Notes",
+  "12chemistry": "Class 12 Chemistry Handwritten Notes",
   "12biology": "Class 12 Biology Handwritten Notes"
 };
 
 /* ===== SET CHAPTER TITLE ===== */
 const titleEl = document.getElementById("chapterTitle");
 
-let chapterName = `Chapter ${chapter}`;
+const key = subject.toLowerCase();
+const chapterNum = parseInt(chapter);
 
-if(chaptersData[subject.toLowerCase()]){
-  const chapterNum = parseInt(chapter);
+/* default */
+let chapterName = `Chapter ${chapterNum}`;
 
-chapterName = chaptersData[subject.toLowerCase()][chapterNum - 1] || chapterName;
+/* real chapter */
+if(chaptersData[key]){
+  chapterName = chaptersData[key][chapterNum - 1] || chapterName;
 }
 
-titleEl.textContent = chapterName;
+/* subject title */
+const subjectTitle = subjectTitles[key] || subject;
+
+/* FINAL OUTPUT */
+titleEl.textContent = `${subjectTitle} - ${chapterName}`;
 
 /* ❌ safety */
 if(!subject || !chapter){
