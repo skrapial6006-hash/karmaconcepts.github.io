@@ -177,7 +177,7 @@ body.screenshot canvas{
   font-size:28px;
 
   margin-top:10px;     /* 🔥 hero se gap */
-  margin-bottom:30px;  /* 🔥 canvas se gap */
+  margin-bottom:20px;  /* 🔥 canvas se gap */
 
   position:relative;   /* 🔥 important */
   z-index:5;           /* 🔥 canvas se upar */
