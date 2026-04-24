@@ -36,6 +36,7 @@ body{
   border-radius:10px;
   box-shadow:0 10px 30px rgba(0,0,0,0.2);
   text-align:center;
+  z-index:1;
 }
 
 /* ===== CANVAS ===== */
@@ -173,6 +174,10 @@ body.screenshot canvas{
   text-align:center;
   font-family:'Cinzel', serif;
   font-size:28px;
-  margin-bottom:25px; /* 🔥 gap from PDF */
-  margin-top:10px;   /* 🔥 gap from hero/navbar */
+
+  margin-top:20px;     /* 🔥 hero se gap */
+  margin-bottom:30px;  /* 🔥 canvas se gap */
+
+  position:relative;   /* 🔥 important */
+  z-index:5;           /* 🔥 canvas se upar */
 }
