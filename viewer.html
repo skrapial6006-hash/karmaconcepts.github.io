@@ -15,10 +15,10 @@
 
 <body>
 
-<!-- ✅ NAVBAR -->
+<!-- NAVBAR -->
 <div id="navbar-container"></div>
 
-<!-- ===== VIEWER ===== -->
+<!-- VIEWER -->
 <div class="viewer-container">
   <div class="notes-card">
 
@@ -26,7 +26,6 @@
     <canvas id="pdfCanvas"></canvas>
     <button class="arrow" id="next">&#10095;</button>
 
-    <!-- 🔒 Overlay -->
     <div class="overlay" id="overlay">
       <h2>
         Get whole <span id="subjectName"></span> notes PDF  
@@ -40,7 +39,7 @@
   </div>
 </div>
 
-<!-- ===== NAVBAR LOAD ===== -->
+<!-- NAVBAR LOAD -->
 <script>
 fetch("navbar.html")
   .then(res => res.text())
@@ -55,27 +54,78 @@ fetch("navbar.html")
   });
 </script>
 
-<!-- ===== LIBRARIES ===== -->
+<!-- LIBRARIES -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-<!-- ===== PDF SCRIPT ===== -->
+<!-- PDF SCRIPT -->
 <script>
 
 const params = new URLSearchParams(window.location.search);
 
-const pdfFile = params.get("pdf");
-const subject = params.get("subject") || "Subject";
-const classStd = params.get("class") || "";
+/* ✅ NEW SYSTEM */
+const subject = params.get("subject");
+const chapter = params.get("chapter");
 
-if(!pdfFile){
-  alert("PDF file missing!");
-  throw new Error("No PDF path");
+/* ❌ safety */
+if(!subject || !chapter){
+  alert("Invalid PDF request!");
+  throw new Error("Missing subject/chapter");
 }
 
-document.getElementById("subjectName").textContent = subject;
-document.getElementById("classStd").textContent = classStd;
+/* ===== 🔥 MAPPING SYSTEM ===== */
+const folderMap = {
+  "12biology": "12BIONOTES",
+  "12chemistry": "12CHEMNOTES",
+  "12physics": "12PHYSICSNOTES",
 
+  "11biology": "11BIONOTES",
+  "11chemistry": "11CHEMNOTES",
+  "11physics": "11PHYSICSNOTES",
+
+  "10science": "10SCIENCENOTES",
+  "10maths": "10MATHSNOTES",
+  "10socialscience": "10SSTNOTES",
+
+  "9science": "9SCIENCENOTES",
+  "9maths": "9MATHSNOTES",
+  "9socialscience": "9SSTNOTES"
+};
+
+const prefixMap = {
+  "12biology": "12bioch",
+  "12chemistry": "12chemch",
+  "12physics": "12phych",
+
+  "11biology": "11bioch",
+  "11chemistry": "11chemch",
+  "11physics": "11phych",
+
+  "10science": "10scich",
+  "10maths": "10mathch",
+  "10socialscience": "10sstch",
+
+  "9science": "9scich",
+  "9maths": "9mathch",
+  "9socialscience": "9sstch"
+};
+
+/* ===== GENERATE PDF PATH ===== */
+const folder = folderMap[subject.toLowerCase()];
+const prefix = prefixMap[subject.toLowerCase()];
+
+if(!folder || !prefix){
+  alert("Invalid subject!");
+  throw new Error("Mapping error");
+}
+
+const pdfFile = `notes/${folder}/${prefix}${chapter}.pdf`;
+
+/* ===== UI TEXT ===== */
+document.getElementById("subjectName").textContent = subject;
+document.getElementById("classStd").textContent = subject.slice(0,2);
+
+/* ===== CORE ===== */
 let freePages = 3;
 let pdfDoc = null;
 let pageNum = 1;
@@ -85,7 +135,7 @@ const ctx = canvas.getContext("2d");
 const card = document.querySelector(".notes-card");
 const overlay = document.getElementById("overlay");
 
-/* 🔐 Paid check */
+/* Paid check */
 function isPaidUser(){
   return localStorage.getItem(pdfFile) === "paid";
 }
@@ -94,7 +144,7 @@ function isPaidUser(){
 const watermark = new Image();
 watermark.src = "images/logo2.png";
 
-/* ===== PDF LOAD ===== */
+/* PDF LOAD */
 pdfjsLib.GlobalWorkerOptions.workerSrc =
   "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
 
@@ -102,7 +152,6 @@ pdfjsLib.getDocument({ url: pdfFile }).promise
 .then(pdf => {
   pdfDoc = pdf;
 
-  // 🔥 ensure watermark loaded first
   if (watermark.complete) {
     renderPage(pageNum);
   } else {
@@ -114,7 +163,7 @@ pdfjsLib.getDocument({ url: pdfFile }).promise
   document.body.innerHTML = "<h2 style='text-align:center'>PDF Load Failed ❌</h2>";
 });
 
-/* ===== RENDER ===== */
+/* RENDER */
 function renderPage(num){
 
   if(!pdfDoc) return;
@@ -161,7 +210,7 @@ function renderPage(num){
 
 }
 
-/* ===== NAVIGATION ===== */
+/* NAVIGATION */
 document.getElementById("next").onclick = () => {
   if(pdfDoc && pageNum < pdfDoc.numPages){
     pageNum++;
@@ -176,7 +225,7 @@ document.getElementById("prev").onclick = () => {
   }
 };
 
-/* ===== PAYMENT ===== */
+/* PAYMENT */
 document.getElementById("payBtn").onclick = function(){
 
   var options = {
@@ -196,7 +245,7 @@ document.getElementById("payBtn").onclick = function(){
   new Razorpay(options).open();
 };
 
-/* ===== BASIC PROTECTION ===== */
+/* PROTECTION */
 document.addEventListener("contextmenu", e => e.preventDefault());
 
 document.onkeydown = function(e){
@@ -207,7 +256,7 @@ document.onkeydown = function(e){
 
 </script>
 
-<!-- ===== FIREBASE AUTH ===== -->
+<!-- FIREBASE AUTH -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
