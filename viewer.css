@@ -16,7 +16,7 @@ body{
 .page-content{
   margin-top:90px; /* 🔥 navbar height */
   min-height:calc(100vh - 90px);
-  display:none;
+  display:flex;
   justify-content:center;
   align-items:center;
   padding:20px;
@@ -76,8 +76,6 @@ canvas{
   -webkit-backdrop-filter: blur(6px);
 
   color:white;
-
-  display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
